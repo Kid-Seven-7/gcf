@@ -13,11 +13,11 @@
 <img align="right" src="https://raw.githubusercontent.com/Kid-Seven-7/images/master/wtc.gif" width="75">
 
 <H1 style="text-align: center;">
-[gcf Project](http://gcfprojects.co.za/) App
+<a href="http://gcfprojects.co.za/">gcf Projects</a> App
 </H1>
 
 <p style="text-align: center;">
-Social Techproject at [we think code_](https://www.wethinkcode.co.za/)
+Social Tech project at <a href="https://www.wethinkcode.co.za/">we think code_</a>
 </p>
 
 > The gcf Projects App
@@ -52,7 +52,8 @@ pending...
 ## Contributors
 
 **Joseph L. Ngoma**
-
+<img align="left" src="https://cdn.intra.42.fr/users/medium_jngoma.jpg" width="220">
+<br>
 *Number 1: Team Lead*
 >[Linkedin](https://www.linkedin.com/in/joseph-ngoma-03189214b/)
 >
@@ -64,8 +65,9 @@ pending...
 >
 
 **Afrka E. Matshiye**
-
-*Number 2: Team Technical Lead*
+<img align="left" src="https://cdn.intra.42.fr/users/medium_amatshiy.jpg" width="220">
+<br>
+*Number 2: Technical Lead*
 >[Linkedin](https://www.linkedin.com/in/afrika-matshiye-340a52150/)
 >
 >[Github](https://github.com/amatshiye)
@@ -76,8 +78,9 @@ pending...
 >
 
 **Joyce V. Mkhosi**
-
-*Number 3: Team Project Owner*
+<img align="left" src="https://cdn.intra.42.fr/users/medium_jmkhosi.jpg" width="220">
+<br>
+*Number 3: Project Owner*
 >[Linkedin](https://www.linkedin.com/in/joyce-vuyiswa-irene-mkhosi-915a0b107/)
 >
 >[Github](https://github.com/jmkhosi)
@@ -88,8 +91,9 @@ pending...
 >
 
 **Gaolatlhwe Sebaetse**
-
-*Number 1: Team Lead*
+<img align="left" src="https://cdn.intra.42.fr/users/medium_gsebaets.jpg" width="220">
+<br>
+*Number 1: Head of R&D*
 >[Linkedin](https://www.linkedin.com/in/gaolatlhwe-sebaetse-ba5875149/)
 >
 >[Github](https://github.com/gsebaets)
