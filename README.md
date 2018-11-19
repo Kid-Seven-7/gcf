@@ -50,6 +50,7 @@ pending...
 	* we think code_ edition
 
 ## Contributors
+#### Team KnD
 
 <div style="clear:both;">
 <div style="float: left;">
@@ -63,6 +64,7 @@ pending...
 <a style="padding-left: 50px;" href="https://www.linkedin.com/in/joseph-ngoma-03189214b/">Linkedin</a>
 </div>
 </div>
+<div style="clear:both"></div>
 <div style="clear:both"></div>
 
 <div style="clear:both;">
@@ -78,6 +80,7 @@ pending...
 </div>
 </div>
 <div style="clear:both"></div>
+<div style="clear:both"></div>
 
 <div style="clear:both;">
 <div style="float: left;">
@@ -91,6 +94,7 @@ pending...
 <a style="padding-left: 50px;" href="https://www.linkedin.com/in/joyce-vuyiswa-irene-mkhosi-915a0b107/">Linkedin</a>
 </div>
 </div>
+<div style="clear:both"></div>
 <div style="clear:both"></div>
 
 <div style="clear:both;">
@@ -106,8 +110,10 @@ pending...
 </div>
 </div>
 <div style="clear:both"></div>
+<div style="clear:both"></div>
 
 <div style="clear:both"></div>
+
 ## Contributing
 
-Not open to contributing at present
+Not open to contribution 😥
