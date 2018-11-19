@@ -17,7 +17,7 @@
 </H1>
 
 <p style="text-align: center;">
-Social Techproject at <a href="https://www.wethinkcode.co.za/">we think code_</a>
+Social Tech project at <a href="https://www.wethinkcode.co.za/">we think code_</a>
 </p>
 
 > The gcf Projects App
