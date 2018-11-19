@@ -50,34 +50,57 @@ pending...
 	* we think code_ edition
 
 ## Contributors
-#### Team KnD
-<img align="left" src="https://cdn.intra.42.fr/users/medium_jngoma.jpg" width="150">
+
 **Joseph L. Ngoma**
+<img align="left" src="https://cdn.intra.42.fr/users/medium_jngoma.jpg" width="220">
+<br>
 *Number 1: Team Lead*
 >[Linkedin](https://www.linkedin.com/in/joseph-ngoma-03189214b/)
 >
 >[Github](https://github.com/Kid-Seven-7)
 >
-<img align="left" src="https://cdn.intra.42.fr/users/medium_amatshiy.jpg" width="150">
+>[Facebook](https://www.facebook.com/joseph.ngoma.505)
+>
+>[Twitter](https://twitter.com/mr_joey0707)
+>
+
 **Afrka E. Matshiye**
+<img align="left" src="https://cdn.intra.42.fr/users/medium_amatshiy.jpg" width="220">
+<br>
 *Number 2: Technical Lead*
 >[Linkedin](https://www.linkedin.com/in/afrika-matshiye-340a52150/)
 >
 >[Github](https://github.com/amatshiye)
 >
-<img align="left" src="https://cdn.intra.42.fr/users/medium_jmkhosi.jpg" width="150">
+>[Facebook](https://www.facebook.com/africa.matshiye.7)
+>
+>[Twitter]()
+>
+
 **Joyce V. Mkhosi**
+<img align="left" src="https://cdn.intra.42.fr/users/medium_jmkhosi.jpg" width="220">
+<br>
 *Number 3: Project Owner*
 >[Linkedin](https://www.linkedin.com/in/joyce-vuyiswa-irene-mkhosi-915a0b107/)
 >
 >[Github](https://github.com/jmkhosi)
 >
-<img align="left" src="https://cdn.intra.42.fr/users/medium_gsebaets.jpg" width="150">
+>[Facebook](https://www.facebook.com/joycevuyiswa.mkhosi)
+>
+>[Twitter]()
+>
+
 **Gaolatlhwe Sebaetse**
-*Number 4: Head of R&D*
+<img align="left" src="https://cdn.intra.42.fr/users/medium_gsebaets.jpg" width="220">
+<br>
+*Number 1: Head of R&D*
 >[Linkedin](https://www.linkedin.com/in/gaolatlhwe-sebaetse-ba5875149/)
 >
 >[Github](https://github.com/gsebaets)
+>
+>[Facebook](https://www.facebook.com/gaolatlhes)
+>
+>[Twitter]()
 >
 
 ## Contributing
