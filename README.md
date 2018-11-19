@@ -65,7 +65,7 @@ pending...
 
 **Afrka E. Matshiye**
 
-*Number 2: Team Technical Lead*
+*Number 2: Technical Lead*
 >[Linkedin](https://www.linkedin.com/in/afrika-matshiye-340a52150/)
 >
 >[Github](https://github.com/amatshiye)
@@ -77,7 +77,7 @@ pending...
 
 **Joyce V. Mkhosi**
 
-*Number 3: Team Project Owner*
+*Number 3: Project Owner*
 >[Linkedin](https://www.linkedin.com/in/joyce-vuyiswa-irene-mkhosi-915a0b107/)
 >
 >[Github](https://github.com/jmkhosi)
@@ -89,7 +89,7 @@ pending...
 
 **Gaolatlhwe Sebaetse**
 
-*Number 1: Team Lead*
+*Number 1: Head of R&D*
 >[Linkedin](https://www.linkedin.com/in/gaolatlhwe-sebaetse-ba5875149/)
 >
 >[Github](https://github.com/gsebaets)
