@@ -51,69 +51,44 @@ pending...
 
 ## Contributors
 #### Team KnD
-
-<div style="clear:both;">
-<div style="float: left;">
-<img align="left" src="https://cdn.intra.42.fr/users/medium_jngoma.jpg" width="220">
-</div>
-<div style="">
-<H1 style="padding-left: 250px;">Joseph L. Ngoma</H1>
-<H5 style="padding-left: 250px;">Number 1: Team Lead</H5>
-<a style="padding-left: 50px;" href="https://github.com/Kid-Seven-7">Git hub</a>
 <br>
-<a style="padding-left: 50px;" href="https://www.linkedin.com/in/joseph-ngoma-03189214b/">Linkedin</a>
-</div>
-</div>
-<div style="clear:both"></div>
-<div style="clear:both"></div>
-
-<div style="clear:both;">
-<div style="float: left;">
-<img align="left" src="https://cdn.intra.42.fr/users/medium_amatshiy.jpg" width="220">
-</div>
-<div style="">
-<H1 style="padding-left: 250px;">Afrika E. Matshiye</H1>
-<H5 style="padding-left: 250px;">Number 2: technical Lead</H5>
-<a style="padding-left: 50px;" href="https://github.com/amatshiye">Git hub</a>
+<img align="left" src="https://cdn.intra.42.fr/users/medium_jngoma.jpg" width="150">
+**Joseph L. Ngoma**
 <br>
-<a style="padding-left: 50px;" href="https://www.linkedin.com/in/afrika-matshiye-340a52150/">Linkedin</a>
-</div>
-</div>
-<div style="clear:both"></div>
-<div style="clear:both"></div>
-
-<div style="clear:both;">
-<div style="float: left;">
-<img align="left" src="https://cdn.intra.42.fr/users/medium_jmkhosi.jpg" width="220">
-</div>
-<div style="">
-<H1 style="padding-left: 250px;">Joyce V. Mkhosi</H1>
-<H5 style="padding-left: 250px;">Number 3: Product Owner</H5>
-<a style="padding-left: 50px;" href="https://github.com/jmkhosi">Git hub</a>
+*Number 1: Team Lead*
+>[Linkedin](https://www.linkedin.com/in/joseph-ngoma-03189214b/)
+>
+>[Github](https://github.com/Kid-Seven-7)
+>
 <br>
-<a style="padding-left: 50px;" href="https://www.linkedin.com/in/joyce-vuyiswa-irene-mkhosi-915a0b107/">Linkedin</a>
-</div>
-</div>
-<div style="clear:both"></div>
-<div style="clear:both"></div>
-
-<div style="clear:both;">
-<div style="float: left;">
-<img align="left" src="https://cdn.intra.42.fr/users/medium_gsebaets.jpg" width="220">
-</div>
-<div style="">
-<H1 style="padding-left: 250px;">Gaolatlhwe Sebaetse</H1>
-<H5 style="padding-left: 250px;">Number 4: Head of R&D</H5>
-<a style="padding-left: 50px;" href="https://github.com/gsebaets">Git hub</a>
+<img align="left" src="https://cdn.intra.42.fr/users/medium_amatshiy.jpg" width="150">
+**Afrka E. Matshiye**
 <br>
-<a style="padding-left: 50px;" href="https://www.linkedin.com/in/gaolatlhwe-sebaetse-ba5875149/">Linkedin</a>
-</div>
-</div>
-<div style="clear:both"></div>
-<div style="clear:both"></div>
-
-<div style="clear:both"></div>
+*Number 2: Technical Lead*
+>[Linkedin](https://www.linkedin.com/in/afrika-matshiye-340a52150/)
+>
+>[Github](https://github.com/amatshiye)
+>
+<br>
+<img align="left" src="https://cdn.intra.42.fr/users/medium_jmkhosi.jpg" width="150">
+**Joyce V. Mkhosi**
+<br>
+*Number 3: Project Owner*
+>[Linkedin](https://www.linkedin.com/in/joyce-vuyiswa-irene-mkhosi-915a0b107/)
+>
+>[Github](https://github.com/jmkhosi)
+>
+<br>
+<img align="left" src="https://cdn.intra.42.fr/users/medium_gsebaets.jpg" width="150">
+**Gaolatlhwe Sebaetse**
+<br>
+*Number 4: Head of R&D*
+>[Linkedin](https://www.linkedin.com/in/gaolatlhwe-sebaetse-ba5875149/)
+>
+>[Github](https://github.com/gsebaets)
+>
+<br>
 
 ## Contributing
 
-Not open to contribution 😥
+Not open to contributing at present
