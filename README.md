@@ -27,10 +27,6 @@ Social Tech project at <a href="https://www.wethinkcode.co.za/">we think code_</
 > The main focus of this application is to provide a user friendly cost management
 > application.
 >
->
->
->
->
 
 ## Installation
 
