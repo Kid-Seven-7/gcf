@@ -51,43 +51,34 @@ pending...
 
 ## Contributors
 #### Team KnD
-<br>
 <img align="left" src="https://cdn.intra.42.fr/users/medium_jngoma.jpg" width="150">
 **Joseph L. Ngoma**
-<br>
 *Number 1: Team Lead*
 >[Linkedin](https://www.linkedin.com/in/joseph-ngoma-03189214b/)
 >
 >[Github](https://github.com/Kid-Seven-7)
 >
-<br>
 <img align="left" src="https://cdn.intra.42.fr/users/medium_amatshiy.jpg" width="150">
 **Afrka E. Matshiye**
-<br>
 *Number 2: Technical Lead*
 >[Linkedin](https://www.linkedin.com/in/afrika-matshiye-340a52150/)
 >
 >[Github](https://github.com/amatshiye)
 >
-<br>
 <img align="left" src="https://cdn.intra.42.fr/users/medium_jmkhosi.jpg" width="150">
 **Joyce V. Mkhosi**
-<br>
 *Number 3: Project Owner*
 >[Linkedin](https://www.linkedin.com/in/joyce-vuyiswa-irene-mkhosi-915a0b107/)
 >
 >[Github](https://github.com/jmkhosi)
 >
-<br>
 <img align="left" src="https://cdn.intra.42.fr/users/medium_gsebaets.jpg" width="150">
 **Gaolatlhwe Sebaetse**
-<br>
 *Number 4: Head of R&D*
 >[Linkedin](https://www.linkedin.com/in/gaolatlhwe-sebaetse-ba5875149/)
 >
 >[Github](https://github.com/gsebaets)
 >
-<br>
 
 ## Contributing
 
