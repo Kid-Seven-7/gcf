@@ -13,11 +13,11 @@
 <img align="right" src="https://raw.githubusercontent.com/Kid-Seven-7/images/master/wtc.gif" width="75">
 
 <H1 style="text-align: center;">
-[gcf Project](http://gcfprojects.co.za/) App
+<a href="http://gcfprojects.co.za/">gcf Projects</a> App
 </H1>
 
 <p style="text-align: center;">
-Social Techproject at [we think code_](https://www.wethinkcode.co.za/)
+Social Techproject at <a href="https://www.wethinkcode.co.za/">we think code_</a>
 </p>
 
 > The gcf Projects App
