@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SecondScreen extends StatelessWidget {
-  List<DropdownMenuItem<String>> _project_types;
-
+class CreateProjectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
