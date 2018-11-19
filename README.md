@@ -93,7 +93,7 @@ pending...
 **Gaolatlhwe Sebaetse**
 <img align="left" src="https://cdn.intra.42.fr/users/medium_gsebaets.jpg" width="220">
 <br>
-*Number 1: Head of R&D*
+*Number 4: Head of R&D*
 >[Linkedin](https://www.linkedin.com/in/gaolatlhwe-sebaetse-ba5875149/)
 >
 >[Github](https://github.com/gsebaets)
