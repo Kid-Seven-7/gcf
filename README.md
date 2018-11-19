@@ -52,7 +52,7 @@ pending...
 ## Contributors
 
 **Joseph L. Ngoma**
-
+<img align="right" src="https://cdn.intra.42.fr/users/medium_jngoma.jpg" width="75">
 *Number 1: Team Lead*
 >[Linkedin](https://www.linkedin.com/in/joseph-ngoma-03189214b/)
 >
@@ -64,7 +64,7 @@ pending...
 >
 
 **Afrka E. Matshiye**
-
+<img align="right" src="https://cdn.intra.42.fr/users/medium_amatshiy.jpg" width="75">
 *Number 2: Technical Lead*
 >[Linkedin](https://www.linkedin.com/in/afrika-matshiye-340a52150/)
 >
@@ -76,7 +76,7 @@ pending...
 >
 
 **Joyce V. Mkhosi**
-
+<img align="right" src="https://cdn.intra.42.fr/users/medium_jmkhosi.jpg" width="75">
 *Number 3: Project Owner*
 >[Linkedin](https://www.linkedin.com/in/joyce-vuyiswa-irene-mkhosi-915a0b107/)
 >
@@ -88,7 +88,7 @@ pending...
 >
 
 **Gaolatlhwe Sebaetse**
-
+<img align="right" src="https://cdn.intra.42.fr/users/medium_gsebaets.jpg" width="75">
 *Number 1: Head of R&D*
 >[Linkedin](https://www.linkedin.com/in/gaolatlhwe-sebaetse-ba5875149/)
 >
