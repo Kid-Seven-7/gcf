@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 #Thu Nov 22 15:35:10 CAT 2018
 base.0=C\:\\Users\\BlackXcore\\Desktop\\NEW_RS\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
+=======
+#Thu Nov 22 14:28:51 SAST 2018
+base.0=/goinfre/gsebaets/Desktop/gcf/build/app/intermediates/transforms/dexMerger/debug/0
+>>>>>>> 54709ad99bf84c77ef3a4f4150f4227538bfc083
 path.0=classes.dex
 renamed.0=classes.dex

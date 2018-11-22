@@ -4,10 +4,14 @@ import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State createState() => new SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+
+    AnimationController _iconAnimationController;
+  Animation<double> _iconAnimation;
+
   @override
   void initState() {
     super.initState();
