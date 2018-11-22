@@ -15,6 +15,19 @@ class SplashScreenState extends State<SplashScreen> with SingleTickerProviderSta
   @override
   void initState() {
     super.initState();
+
+        _iconAnimationController = new AnimationController(
+      vsync: this,
+      duration: new Duration(milliseconds: 2000)
+    );
+
+    _iconAnimation = new CurvedAnimation(
+      parent:_iconAnimationController,
+      curve: Curves.bounceInOut,
+    );
+    _iconAnimation.addListener(()=>this .setState((){}));
+    _iconAnimationController.forward();
+
     Timer(Duration(seconds: 4), () {
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => LoginPage()));
@@ -39,8 +52,8 @@ class SplashScreenState extends State<SplashScreen> with SingleTickerProviderSta
                   children: <Widget>[
                     new Image(
                       image: new AssetImage("assets/images/GCF-logo.png"),
-                      height: 140,
-                      width: 140,
+                       height: _iconAnimation.value *110,
+                       width: _iconAnimation.value *110,
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 10.0),

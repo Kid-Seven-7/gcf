@@ -1,11 +1,6 @@
 #Internal package file, do not edit.
-<<<<<<< HEAD
-#Thu Nov 22 15:35:12 CAT 2018
+#Thu Nov 22 17:40:54 CAT 2018
 4.path=flutter_assets/vm_snapshot_data
-=======
-#Thu Nov 22 14:28:52 SAST 2018
-4.path=flutter_assets/assets/images/GCF-logo.png
->>>>>>> 54709ad99bf84c77ef3a4f4150f4227538bfc083
 13.baseType=DIRECTORY
 8.set=NATIVE_RESOURCE
 6.path=flutter_assets/LICENSE
