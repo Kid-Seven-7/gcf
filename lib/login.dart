@@ -31,7 +31,7 @@ class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixi
   Widget build(BuildContext context){
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black87,
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -58,7 +58,7 @@ class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixi
                     primarySwatch: Colors.green,
                     inputDecorationTheme: new InputDecorationTheme(
                       labelStyle: new TextStyle(
-                        color: Colors.green,
+                        color: Color.fromARGB(255, 140, 188, 63),
                         fontSize: 20.0,
                       )
                     ),
@@ -87,7 +87,7 @@ class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixi
                     ),
 
                     new MaterialButton(
-                      color: Colors.green,
+                      color: Color.fromARGB(255, 140, 188, 63),
                       child: new Text("Login"),
                       onPressed: () {
                         Navigator.push(context,

@@ -4,15 +4,36 @@ import 'login.dart';
 
 class SplashScreen extends StatefulWidget{
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State createState() => new SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+
+    AnimationController _iconAnimationController;
+  Animation<double> _iconAnimation;
+
   @override
-    void initState() {
-      super.initState();
-      // Timer(Duration(seconds: 3), ()=> print("SPLASHED"));
-    }
+  void initState(){
+    super.initState();
+    _iconAnimationController = new AnimationController(
+      vsync: this,
+      duration: new Duration(milliseconds: 2000)
+    );
+
+    _iconAnimation = new CurvedAnimation(
+      parent:_iconAnimationController,
+      curve: Curves.bounceOut,
+    );
+    _iconAnimation.addListener(()=>this .setState((){}));
+    _iconAnimationController.forward();
+  }
+
+
+  // @override
+  //   void initState() {
+  //     super.initState();
+  //     // Timer(Duration(seconds: 3), ()=> print("SPLASHED"));
+  //   }
 
   @override
   Widget build(BuildContext context){
@@ -33,8 +54,8 @@ class _SplashScreenState extends State<SplashScreen> {
                   children: <Widget>[
                     new Image(
                       image: new AssetImage("assets/images/GCF-logo.png"),
-                      height: 140,
-                      width: 140,
+                height: _iconAnimation.value *110,
+                width: _iconAnimation.value *110,
                       ),
                     Padding(padding: EdgeInsets.only(top: 10.0),),
                     Text("GCF Projects", 
@@ -52,9 +73,9 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 140, 188, 63))
+                CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 140, 188, 63))
                   
-                // ),
+                ),
 
                  new MaterialButton(
                       color: Colors.black,
