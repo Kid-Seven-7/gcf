@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'home_page.dart';
 
-class SecondScreen extends StatelessWidget {
-  List<DropdownMenuItem<String>> _project_types;
-
+class CreateProjectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,6 +10,9 @@ class SecondScreen extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 140, 188, 63),
         title: Text("Add Project"),
         centerTitle: true,
+        actions: <Widget>[
+          Image.asset('assets/images/gcf_white.png'),
+        ],
       ),
       body: Column(
         children: <Widget>[
@@ -44,16 +46,38 @@ class SecondScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          FloatingActionButton(
-            child: Icon(Icons.check),
-            backgroundColor: Color.fromARGB(255, 140, 188, 63),
-            onPressed: () {},
-          )
+      bottomNavigationBar: BottomNavigationBar(
+        fixedColor: Color.fromARGB(255, 140, 188, 63),
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(backgroundColor: Colors.black ,icon: Icon(Icons.cancel), title: Text('Cancel')),
+          BottomNavigationBarItem(icon: Icon(Icons.check), title: Text('Create')),
+//          BottomNavigationBarItem(icon: Icon(Icons.add), title: Text('Add project')),
         ],
+        onTap: (index)  {
+          _onItemTapped(context, index);
+        },
       ),
+//      bottomNavigationBar: Row(
+//        mainAxisAlignment: MainAxisAlignment.end,
+//        children: <Widget>[
+//          FloatingActionButton(
+//            child: Icon(Icons.check),
+//            backgroundColor: Color.fromARGB(255, 140, 188, 63),
+//            onPressed: () {},
+//          )
+//        ],
+//      ),
     );
+  }
+}
+
+void _onItemTapped(BuildContext context , int index) {
+  if (index == 0) {
+    debugPrint('Cancel');
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => HomeScreen()));
+  } else if (index == 1) {
+    debugPrint('Create');
+
   }
 }
