@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 //debug
 import 'package:flutter/foundation.dart';
-import 'dart:developer';
 
 import 'add_project.dart';
 
@@ -13,14 +12,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
-  int _counter = 0;
   _handleDrawer() {
     _key.currentState.openDrawer();
-
-//    setState(() {
-//      ///DO MY API CALLS
-//      _counter++;
-//    });
   }
 
   @override
@@ -39,39 +32,48 @@ class _HomeScreenState extends State<HomeScreen> {
           Image.asset('assets/images/gcf_white.png'),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Card(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const ListTile(
-                  leading: Icon(Icons.library_books),
-                  title: Text('Project name'),
-                  subtitle: Text('Project discription'),
-                ),
-                ButtonTheme.bar(
-                  child: ButtonBar(
-                    children: <Widget>[
-                      FlatButton(
-                        child: const Text('View project'),
-                        onPressed: () {},
-                      )
-                    ],
+      body: Container(
+        color: Color.fromARGB(255, 255, 255, 255),
+        child:  Column(
+          children: <Widget>[
+            Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const ListTile(
+                    leading: Icon(Icons.library_books),
+                    title: Text('Project name'),
+                    subtitle: Text('Project discription'),
                   ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+                  ButtonTheme.bar(
+                    child: ButtonBar(
+                      children: <Widget>[
+                        FlatButton(
+                          child: const Text('View project', style: TextStyle(
+                            color: Color.fromARGB(255, 140, 188, 63),
+                          ),),
+                          onPressed: () {},
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ) ,
+
       bottomNavigationBar: BottomNavigationBar(
+        fixedColor: Color.fromARGB(255, 140, 188, 63),
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.rate_review), title: Text('View Report')),
+          BottomNavigationBarItem(backgroundColor: Colors.black ,icon: Icon(Icons.rate_review), title: Text('View Report')),
           BottomNavigationBarItem(icon: Icon(Icons.timeline), title: Text('View Statistics')),
           BottomNavigationBarItem(icon: Icon(Icons.add), title: Text('Add project')),
         ],
-        onTap: _onItemTapped,
+        onTap: (index)  {
+          _onItemTapped(context, index);
+        },
       ),
       drawer: Drawer(
           child: ListView(
@@ -83,21 +85,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Icon(Icons.account_circle),
+                        Icon(Icons.account_circle, color: Colors.white,),
                         Text(
                           'User Name',
                           style: TextStyle(
+                            color: Colors.white,
                             fontSize: 25.0,
                           ),
                         ),
                       ],
                     ),
-                    Text('Title')
+                    Text('Title', style: TextStyle(
+                      color: Colors.white,
+                    ),)
                   ],
                 ),
 
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 96, 129, 42),
+                  color: Color.fromARGB(255, 140, 188, 63),
                 ),
               ),
               ListTile(
@@ -140,14 +145,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-void _onItemTapped(int index){
-  if (index == 0){
+void _onItemTapped(BuildContext context , int index) {
+  if (index == 0) {
     debugPrint('View Report');
-  }else if (index == 1){
+  } else if (index == 1) {
     debugPrint('View Statistics');
-  }else if (index == 2){
+  } else if (index == 2) {
     debugPrint('Add project');
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>CreateProjectPage()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CreateProjectPage()));
   }
-
 }
