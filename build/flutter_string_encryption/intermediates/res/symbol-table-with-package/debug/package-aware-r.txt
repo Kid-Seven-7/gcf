@@ -1,0 +1,2 @@
+com.github.sroddy.flutterstringencryption
+string app_name

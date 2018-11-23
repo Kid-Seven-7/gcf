@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Nov 22 17:40:54 CAT 2018
+#Thu Nov 22 23:44:30 CAT 2018
 4.path=flutter_assets/vm_snapshot_data
 13.baseType=DIRECTORY
 8.set=NATIVE_RESOURCE
