@@ -9,17 +9,24 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  dbcrypt: ^1.0.0
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: "^0.7.0"
+
+flutter_icons:
+  image_path: "assets/images/GCF-logo.png" 
+  android: true
+  ios: true
 
 flutter:
 
   uses-material-design: true
   assets:
     - assets/images/gcf_white.png
-
+    - assets/images/login_back.png
+    - assets/images/GCF-logo.png
