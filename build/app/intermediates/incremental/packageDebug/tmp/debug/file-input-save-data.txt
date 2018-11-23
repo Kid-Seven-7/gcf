@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Fri Nov 23 12:46:23 SAST 2018
+#Fri Nov 23 13:19:50 SAST 2018
 4.path=flutter_assets/assets/images/gcf_white.png
 13.baseType=DIRECTORY
 8.set=NATIVE_RESOURCE
