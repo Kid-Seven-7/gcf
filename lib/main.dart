@@ -1,12 +1,26 @@
-//packages
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'login.dart';
+import 'splash.dart';
 
-//source files
-import 'home_page.dart';
-
+// void main() => runApp(MyApp());
 void main() {
-  runApp(MaterialApp(
-    title: 'Navigation Basics',
-    home: FirstScreen(),
-  ));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+    .then((_) {
+      runApp(new MyApp());
+    });
 }
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'GCF',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: SplashScreen(),
+    );
+  }
+}
+
+//14018863
