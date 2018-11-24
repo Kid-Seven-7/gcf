@@ -1,4 +1,0 @@
-#Fri Nov 23 13:19:49 SAST 2018
-base.0=/goinfre/gsebaets/Music/gcf/build/app/intermediates/transforms/dexMerger/debug/0
-path.0=classes.dex
-renamed.0=classes.dex

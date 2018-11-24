@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
-// import 'dart:core';
+import 'login_engine.dart';
+import 'database_engine.dart';
 import 'package:dbcrypt/dbcrypt.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,9 +12,13 @@ class LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
   AnimationController _iconAnimationController;
   Animation<double> _iconAnimation;
+
   final textName = new TextEditingController();
   final textPassword = new TextEditingController();
+
   DBCrypt dBCrypt = DBCrypt();
+  LoginEngine loginEngine = new LoginEngine();
+  DataBaseEngine dataBaseEngine = new DataBaseEngine();
 
   @override
   void dispose() {
@@ -93,17 +97,16 @@ class LoginPageState extends State<LoginPage>
                           color: Color.fromARGB(255, 140, 188, 63),
                           child: new Text("Login"),
                           onPressed: () {
-                            print(textName.text);
-
-                            var hash = dBCrypt.hashpw(
-                                textPassword.text, dBCrypt.gensalt());
-
-                            print(hash);
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => FirstScreen()),
-                            // );
+                            if (loginEngine.checkLogin(
+                                textName.text, textPassword.text)) {
+                              var hash = dBCrypt.hashpw(
+                                  textPassword.text, dBCrypt.gensalt());
+                              print(hash);
+                              dataBaseEngine.checkUser(
+                                  textName.text, textPassword.text, context);
+                            } else {
+                              print("Do an awesome popup");
+                            }
                           },
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(70.0)),

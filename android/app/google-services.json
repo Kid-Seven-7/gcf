@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "35340020874",
+    "firebase_url": "https://gcfdatabasetest.firebaseio.com",
+    "project_id": "gcfdatabasetest",
+    "storage_bucket": "gcfdatabasetest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35340020874:android:d4a2fd6172928f76",
+        "android_client_info": {
+          "package_name": "com.knd.wethinkcode.gcfprojectsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35340020874-ebutslbh07bb04ofve99hrd1pknmjl7r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_Lei9vbnZWQQ-jgG1zt3CWMgjgpNxVpk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

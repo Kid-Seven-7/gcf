@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   dbcrypt: ^1.0.0
   cupertino_icons: ^0.1.2
+  cloud_firestore: ^0.8.2+3
+  connectivity: ^0.3.2
 
 dev_dependencies:
   flutter_test:
