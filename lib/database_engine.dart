@@ -7,6 +7,9 @@ class DataBaseEngine {
   BuildContext _context;
   DBCrypt dBCrypt = DBCrypt();
 
+  //Function gets data from the database and checks if the user exists in the database
+  //Function to check user is checkDetails()
+
   void checkUser(String name, String password, BuildContext context) {
     _context = context;
 
@@ -27,10 +30,12 @@ class DataBaseEngine {
     }
   }
 
+  //Checks if users' name and password matches those in the database
   void checkDetails(
       String name, String password, String dataName, String dataPassword) {
-    print('name: $name');
-    print('dataName: $dataName');
+    print('name: $name'); //TO BE DELETED
+    print('dataName: $dataName'); //TO BE DELETED
+
     if ((name == dataName)) {
       try {
         assert(dBCrypt.checkpw(password, dataPassword), true);
@@ -41,6 +46,14 @@ class DataBaseEngine {
       } catch (_) {
         print('Incorrect Details papa');
       }
+    }
+  }
+
+  void  addData(String collection, Map<String, dynamic> data){
+    try{
+      Firestore.instance.collection(collection).document().updateData(data);
+    } catch (_){
+      print('Do some awesome pop-up');
     }
   }
 }

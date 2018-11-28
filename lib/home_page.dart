@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcf_projects_app/globals.dart';
 
 //debug
 import 'package:flutter/foundation.dart';
@@ -18,6 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //TEST
+    pageNumber += 1;
+    print('Splash Page Number: $pageNumber');
+    //TEST
     return Scaffold(
       key: _key,
       appBar: AppBar(

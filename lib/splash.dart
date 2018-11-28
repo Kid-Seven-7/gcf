@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcf_projects_app/globals.dart';
 import 'dart:async';
 import 'login.dart';
 import 'dart:io';
@@ -43,6 +44,10 @@ class SplashScreenState extends State<SplashScreen>
   }
 
   void checkConnection() async {
+    //TEST
+    pageNumber += 1;
+    print('Splash Page Number: $pageNumber');
+    //TEST
     try {
       final result = await InternetAddress.lookup('google.com', type: InternetAddressType.any);
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {

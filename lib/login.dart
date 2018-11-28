@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcf_projects_app/globals.dart';
 import 'login_engine.dart';
 import 'database_engine.dart';
 import 'package:dbcrypt/dbcrypt.dart';
@@ -29,6 +30,10 @@ class LoginPageState extends State<LoginPage>
 
   @override
   void initState() {
+    //TEST
+    pageNumber += 1;
+    print('Login Page Number: $pageNumber');
+    //TEST
     super.initState();
     _iconAnimationController = new AnimationController(
         vsync: this, duration: new Duration(milliseconds: 1000));
