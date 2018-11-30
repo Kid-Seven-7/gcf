@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'login.dart';
 import 'splash.dart';
+import 'package:gcf_projects_app/globals.dart';
+
 
 void main() {
 
