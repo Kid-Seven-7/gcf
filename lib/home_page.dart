@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-//debug
-import 'package:flutter/foundation.dart';
-
 import 'add_project.dart';
+import 'burger_menu_drawer.dart';
+import 'project_file_card.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -22,8 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
       key: _key,
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 140, 188, 63),
-        title: Text("Home Screen"),
-        centerTitle: true,
+        title: Text("Dashboard"),
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: _handleDrawer,
@@ -36,30 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Color.fromARGB(255, 255, 255, 255),
         child:  Column(
           children: <Widget>[
-            Card(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const ListTile(
-                    leading: Icon(Icons.library_books),
-                    title: Text('Project name'),
-                    subtitle: Text('Project discription'),
-                  ),
-                  ButtonTheme.bar(
-                    child: ButtonBar(
-                      children: <Widget>[
-                        FlatButton(
-                          child: const Text('View project', style: TextStyle(
-                            color: Color.fromARGB(255, 140, 188, 63),
-                          ),),
-                          onPressed: () {},
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            )
+            ProjectCard(),
           ],
         ),
       ) ,
@@ -75,72 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           _onItemTapped(context, index);
         },
       ),
-      drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                padding: EdgeInsets.all(50.0),
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Icon(Icons.account_circle, color: Colors.white,),
-                        Text(
-                          'User Name',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text('Title', style: TextStyle(
-                      color: Colors.white,
-                    ),)
-                  ],
-                ),
-
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 140, 188, 63),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.library_books),
-                title: Text('Projects',style: TextStyle(fontSize: 18.0,),),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(Icons.assignment),
-                title: Text('Log',style: TextStyle(fontSize: 18.0,),),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(Icons.timeline),
-                title: Text('Statistics',style: TextStyle(fontSize: 18.0,),),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(Icons.rate_review),
-                title: Text('Reports',style: TextStyle(fontSize: 18.0,),),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(Icons.notifications),
-                title: Text('Notifications',style: TextStyle(fontSize: 18.0,),),
-                onTap: () {},
-              ),
-              Divider(
-                height: 20.0,
-                color: Colors.black,
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings',style: TextStyle(fontSize: 15.0,),),
-                onTap: () {},
-              ),
-            ],
-          )),
+      drawer: OpenDrawer()
     );
   }
 }
