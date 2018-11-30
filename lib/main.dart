@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'login.dart';
+import 'home_page.dart';
 import 'splash.dart';
 
 void main() {
