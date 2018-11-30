@@ -38,8 +38,13 @@ class SplashScreenState extends State<SplashScreen>
       checkConnection();
     });
     Timer(Duration(seconds: 5), () {
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => LoginPage()));
+      if (isConnected) {
+        Navigator.of(context).pushReplacement(
+            new MaterialPageRoute(builder: (context) => LoginPage()));
+      }
+      else{
+        print("Do an awesome popup please :)");
+      }
     });
   }
 
@@ -49,12 +54,15 @@ class SplashScreenState extends State<SplashScreen>
     print('Splash Page Number: $pageNumber');
     //TEST
     try {
-      final result = await InternetAddress.lookup('google.com', type: InternetAddressType.any);
+      final result = await InternetAddress.lookup('google.com',
+          type: InternetAddressType.any);
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         status = "Connected";
+        isConnected = true;
       }
     } on SocketException catch (_) {
       status = "No connection found";
+      isConnected = false;
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
+import 'package:gcf_projects_app/globals.dart';
 
 class CreateProjectPage extends StatelessWidget {
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcf_projects_app/globals.dart';
 
 Future<bool> loginError(BuildContext context) {
   return showDialog<bool>(

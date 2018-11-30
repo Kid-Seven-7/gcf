@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home_page.dart';
 import 'package:dbcrypt/dbcrypt.dart';
+import 'package:gcf_projects_app/globals.dart';
 
 class DataBaseEngine {
   BuildContext _context;
@@ -21,8 +22,9 @@ class DataBaseEngine {
         for (var doc in data.documents) {
           String dataName = doc['name'];
           String dataPassword = doc['password'];
+          String dataRole = doc['role'];
 
-          checkDetails(name, password, dataName, dataPassword);
+          checkDetails(name, password, dataName, dataPassword, dataRole);
         }
       });
     } catch (_) {
@@ -32,13 +34,15 @@ class DataBaseEngine {
 
   //Checks if users' name and password matches those in the database
   void checkDetails(
-      String name, String password, String dataName, String dataPassword) {
-    print('name: $name'); //TO BE DELETED
-    print('dataName: $dataName'); //TO BE DELETED
+      String name, String password, String dataName, String dataPassword, String role) {
 
     if ((name == dataName)) {
       try {
         assert(dBCrypt.checkpw(password, dataPassword), true);
+        if (role == 'admin'){
+          isAdmin = true;
+          print('IsAdmin: $isAdmin');
+        }
         Navigator.push(
           _context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
