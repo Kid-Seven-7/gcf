@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/goinfre/gsebaets/Music/gcf/build/app/intermediates/res/merged/debug/values_values.arsc.flat",
+            "outputFile": "/goinfre/jngoma/gcf/build/app/intermediates/res/merged/debug/values_values.arsc.flat",
             "map": [
                 {
-                    "source": "/goinfre/gsebaets/Music/gcf/android/app/src/main/res/values/styles.xml",
+                    "source": "/goinfre/jngoma/gcf/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
