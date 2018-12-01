@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
-class CreateProjectPage extends StatelessWidget {
-  final ProjectName = new TextEditingController();
+class CreateProjectPage extends StatefulWidget {
+  @override
+  State createState() => new _CreateProjectPage();
+}
+
+class _CreateProjectPage extends State<CreateProjectPage>{
+  final projectName = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,14 +20,14 @@ class CreateProjectPage extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-        Container(
+          Container(
             padding: EdgeInsets.all(10.0),
             alignment: Alignment.centerLeft,
           ),
           TextField(
             decoration: InputDecoration(labelText: 'Project Name'),
-//            keyboardType: TextInputType.text,
-            controller: ProjectName,
+            keyboardType: TextInputType.text,
+            controller: projectName,
           ),
           TextField(
             decoration: InputDecoration(labelText: 'Project Location'),
@@ -43,10 +48,7 @@ class CreateProjectPage extends StatelessWidget {
             decoration: InputDecoration(
                 labelText: 'Project Start Date',
                 hintText: 'DD/MM/YYYY',
-                hintStyle: TextStyle(
-                    fontStyle: FontStyle.italic
-                )
-            ),
+                hintStyle: TextStyle(fontStyle: FontStyle.italic)),
           ),
           TextField(
             decoration: InputDecoration(labelText: 'Project End Date'),
@@ -56,18 +58,24 @@ class CreateProjectPage extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         fixedColor: Color.fromARGB(255, 140, 188, 63),
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(backgroundColor: Colors.black ,icon: Icon(Icons.cancel), title: Text('Cancel')),
-          BottomNavigationBarItem(icon: Icon(Icons.check), title: Text('Create')),
+          BottomNavigationBarItem(
+              backgroundColor: Colors.black,
+              icon: Icon(Icons.cancel),
+              title: Text('Cancel')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.check), title: Text('Create')),
         ],
-        onTap: (index)  {
-          _onItemTapped(context, index, ProjectName.text);
+        onTap: (index) {
+          String projectName = projectName.text;
+          print("projectName: $projectName");
+          _onItemTapped(context, index, projectName.text);
         },
       ),
     );
   }
 }
 
-void _onItemTapped(BuildContext context , int index, String name) {
+void _onItemTapped(BuildContext context, int index, String name) {
   if (index == 0) {
     debugPrint('Cancel');
     Navigator.pop(
@@ -75,7 +83,7 @@ void _onItemTapped(BuildContext context , int index, String name) {
   } else if (index == 1) {
     debugPrint('Create');
     debugPrint(name);
-      _newproject(context, name);
+    _newproject(context, name);
   }
 }
 
@@ -98,7 +106,8 @@ Future<void> _newproject(BuildContext context, String name) async {
             child: Text('Yes'),
             onPressed: () {
               Navigator.of(context).pop();
-              Navigator.pop(context, MaterialPageRoute(builder: (context) => CreateProjectPage()));
+              Navigator.pop(context,
+                  MaterialPageRoute(builder: (context) => CreateProjectPage()));
             },
           ),
           FlatButton(

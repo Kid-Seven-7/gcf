@@ -3,6 +3,7 @@ import 'package:gcf_projects_app/globals.dart';
 import 'dart:async';
 import 'login.dart';
 import 'dart:io';
+import 'alert_popups.dart';
 
 String status = "";
 bool connected = false;
@@ -41,18 +42,31 @@ class SplashScreenState extends State<SplashScreen>
       if (isConnected) {
         Navigator.of(context).pushReplacement(
             new MaterialPageRoute(builder: (context) => LoginPage()));
-      }
-      else{
-        print("Do an awesome popup please :)");
+      } else {
+        errorAlert(context, 'Network Error',
+            'Failed to connect to the network. Please check if your wifi/mobile data is on.');
+        const seconds = const Duration(seconds: 2);
+        new Timer.periodic(seconds, (Timer t) {
+          status = "Retrying...";
+          checkConnection();
+          if (!isConnected) {
+            status = 'No connection found';
+          } else {
+            status = 'Connected';
+            t.cancel();
+            Timer(Duration(seconds: 1), () {
+              if (isConnected) {
+                Navigator.of(context).pushReplacement(
+                    new MaterialPageRoute(builder: (context) => LoginPage()));
+              }
+            });
+          }
+        });
       }
     });
   }
 
   void checkConnection() async {
-    //TEST
-    pageNumber += 1;
-    print('Splash Page Number: $pageNumber');
-    //TEST
     try {
       final result = await InternetAddress.lookup('google.com',
           type: InternetAddressType.any);
@@ -62,6 +76,7 @@ class SplashScreenState extends State<SplashScreen>
       }
     } on SocketException catch (_) {
       status = "No connection found";
+      status = "Retrying...";
       isConnected = false;
     }
   }
