@@ -66,8 +66,6 @@ class _CreateProjectPage extends State<CreateProjectPage>{
               icon: Icon(Icons.check), title: Text('Create')),
         ],
         onTap: (index) {
-          String projectName = projectName.text;
-          print("projectName: $projectName");
           _onItemTapped(context, index, projectName.text);
         },
       ),
