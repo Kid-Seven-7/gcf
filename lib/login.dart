@@ -65,8 +65,8 @@ class LoginPageState extends State<LoginPage>
             children: <Widget>[
               new Image(
                 image: new AssetImage("assets/images/GCF-logo.png"),
-                height: _iconAnimation.value * 100,
-                width: _iconAnimation.value * 100,
+                height: _iconAnimation.value * 90,
+                width: _iconAnimation.value * 90,
               ),
               new Form(
                 child: Theme(
@@ -80,7 +80,7 @@ class LoginPageState extends State<LoginPage>
                     )),
                   ),
                   child: Container(
-                    padding: const EdgeInsets.all(40.0),
+                    padding: const EdgeInsets.all(30.0),
                     child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
