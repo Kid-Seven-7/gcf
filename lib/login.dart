@@ -3,6 +3,7 @@ import 'package:gcf_projects_app/globals.dart';
 import 'login_engine.dart';
 import 'database_engine.dart';
 import 'package:dbcrypt/dbcrypt.dart';
+import 'add_user.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -116,6 +117,14 @@ class LoginPageState extends State<LoginPage>
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(70.0)),
                           splashColor: Colors.white,
+                        ),
+                        new MaterialButton(
+                          color: Color.fromARGB(0, 0, 0, 0),
+                          child: new Text("Create New Account"),
+                          onPressed: (){
+                          Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => AddUser()));
+                          },
                         ),
                       ],
                     ),
