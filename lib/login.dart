@@ -3,6 +3,7 @@ import 'package:gcf_projects_app/globals.dart';
 import 'login_engine.dart';
 import 'database_engine.dart';
 import 'package:dbcrypt/dbcrypt.dart';
+import 'add_user.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -64,8 +65,8 @@ class LoginPageState extends State<LoginPage>
             children: <Widget>[
               new Image(
                 image: new AssetImage("assets/images/GCF-logo.png"),
-                height: _iconAnimation.value * 100,
-                width: _iconAnimation.value * 100,
+                height: _iconAnimation.value * 90,
+                width: _iconAnimation.value * 90,
               ),
               new Form(
                 child: Theme(
@@ -79,7 +80,7 @@ class LoginPageState extends State<LoginPage>
                     )),
                   ),
                   child: Container(
-                    padding: const EdgeInsets.all(40.0),
+                    padding: const EdgeInsets.all(30.0),
                     child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
@@ -116,6 +117,14 @@ class LoginPageState extends State<LoginPage>
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(70.0)),
                           splashColor: Colors.white,
+                        ),
+                        new MaterialButton(
+                          color: Color.fromARGB(0, 0, 0, 0),
+                          child: new Text("Create New Account"),
+                          onPressed: (){
+                          Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => AddUser()));
+                          },
                         ),
                       ],
                     ),
