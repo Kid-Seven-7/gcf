@@ -99,7 +99,7 @@ class LoginPageState extends State<LoginPage>
                         new Padding(
                           padding: const EdgeInsets.only(top: 20.0),
                         ),
-                        new MaterialButton(
+                        new FlatButton(
                           color: Color.fromARGB(255, 140, 188, 63),
                           child: new Text("Login"),
                           onPressed: () {
@@ -115,7 +115,7 @@ class LoginPageState extends State<LoginPage>
                             }
                           },
                           shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(70.0)),
+                              borderRadius: new BorderRadius.circular(60.0)),
                           splashColor: Colors.white,
                         ),
                         new MaterialButton(
