@@ -43,7 +43,7 @@ class SplashScreenState extends State<SplashScreen>
         Navigator.of(context).pushReplacement(
             new MaterialPageRoute(builder: (context) => LoginPage()));
       } else {
-        errorAlert(context, 'Network Error',
+        popUpInfo(context, 'Network Error',
             'Failed to connect to the network. Please check if your wifi/mobile data is on.');
         const seconds = const Duration(seconds: 2);
         new Timer.periodic(seconds, (Timer t) {

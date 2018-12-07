@@ -22,7 +22,7 @@ import 'dart:io';
 //       });
 // }
 
-void errorAlert(BuildContext context, String header, String message) {
+void popUpInfo(BuildContext context, String header, String message) {
   showDialog(
       context: context,
       builder: (BuildContext context) {

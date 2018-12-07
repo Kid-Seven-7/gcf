@@ -4,10 +4,12 @@ import 'home_page.dart';
 import 'package:dbcrypt/dbcrypt.dart';
 import 'package:gcf_projects_app/globals.dart';
 import 'alert_popups.dart';
+import 'package:validators/validators.dart';
 
 class DataBaseEngine {
   BuildContext _context;
   DBCrypt dBCrypt = DBCrypt();
+  Firestore firestore = Firestore();
   int amount = 0;
   bool checkComplete = false;
 
@@ -18,7 +20,6 @@ class DataBaseEngine {
     _context = context;
     int counter = 1;
     try {
-      Firestore firestore = Firestore();
       firestore.settings(timestampsInSnapshotsEnabled: true, sslEnabled: true);
 
       getLength(firestore);
@@ -49,6 +50,14 @@ class DataBaseEngine {
     });
   }
 
+  String  createHash(String value){
+    if (value.isNotEmpty){
+      String salt = dBCrypt.gensalt();
+      return dBCrypt.hashpw(value, salt);
+    }
+    return null;
+  }
+
   //Checks if users' name and password matches those in the database
   void checkDetails(BuildContext context, String name, String password,
       String dataName, String dataPassword, String role, int index) {
@@ -58,11 +67,8 @@ class DataBaseEngine {
         if (role == 'admin') {
           isAdmin = true;
         }
+
         checkComplete = true;
-        // Navigator.push(
-        //   _context,
-        //   MaterialPageRoute(builder: (context) => HomeScreen()),
-        // );
         Navigator.of(context).pushReplacement(
             new MaterialPageRoute(builder: (context) => HomeScreen()));
       } catch (_) {
@@ -71,18 +77,50 @@ class DataBaseEngine {
     } else {
       if (index == amount) {
         if (!checkComplete) {
-          errorAlert(context, 'Login Failed',
+          popUpInfo(context, 'Login Failed',
               'Incorrect name/password. Please try again.');
         }
       }
     }
   }
 
-  void addData(String collection, Map<String, dynamic> data) {
+  void addData(String collection, Map<String, String> data) {
     try {
-      Firestore.instance.collection(collection).document().updateData(data);
-    } catch (_) {
-      print('Do some awesome pop-up');
+      //CHECK IF DATA EXISTS IN DATABASEE
+      firestore.collection(collection).document().setData(data);
+    } catch (e) {
+      print("Problem: $e");
     }
+  }
+
+   validateData(Map<String, String> data) {
+    if (data['name'].isEmpty) {
+      return (false);
+    }
+    if (data['password'].isEmpty || data['password'].length < 8) {
+      return (false);
+    }
+    if (data['number'].isEmpty || data['number'].length < 10 || !isNumeric(data['number'])) {
+      return (false);
+    }
+    return (true);
+  }
+
+  bool processData(Map<String, String> data) {
+    if (!validateData(data)) {
+      return (false);
+    }
+
+    data['password'] = createHash(data['password']);
+    addData('pendingUsers', data);
+    return (true);
+  }
+
+  Map createMap(String name, String password, String number) {
+    Map<String, String> newUser = new Map();
+    newUser['name'] = name;
+    newUser['password'] = password;
+    newUser['number'] = number;
+    return newUser;
   }
 }

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'database_engine.dart';
+import 'alert_popups.dart';
 
-class AddUser extends StatefulWidget{
+class AddUser extends StatefulWidget {
   @override
   State createState() => new AddUserState();
 }
 
-class AddUserState extends State<AddUser>{
+class AddUserState extends State<AddUser> {
+  var nameController = new TextEditingController();
+  var passwordController = new TextEditingController();
+  var numberController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +29,9 @@ class AddUserState extends State<AddUser>{
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Image(
-                image: new AssetImage("assets/images/GCF-logo.png"),
-                height: 120,
-                width: 120
-              ),
+                  image: new AssetImage("assets/images/GCF-logo.png"),
+                  height: 120,
+                  width: 120),
               new Form(
                 child: Theme(
                   data: ThemeData(
@@ -46,25 +51,47 @@ class AddUserState extends State<AddUser>{
                         new TextFormField(
                           decoration: new InputDecoration(labelText: "Name"),
                           keyboardType: TextInputType.text,
+                          controller: nameController,
                         ),
                         new TextFormField(
                           decoration:
                               new InputDecoration(labelText: "Password"),
                           keyboardType: TextInputType.text,
+                          controller: passwordController,
                           obscureText: true,
                         ),
                         new TextFormField(
-                          decoration:
-                              new InputDecoration(labelText: "Number"),
+                          decoration: new InputDecoration(labelText: "Number"),
                           keyboardType: TextInputType.number,
+                          controller: numberController,
                         ),
                         new Padding(
                           padding: const EdgeInsets.only(top: 20.0),
                         ),
                         FlatButton(
                           color: Color.fromARGB(255, 140, 188, 63),
-                          child: Text('Add User'),
-                          onPressed: (){},
+                          child: Text('Create Account'),
+                          onPressed: () {
+                            //Create a map
+                            //Pass it to database_engine
+                            DataBaseEngine databaseEngine =
+                                new DataBaseEngine();
+
+                            //Creating a map
+                            var newUserData = databaseEngine.createMap(
+                                nameController.text,
+                                passwordController.text,
+                                numberController.text);
+                            if (databaseEngine.processData(newUserData)){
+                              print ('Pop up good');
+                              popUpInfo(context, "Success", "Your account has been created.");
+                            }else {
+                              print ('Pop up bad');
+                              popUpInfo(context, "Error", "1. All fields must not be left" + 
+                                                            "2. Password must be 8 or more characters." + 
+                                                            "3. Number must be 10 digits (Only numbers).");
+                            }
+                          },
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(30.0)),
                           splashColor: Colors.white,
