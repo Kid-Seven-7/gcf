@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'home_page.dart';
-import 'splash.dart';
+import 'frontend/home_page.dart';
+import 'frontend/splash.dart';
 
 void main() {
 
