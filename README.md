@@ -27,13 +27,15 @@ Social Tech project at <a href="https://www.wethinkcode.co.za/">we think code_</
 > The main focus of this application is to provide a user friendly cost management
 > application.
 >
+>With an emphasis on the cost aspect of cost manage
+>
 
 ## Installation
 
 iOS & Android:
 
 ```sh
-pending
+Install the APK(Android)/IPA(iPhone)
 ```
 
 ## Usage example
@@ -76,7 +78,7 @@ pending...
 **Joyce V. Mkhosi**
 <img align="left" src="https://cdn.intra.42.fr/users/medium_jmkhosi.jpg" width="220">
 <br>
-*Number 3: Project Owner*
+*Number 3: Project Manager*
 >[Linkedin](https://www.linkedin.com/in/joyce-vuyiswa-irene-mkhosi-915a0b107/)
 >
 >[Github](https://github.com/jmkhosi)
