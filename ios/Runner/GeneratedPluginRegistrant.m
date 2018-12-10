@@ -6,6 +6,7 @@
 #import <cloud_firestore/CloudFirestorePlugin.h>
 #import <connectivity/ConnectivityPlugin.h>
 #import <firebase_core/FirebaseCorePlugin.h>
+#import <image_picker/ImagePickerPlugin.h>
 
 @implementation GeneratedPluginRegistrant
 
@@ -13,6 +14,7 @@
   [FLTCloudFirestorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTCloudFirestorePlugin"]];
   [FLTConnectivityPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTConnectivityPlugin"]];
   [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
+  [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
 }
 
 @end
