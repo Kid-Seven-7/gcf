@@ -110,6 +110,7 @@ class LoginPageState extends State<LoginPage>
                               print(hash);
                               dataBaseEngine.checkUser(
                                   textName.text, textPassword.text, context);
+                              username = textName.text;
                             } else {
                               print("Do an awesome popup");
                             }
