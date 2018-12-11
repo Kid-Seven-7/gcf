@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'add_project.dart';
 import 'burger_menu_drawer.dart';
 import 'project_file_card.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -22,10 +23,12 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 140, 188, 63),
         title: Text("Dashboard"),
-        leading: IconButton(
+        leading: isAdmin == true
+        ? IconButton(
           icon: Icon(Icons.menu),
           onPressed: _handleDrawer,
-        ),
+        )
+        : null,
         actions: <Widget>[
           Image.asset('assets/images/gcf_white.png'),
         ],
@@ -38,23 +41,31 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ) ,
-
-      bottomNavigationBar: BottomNavigationBar(
-        fixedColor: Color.fromARGB(255, 140, 188, 63),
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(backgroundColor: Colors.black ,icon: Icon(Icons.rate_review), title: Text('View Report')),
-          BottomNavigationBarItem(icon: Icon(Icons.timeline), title: Text('View Statistics')),
-          BottomNavigationBarItem(icon: Icon(Icons.add), title: Text('Add project')),
-        ],
-        onTap: (index)  {
-          _onItemTapped(context, index);
-        },
-      ),
+      bottomNavigationBar: NavBar(),
       drawer: OpenDrawer()
     );
   }
 }
 
+class NavBar extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return BottomNavigationBar(
+      fixedColor: Color.fromARGB(255, 140, 188, 63),
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(backgroundColor: Colors.black ,icon: Icon(Icons.rate_review), title: Text('View Report')),
+        BottomNavigationBarItem(icon: Icon(Icons.timeline), title: Text('View Statistics')),
+        BottomNavigationBarItem(icon: Icon(Icons.add), title: Text('Add project')),
+      ],
+      onTap: (index)  {
+        _onItemTapped(context, index);
+      },
+    );
+  }
+}
+
+//BottomNavigationNar Controller
 void _onItemTapped(BuildContext context , int index) {
   if (index == 0) {
     debugPrint('View Report');
