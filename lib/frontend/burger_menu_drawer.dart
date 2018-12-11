@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:gcf_projects_app/backend/globals.dart';
 import 'add_user.dart';
+import 'log_page.dart';
 
 void _handleDrawer() {
   GlobalKey<ScaffoldState> key = new GlobalKey<ScaffoldState>();
@@ -25,15 +27,15 @@ class OpenDrawer extends StatelessWidget{
                   Row(
                     children: <Widget>[
                       Icon(Icons.account_circle, color: Colors.white,),
-                      Text(
-                        'User Name',
-                        style: _navMenuHeading,
-                      ),
+                      Text( username, style: _navMenuHeading,),
                     ],
                   ),
-                  Text('Title', style: TextStyle(
+                  Text(
+                    'Admin',
+                    style: TextStyle(
                     color: Colors.white,
-                  ),)
+                  ),
+                  )
                 ],
               ),
 
@@ -49,27 +51,37 @@ class OpenDrawer extends StatelessWidget{
             ListTile(
               leading: Icon(Icons.library_books),
               title: Text('Projects',style: _navMenuText,),
-              onTap: () {},
+              onTap: () {
+//                Navigator.push(context, MaterialPageRoute(builder: (context) => ));
+              },
             ),
             ListTile(
               leading: Icon(Icons.assignment),
               title: Text('Log',style: _navMenuText,),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LogPage()));
+              },
             ),
             ListTile(
               leading: Icon(Icons.timeline),
               title: Text('Statistics',style: _navMenuText,),
-              onTap: () {},
+              onTap: () {
+//                Navigator.push(context, MaterialPageRoute(builder: (context) => ));
+              },
             ),
             ListTile(
               leading: Icon(Icons.rate_review),
               title: Text('Reports',style: _navMenuText,),
-              onTap: () {},
+              onTap: () {
+//                Navigator.push(context, MaterialPageRoute(builder: (context) => ));
+              },
             ),
             ListTile(
               leading: Icon(Icons.notifications),
               title: Text('Notifications',style: _navMenuText,),
-              onTap: () {},
+              onTap: () {
+//                Navigator.push(context, MaterialPageRoute(builder: (context) => ));
+              },
             ),
             Divider(
               height: 20.0,
@@ -78,7 +90,9 @@ class OpenDrawer extends StatelessWidget{
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings',style: _navMenuText,),
-              onTap: () {},
+              onTap: () {
+//                Navigator.push(context, MaterialPageRoute(builder: (context) => ));
+              },
             ),
           ],
         )
