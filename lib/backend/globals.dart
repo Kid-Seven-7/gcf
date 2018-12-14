@@ -10,3 +10,7 @@ int pageNumber = 0; //This variable serves as a test
 //ADD VARIABLES HERE
 bool isConnected = false; //This variable gets updated on the splash screen
 bool  isAdmin = false;
+
+//User Variables
+String userName;
+String roleStatus;
