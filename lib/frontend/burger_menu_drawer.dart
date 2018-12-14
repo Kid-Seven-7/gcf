@@ -38,7 +38,7 @@ class OpenDrawer extends StatelessWidget{
               ),
 
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 140, 188, 63),
+                color: Colors.green.shade500,
               ),
             ),
             ListTile(
