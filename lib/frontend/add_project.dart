@@ -14,6 +14,7 @@ class _CreateProjectPage extends State<CreateProjectPage>{
 
   //Text Controllers
   final projectName = new TextEditingController();
+  final projectDescription = new TextEditingController();
   final projectLocation = new TextEditingController();
   final projectClient = new TextEditingController();
   final projectType = new TextEditingController();
@@ -43,6 +44,11 @@ class _CreateProjectPage extends State<CreateProjectPage>{
             decoration: InputDecoration(labelText: 'Project Name'),
             keyboardType: TextInputType.text,
             controller: projectName,
+          ),
+          TextField(
+            decoration: InputDecoration(labelText: 'Project Description'),
+            keyboardType: TextInputType.text,
+            controller: projectDescription,
           ),
           TextField(
             decoration: InputDecoration(labelText: 'Project Location'),
@@ -90,6 +96,7 @@ class _CreateProjectPage extends State<CreateProjectPage>{
         onTap: (index) {
           //Populate the map
           projectData['projectName'] = projectName.text;
+          projectData['projectDescription'] = projectDescription.text;
           projectData['projectLocation'] = projectLocation.text;
           projectData['projectClient'] = projectClient.text;
           projectData['projectType'] = projectType.text;
