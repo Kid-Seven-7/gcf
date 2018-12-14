@@ -5,14 +5,6 @@ import 'burger_menu_drawer.dart';
 import 'project_file_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-final dummySnapshot = [
-  {"name": "Filip", "votes": 15},
-  {"name": "Abraham", "votes": 14},
-  {"name": "Richard", "votes": 11},
-  {"name": "Ike", "votes": 10},
-  {"name": "Justin", "votes": 1},
-];
-
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => new _HomeScreenState();

@@ -12,5 +12,11 @@ bool isConnected = false; //This variable gets updated on the splash screen
 bool  isAdmin = false;
 
 //User Variables
-String userName;
-String roleStatus;
+String  userName;
+String  roleStatus;
+String  rememberMe = "yes";
+
+Map<String, String> userData;
+
+//app variables
+bool  skipLogin = false;

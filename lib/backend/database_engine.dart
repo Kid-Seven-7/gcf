@@ -5,7 +5,9 @@ import 'package:dbcrypt/dbcrypt.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 import '../frontend/alert_popups.dart';
 import 'package:validators/validators.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+final storage = new FlutterSecureStorage();
 class DataBaseEngine {
   BuildContext _context;
   DBCrypt dBCrypt = DBCrypt();
@@ -16,7 +18,7 @@ class DataBaseEngine {
   //Function gets data from the database and checks if the user exists in the database
   //Function to check user is checkDetails()
 
-  void checkUser(String name, String password, BuildContext context) {
+  void checkUser(String name, String password, BuildContext context) async {
     _context = context;
     int counter = 1;
     try {
@@ -60,7 +62,7 @@ class DataBaseEngine {
 
   //Checks if users' name and password matches those in the database
   void checkDetails(BuildContext context, String name, String password,
-      String dataName, String dataPassword, String role, int index) {
+      String dataName, String dataPassword, String role, int index) async {
     if ((name == dataName)) {
       try {
         assert(dBCrypt.checkpw(password, dataPassword), true);
@@ -71,6 +73,13 @@ class DataBaseEngine {
         checkComplete = true;
         userName = name;
         roleStatus = role;
+
+        await storage.deleteAll();
+        if (rememberMe == "yes"){
+          await storage.write(key: "name", value: name);
+          await storage.write(key: "role", value: role);
+          await storage.write(key: "rememberMe", value: "yes");
+        }
         Navigator.of(context).pushReplacement(
             new MaterialPageRoute(builder: (context) => HomeScreen()));
       } catch (_) {

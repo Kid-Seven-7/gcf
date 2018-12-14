@@ -4,9 +4,12 @@ import 'dart:async';
 import 'login.dart';
 import 'dart:io';
 import 'alert_popups.dart';
+import 'home_page.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 String status = "";
 bool connected = false;
+final storage = new FlutterSecureStorage();
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -55,7 +58,7 @@ class SplashScreenState extends State<SplashScreen>
             status = 'Connected';
             t.cancel();
             Timer(Duration(seconds: 1), () {
-              if (isConnected) {
+              if (isConnected && !skipLogin) {
                 Navigator.of(context).pushReplacement(
                     new MaterialPageRoute(builder: (context) => LoginPage()));
               }
@@ -67,6 +70,7 @@ class SplashScreenState extends State<SplashScreen>
   }
 
   void checkConnection() async {
+    checkUser();
     try {
       final result = await InternetAddress.lookup('google.com',
           type: InternetAddressType.any);
@@ -78,6 +82,25 @@ class SplashScreenState extends State<SplashScreen>
       status = "No connection found";
       status = "Retrying...";
       isConnected = false;
+    }
+  }
+
+  void checkUser() async {
+    Map<String, String> userData = await storage.readAll();
+
+    if (userData['name'] != null) {
+      if (userData['rememberMe'] == "yes") {
+        skipLogin = true;
+
+        userName = userData['name'];
+        roleStatus = userData['role'];
+
+        //Going to Home Page
+        Navigator.of(context).pushReplacement(
+            new MaterialPageRoute(builder: (context) => HomeScreen()));
+      } else {
+        skipLogin = false;
+      }
     }
   }
 
