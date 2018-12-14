@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:gcf_projects_app/backend/globals.dart';
 import 'add_user.dart';
 
 void _handleDrawer() {
@@ -26,12 +26,12 @@ class OpenDrawer extends StatelessWidget{
                     children: <Widget>[
                       Icon(Icons.account_circle, color: Colors.white,),
                       Text(
-                        'User Name',
+                        userName,
                         style: _navMenuHeading,
                       ),
                     ],
                   ),
-                  Text('Title', style: TextStyle(
+                  Text('Title: $roleStatus', style: TextStyle(
                     color: Colors.white,
                   ),)
                 ],

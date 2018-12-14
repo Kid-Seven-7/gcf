@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.grey.shade600,
+        backgroundColor: Colors.blueGrey.shade900,
         appBar: AppBar(
           backgroundColor: Colors.green.shade500,
           title: Text("Dashboard"),

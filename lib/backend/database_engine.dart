@@ -69,6 +69,8 @@ class DataBaseEngine {
         }
 
         checkComplete = true;
+        userName = name;
+        roleStatus = role;
         Navigator.of(context).pushReplacement(
             new MaterialPageRoute(builder: (context) => HomeScreen()));
       } catch (_) {
