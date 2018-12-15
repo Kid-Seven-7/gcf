@@ -1,8 +1,9 @@
+import 'package:dbcrypt/dbcrypt.dart';
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
-import '../backend/login_engine.dart';
+
 import '../backend/database_engine.dart';
-import 'package:dbcrypt/dbcrypt.dart';
+import '../backend/login_engine.dart';
 import 'add_user.dart';
 
 class LoginPage extends StatefulWidget {
@@ -75,9 +76,9 @@ class LoginPageState extends State<LoginPage>
                     primarySwatch: Colors.green,
                     inputDecorationTheme: new InputDecorationTheme(
                         labelStyle: new TextStyle(
-                      color: Color.fromARGB(255, 140, 188, 63),
-                      fontSize: 20.0,
-                    )),
+                          color: Color.fromARGB(255, 140, 188, 63),
+                          fontSize: 20.0,
+                        )),
                   ),
                   child: Container(
                     padding: const EdgeInsets.all(30.0),
@@ -91,7 +92,7 @@ class LoginPageState extends State<LoginPage>
                         ),
                         new TextFormField(
                           decoration:
-                              new InputDecoration(labelText: "Password"),
+                          new InputDecoration(labelText: "Password"),
                           keyboardType: TextInputType.text,
                           obscureText: true,
                           controller: textPassword,
@@ -110,7 +111,7 @@ class LoginPageState extends State<LoginPage>
                               print(hash);
                               dataBaseEngine.checkUser(
                                   textName.text, textPassword.text, context);
-                              username = textName.text;
+//                              username = textName.text;
                             } else {
                               print("Do an awesome popup");
                             }
@@ -123,8 +124,8 @@ class LoginPageState extends State<LoginPage>
                           color: Color.fromARGB(0, 0, 0, 0),
                           child: new Text("Create New Account"),
                           onPressed: (){
-                          Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => AddUser()));
+                            Navigator.push(
+                                context, MaterialPageRoute(builder: (context) => AddUser()));
                           },
                         ),
                       ],

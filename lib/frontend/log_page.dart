@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 import 'burger_menu_drawer.dart';
 import 'log_widgets.dart';
@@ -93,6 +93,7 @@ class Log {
   String projectType;
   String projectLocation;
 
+  //TODO calculate time taken
   DocumentReference reference;
 
   Log.fromMap(Map<String, dynamic> map, {this.reference})

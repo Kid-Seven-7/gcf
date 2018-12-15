@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'log_page.dart';
 
+//TODO add general info
 Widget generalInfo(BuildContext context, Log log) {
   return   Container(
       child: Card(
@@ -57,6 +58,7 @@ Widget generalInfo(BuildContext context, Log log) {
   );
 }
 
+//TODO add budget info
 Widget budgetInfo(BuildContext context, Log log) {
   return   Container(
       child: Card(
@@ -112,6 +114,7 @@ Widget budgetInfo(BuildContext context, Log log) {
   );
 }
 
+//TODO add time info
 Widget timeInfo(BuildContext context, Log log) {
   return   Container(
       child: Card(
