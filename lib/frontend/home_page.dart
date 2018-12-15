@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(Icons.add), title: Text('Add project')),
           ],
           onTap: (index) {
-            _onItemTapped(context, index);
+            onItemTapped(context, index);
           },
         ),
         drawer: OpenDrawer());
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
 Widget _buildBody(BuildContext context) {
   return StreamBuilder<QuerySnapshot>(
     stream: Firestore.instance.collection('activeProjects').snapshots(),
-    builder: (context, snapshot){
+    builder: (context, snapshot) {
       if (!snapshot.hasData) return LinearProgressIndicator();
 
       return _buildList(context, snapshot.data.documents);
@@ -67,11 +67,11 @@ Widget _buildBody(BuildContext context) {
 Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
   return ListView(
     padding: EdgeInsets.only(top: 20.0),
-    children: snapshot.map((data) => _buildNewCard(context, data)).toList(),
+    children: snapshot.map((data) => buildNewCard(context, data)).toList(),
   );
 }
 
-void _onItemTapped(BuildContext context, int index) {
+void onItemTapped(BuildContext context, int index) {
   if (index == 0) {
     debugPrint('View Report');
   } else if (index == 1) {
@@ -83,7 +83,7 @@ void _onItemTapped(BuildContext context, int index) {
   }
 }
 
-Widget _buildNewCard(BuildContext context, DocumentSnapshot data) {
+Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   Record record = Record.fromSnapshot(data);
 
   return Padding(
@@ -96,7 +96,10 @@ Widget _buildNewCard(BuildContext context, DocumentSnapshot data) {
         children: <Widget>[
           ListTile(
             leading: Icon(Icons.library_books),
-            title: Text(record.projectName, style: TextStyle(fontWeight: FontWeight.bold),),
+            title: Text(
+              record.projectName,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             subtitle: Text(record.projectDescription),
           ),
           Row(
@@ -120,6 +123,9 @@ Widget _buildNewCard(BuildContext context, DocumentSnapshot data) {
                         ),
                       ),
                       onPressed: () {
+                        Navigator.of(context).push(
+                            new MaterialPageRoute(
+                                builder: (context) => ProjectCard(record)));
                         // _viewproject();
                       },
                     )
@@ -148,7 +154,6 @@ class Record {
         projectName = map['projectName'],
         projectForeman = map['projectForeman'],
         projectDescription = map['projectDescription'];
-
 
   Record.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);
