@@ -31,7 +31,19 @@ class _LogPageState extends State<LogPage> {
         ),
         body: ListView(
           children: <Widget>[
-            LogItem()
+            Flexible(
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (BuildContext log_item, int index){
+                  return new Column(
+                    children: <Widget>[
+                      Text("test$index")
+                    ],
+                  );
+                }
+              ),
+            )
+//            LogItem()
           ],
         ) ,
 //        bottomNavigationBar: NavBar(),
@@ -53,3 +65,4 @@ class LogItem extends StatelessWidget{
     );
   }
 }
+
