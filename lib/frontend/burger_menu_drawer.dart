@@ -2,6 +2,7 @@ import 'manage_users.dart';
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 import 'splash.dart';
+import 'home_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final storage = new FlutterSecureStorage();
@@ -65,7 +66,9 @@ class OpenDrawer extends StatelessWidget {
             'Projects',
             style: _navMenuText,
           ),
-          onTap: () {},
+          onTap: () {
+            openpage(context, "Projects");
+          },
         ),
         ListTile(
           leading: Icon(Icons.assignment),
@@ -140,5 +143,10 @@ void openpage(BuildContext context, String page) {
     Navigator.pop(context);
     Navigator.of(context).pushReplacement(
                 new MaterialPageRoute(builder: (context) => SplashScreen()));
+  }
+  if (page == "Projects"){
+    Navigator.pop(context);
+    Navigator.of(context).pushReplacement(
+                new MaterialPageRoute(builder: (context) =>  HomeScreen()));
   }
 }
