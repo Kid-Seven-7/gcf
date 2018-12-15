@@ -1,4 +1,4 @@
-import 'add_user.dart';
+import 'manage_users.dart';
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 import 'splash.dart';
@@ -52,11 +52,11 @@ class OpenDrawer extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.account_circle),
           title: Text(
-            'Add User',
+            'Manage Users',
             style: _navMenuText,
           ),
           onTap: () {
-            openpage(context, "AddUser");
+            openpage(context, "Manage Users");
           },
         ),
         ListTile(
@@ -131,9 +131,9 @@ class OpenDrawer extends StatelessWidget {
 }
 
 void openpage(BuildContext context, String page) {
-  if (page == "AddUser") {
-    Navigator.pop(context);
-    Navigator.push(context, MaterialPageRoute(builder: (context) => AddUser()));
+  if (page == "Manage Users") {
+    print(context.findRenderObject());
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageUsers()));
   }
 
   if (page == "LogOut"){

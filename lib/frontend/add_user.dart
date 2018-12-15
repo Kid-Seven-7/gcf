@@ -83,7 +83,6 @@ class AddUserState extends State<AddUser> {
                                 passwordController.text,
                                 numberController.text);
                             if (databaseEngine.processData(newUserData)){
-                              print ('Pop up good');
                               popUpInfo(context, "Success", "Your account has been created.");
                             }else {
                               print ('Pop up bad');

@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
-
-import 'add_project.dart';
+import 'home_page.dart';
+import 'alert_popups.dart';
 import 'burger_menu_drawer.dart';
-import 'project_file_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class HomeScreen extends StatefulWidget {
+class ManageUsers extends StatefulWidget{
   @override
-  _HomeScreenState createState() => new _HomeScreenState();
+  State createState() => new _ManageUsersState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ManageUsersState extends State<ManageUsers>{
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
   _handleDrawer() {
     _key.currentState.openDrawer();
   }
-
-  @override
+  
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
         backgroundColor: Colors.blueGrey.shade900,
         appBar: AppBar(
           backgroundColor: Colors.green.shade500,
-          title: Text("Dashboard"),
+          title: Text("Manage Users"),
           leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _handleDrawer,
@@ -55,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 Widget _buildBody(BuildContext context) {
   return StreamBuilder<QuerySnapshot>(
-    stream: Firestore.instance.collection('activeProjects').snapshots(),
+    stream: Firestore.instance.collection('pendingUsers').snapshots(),
     builder: (context, snapshot) {
       if (!snapshot.hasData) return LinearProgressIndicator();
 
@@ -71,23 +69,11 @@ Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
   );
 }
 
-void onItemTapped(BuildContext context, int index) {
-  if (index == 0) {
-    debugPrint('View Report');
-  } else if (index == 1) {
-    debugPrint('View Statistics');
-  } else if (index == 2) {
-    debugPrint('Add project');
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => CreateProjectPage()));
-  }
-}
-
 Widget _buildNewCard(BuildContext context, DocumentSnapshot data) {
-  Record record = Record.fromSnapshot(data);
+  String name = data['name'];
+  String number = data['number'];
 
   return Padding(
-    key: ValueKey(record.projectName),
     padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
     child: Container(
         child: Card(
@@ -95,38 +81,69 @@ Widget _buildNewCard(BuildContext context, DocumentSnapshot data) {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           ListTile(
-            leading: Icon(Icons.library_books),
+            leading: Icon(Icons.person, size: 40.0,),
             title: Text(
-              record.projectName,
+              "Name: $name",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            subtitle: Text(record.projectDescription),
+            subtitle: Text("Number: $number"),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Chip(
-                avatar: CircleAvatar(
-                  backgroundColor: Colors.grey.shade800,
-                  child: Text('FM'),
+              // Chip(
+              //   avatar: CircleAvatar(
+              //     backgroundColor: Colors.grey.shade800,
+              //     child: Text(''),
+              //   ),
+              //   // label: Text(record.projectForeman),
+              // ),
+              ButtonTheme.bar(
+                child: ButtonBar(
+                  children: <Widget>[
+                    RaisedButton(
+                      color: Colors.blueGrey.shade700,
+                      child: const Text(
+                        'Delete Request',
+                        style: TextStyle(
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                      onPressed: () {
+                        Firestore.instance.collection("pendingUsers").document(data.documentID).delete();
+                      },
+                    )
+                  ],
                 ),
-                label: Text(record.projectForeman),
               ),
               ButtonTheme.bar(
                 child: ButtonBar(
                   children: <Widget>[
-                    FlatButton(
+                    RaisedButton(
                       child: const Text(
-                        'View project',
+                        'Approve User',
                         style: TextStyle(
-                          color: Color.fromARGB(255, 140, 188, 63),
+                          color: Colors.white70,
                         ),
                       ),
                       onPressed: () {
-                        Navigator.of(context).push(
-                            new MaterialPageRoute(
-                                builder: (context) => ProjectCard(record)));
-                        // _viewproject();
+                        Map<String, dynamic> newUserData = new Map();
+
+                        newUserData['name'] = data['name'];
+                        newUserData['number'] = data['number'];
+                        newUserData['password'] = data['password'];
+                        newUserData['role'] = "user";
+
+                        Firestore.instance.collection("users").document(data.documentID).get().then((doc) {
+                          if (!doc.exists){
+                            Firestore.instance.collection("users").document(data.documentID).setData(newUserData);
+                            Firestore.instance.collection("pendingUsers").document(data.documentID).delete();
+                            popUpInfo(context, "User Added", "Users has been added successfully.");
+                          }else{
+                            popUpInfo(context, "User Exists", "Couldn't add new user because they already exists in the database.");
+                            Firestore.instance.collection("pendingUsers").document(data.documentID).delete();
+                          }
+                        });
                       },
                     )
                   ],
@@ -138,23 +155,4 @@ Widget _buildNewCard(BuildContext context, DocumentSnapshot data) {
       ),
     )),
   );
-}
-
-class Record {
-  String projectName;
-  String projectForeman;
-  String projectDescription;
-
-  DocumentReference reference;
-
-  Record.fromMap(Map<String, dynamic> map, {this.reference})
-      : assert(map['projectName'] != null),
-        assert(map['projectForeman'] != null),
-        assert(map['projectDescription'] != null),
-        projectName = map['projectName'],
-        projectForeman = map['projectForeman'],
-        projectDescription = map['projectDescription'];
-
-  Record.fromSnapshot(DocumentSnapshot snapshot)
-      : this.fromMap(snapshot.data, reference: snapshot.reference);
 }

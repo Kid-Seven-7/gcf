@@ -123,6 +123,7 @@ class DataBaseEngine {
     }
 
     data['password'] = createHash(data['password']);
+    print(data['password']);
     addData('pendingUsers', data);
     return (true);
   }
