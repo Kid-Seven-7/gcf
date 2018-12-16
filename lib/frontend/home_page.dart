@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'add_project.dart';
 import 'burger_menu_drawer.dart';
-import 'project_file_card.dart';
+import 'project_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatefulWidget {

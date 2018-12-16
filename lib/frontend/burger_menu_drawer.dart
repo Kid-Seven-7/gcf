@@ -1,8 +1,9 @@
-import 'add_user.dart';
-import 'package:flutter/material.dart';
-import 'package:gcf_projects_app/backend/globals.dart';
 import 'splash.dart';
 import 'log_page.dart';
+import 'home_page.dart';
+import 'manage_users.dart';
+import 'package:flutter/material.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final storage = new FlutterSecureStorage();
@@ -47,17 +48,23 @@ class OpenDrawer extends StatelessWidget {
             ],
           ),
           decoration: BoxDecoration(
-            color: Colors.green.shade500,
+            image: DecorationImage(
+              image: new AssetImage("assets/images/burger_back.png"),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(Colors.black54 , BlendMode.darken),
+            ),
+            color: Colors.blueGrey.shade900,
+            backgroundBlendMode: BlendMode.darken,
           ),
         ),
         ListTile(
           leading: Icon(Icons.account_circle),
           title: Text(
-            'Add User',
+            'Manage Users',
             style: _navMenuText,
           ),
           onTap: () {
-            openpage(context, "AddUser");
+            openpage(context, "Manage Users");
           },
         ),
         ListTile(
@@ -66,7 +73,9 @@ class OpenDrawer extends StatelessWidget {
             'Projects',
             style: _navMenuText,
           ),
-          onTap: () {},
+          onTap: () {
+            openpage(context, "Projects");
+          },
         ),
         ListTile(
           leading: Icon(Icons.assignment),
@@ -134,19 +143,24 @@ class OpenDrawer extends StatelessWidget {
 }
 
 void openpage(BuildContext context, String page) {
-  if (page == "AddUser") {
-    Navigator.pop(context);
-    Navigator.push(context, MaterialPageRoute(builder: (context) => AddUser()));
+  if (page == "Manage Users") {
+    print(context.findRenderObject());
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => ManageUsers()));
   }
-
-  if (page == "LogOut"){
+  if (page == "LogOut") {
     Navigator.pop(context);
     Navigator.of(context).pushReplacement(
-                new MaterialPageRoute(builder: (context) => SplashScreen()));
+        new MaterialPageRoute(builder: (context) => SplashScreen()));
   }
-
-  if (page == "Log"){
+  if (page == "Log") {
     Navigator.pop(context);
-    Navigator.push(context, new MaterialPageRoute(builder: (context) => LogPage()));
+    Navigator.push(
+        context, new MaterialPageRoute(builder: (context) => LogPage()));
+  }
+  if (page == "Projects") {
+    Navigator.pop(context);
+    Navigator.of(context).pushReplacement(
+        new MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 }
