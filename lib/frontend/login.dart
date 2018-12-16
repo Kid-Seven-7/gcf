@@ -1,9 +1,8 @@
-import 'package:dbcrypt/dbcrypt.dart';
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
-
-import '../backend/database_engine.dart';
 import '../backend/login_engine.dart';
+import '../backend/database_engine.dart';
+import 'package:dbcrypt/dbcrypt.dart';
 import 'add_user.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,6 +14,14 @@ class LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
   AnimationController _iconAnimationController;
   Animation<double> _iconAnimation;
+  bool _checked = false;
+
+
+  void onChanged(bool value){
+    setState(() {
+          _checked = value;
+        });
+  }
 
   final textName = new TextEditingController();
   final textPassword = new TextEditingController();
@@ -66,7 +73,7 @@ class LoginPageState extends State<LoginPage>
             children: <Widget>[
               new Image(
                 image: new AssetImage("assets/images/GCF-logo.png"),
-                height: _iconAnimation.value * 90,
+                height: _iconAnimation.value * 86,
                 width: _iconAnimation.value * 90,
               ),
               new Form(
@@ -76,12 +83,12 @@ class LoginPageState extends State<LoginPage>
                     primarySwatch: Colors.green,
                     inputDecorationTheme: new InputDecorationTheme(
                         labelStyle: new TextStyle(
-                          color: Color.fromARGB(255, 140, 188, 63),
-                          fontSize: 20.0,
-                        )),
+                      color: Color.fromARGB(255, 140, 188, 63),
+                      fontSize: 18.0,
+                    )),
                   ),
                   child: Container(
-                    padding: const EdgeInsets.all(30.0),
+                    padding: const EdgeInsets.fromLTRB(30.0, 20.0, 20.0, 0),
                     child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
@@ -92,13 +99,16 @@ class LoginPageState extends State<LoginPage>
                         ),
                         new TextFormField(
                           decoration:
-                          new InputDecoration(labelText: "Password"),
+                              new InputDecoration(labelText: "Password"),
                           keyboardType: TextInputType.text,
                           obscureText: true,
                           controller: textPassword,
                         ),
-                        new Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
+                        new Row(
+                          children: <Widget>[
+                            new Text("Remember me", style: TextStyle(color:Colors.white ),),
+                            new Checkbox(value: _checked, onChanged: (bool value) {onChanged(value);},activeColor: Color.fromARGB(255, 140, 188, 63) ,)
+                          ],
                         ),
                         new FlatButton(
                           color: Color.fromARGB(255, 140, 188, 63),
@@ -111,7 +121,6 @@ class LoginPageState extends State<LoginPage>
                               print(hash);
                               dataBaseEngine.checkUser(
                                   textName.text, textPassword.text, context);
-//                              username = textName.text;
                             } else {
                               print("Do an awesome popup");
                             }
@@ -120,12 +129,15 @@ class LoginPageState extends State<LoginPage>
                               borderRadius: new BorderRadius.circular(60.0)),
                           splashColor: Colors.white,
                         ),
+                        new Padding(
+                          padding: EdgeInsets.only(top: 15),
+                        ),
                         new MaterialButton(
                           color: Color.fromARGB(0, 0, 0, 0),
                           child: new Text("Create New Account"),
                           onPressed: (){
-                            Navigator.push(
-                                context, MaterialPageRoute(builder: (context) => AddUser()));
+                          Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => AddUser()));
                           },
                         ),
                       ],

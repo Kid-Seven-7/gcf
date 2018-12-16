@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'burger_menu_drawer.dart';
 import 'home_page.dart';
-
+import 'burger_menu_drawer.dart';
 
 class ProjectCard extends StatefulWidget {
   Record record;
@@ -19,6 +17,7 @@ class ProjectCardState extends State<ProjectCard> {
   _handleDrawer() {
     _key.currentState.openDrawer();
   }
+
   ProjectCardState(Record record) {
     this.record = record;
   }
@@ -30,7 +29,7 @@ class ProjectCardState extends State<ProjectCard> {
         backgroundColor: Colors.blueGrey.shade900,
         appBar: AppBar(
           backgroundColor: Colors.green.shade500,
-          title: Text("Dashboard"),
+          title: Text("Project View"),
           leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _handleDrawer,
@@ -67,8 +66,9 @@ Widget _buildBody(BuildContext context, Record record) {
       children: <Widget>[
         ListTile(
           leading: Icon(Icons.library_books),
-          title: Text(record.projectName,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          title: Text(
+            record.projectName,
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
           subtitle: Text(record.projectDescription),
         ),
@@ -86,15 +86,7 @@ Widget _buildBody(BuildContext context, Record record) {
               child: ButtonBar(
                 children: <Widget>[
                   FlatButton(
-                    child: const Text(
-                      'View project',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 140, 188, 63),
-                      ),
-                    ),
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                   )
                 ],
               ),
