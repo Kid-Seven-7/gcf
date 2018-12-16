@@ -20,6 +20,7 @@
 Social Tech project at <a href="https://www.wethinkcode.co.za/">we think code_</a>
 </p>
 
+## Getting Started
 > The gcf Projects App
 >
 > A Project Management Application.
@@ -30,19 +31,29 @@ Social Tech project at <a href="https://www.wethinkcode.co.za/">we think code_</
 >With an emphasis on the cost aspect of cost manage
 >
 
-## Installation
+### Prerequisites
+
+```
+A cell phone (Android/iOS)
+```
+
+### Installation
 
 iOS & Android:
 
-```sh
-Install the APK(Android)/IPA(iPhone)
+```
+1) ...
+
+2) ...
+
+...
 ```
 
-## Usage example
+### Usage example
 
 pending...
 
-## Release History
+### Release History
 
 * Version 0.0.1
 	* we think code_ edition
@@ -101,6 +112,6 @@ pending...
 >[Twitter]()
 >
 
-## Contributing
+### Contributing
 
 Not open to contributing at present
