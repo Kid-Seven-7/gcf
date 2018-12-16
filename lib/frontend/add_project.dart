@@ -10,8 +10,7 @@ class CreateProjectPage extends StatefulWidget {
   State createState() => new _CreateProjectPage();
 }
 
-class _CreateProjectPage extends State<CreateProjectPage>{
-
+class _CreateProjectPage extends State<CreateProjectPage> {
   //Text Controllers
   final projectName = new TextEditingController();
   final projectDescription = new TextEditingController();
@@ -22,7 +21,6 @@ class _CreateProjectPage extends State<CreateProjectPage>{
   final projectBudget = new TextEditingController();
   final projectStartDate = new TextEditingController();
   final projectEndDate = new TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +33,9 @@ class _CreateProjectPage extends State<CreateProjectPage>{
         ],
       ),
       body: ListView(
+        padding: EdgeInsets.all(10.0),
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(10.0),
             alignment: Alignment.centerLeft,
           ),
           TextField(
@@ -75,7 +73,7 @@ class _CreateProjectPage extends State<CreateProjectPage>{
                 labelText: 'Project Start Date',
                 hintText: 'DD/MM/YYYY',
                 hintStyle: TextStyle(fontStyle: FontStyle.italic)),
-                controller: projectStartDate,
+            controller: projectStartDate,
           ),
           TextField(
             decoration: InputDecoration(labelText: 'Project End Date'),
@@ -104,7 +102,6 @@ class _CreateProjectPage extends State<CreateProjectPage>{
           projectData['projectBudget'] = projectBudget.text;
           projectData['projectStartDate'] = projectStartDate.text;
           projectData['projectEndDate'] = projectEndDate.text;
-
 
           _onItemTapped(context, index, projectName.text);
         },
@@ -143,22 +140,24 @@ Future<void> _newproject(BuildContext context, String name) async {
           FlatButton(
             child: Text('Yes'),
             onPressed: () {
-
               //Add data to the database
 
               Project project = new Project();
-              
+
               print(projectData);
               Navigator.of(context).pop();
 
-              if (project.processProjectData(projectData)){
+              if (project.processProjectData(projectData)) {
                 popUpInfo(context, "Success", "Project added successfully.");
-              }else{
-                popUpInfo(context, "Adding Error", "Failed to create project.\n" + 
-                                                    "Reason: Some fields are empty");
+              } else {
+                popUpInfo(
+                    context,
+                    "Adding Error",
+                    "Failed to create project.\n" +
+                        "Reason: Some fields are empty");
               }
               // Navigator.pop(context,
-                  // MaterialPageRoute(builder: (context) => CreateProjectPage()));
+              // MaterialPageRoute(builder: (context) => CreateProjectPage()));
             },
           ),
           FlatButton(
