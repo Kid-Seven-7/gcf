@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 
 import 'burger_menu_drawer.dart';
-import 'home_page.dart';
+import 'log_page.dart';
 
+class LogCard extends StatefulWidget {
+  Log log;
 
-class ProjectCard extends StatefulWidget {
-  Record record;
-  ProjectCard(Record record) {
-    this.record = record;
+  LogCard(Log log) {
+    this.log = log;
   }
+
   @override
-  State createState() => new ProjectCardState(record);
+  State createState() => new LogCardState(log);
 }
 
-class ProjectCardState extends State<ProjectCard> {
-  Record record;
+class LogCardState extends State<LogCard> {
+  Log log;
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
+
   _handleDrawer() {
     _key.currentState.openDrawer();
   }
-  ProjectCardState(Record record) {
-    this.record = record;
+
+  LogCardState(Log log) {
+    this.log = log;
   }
 
   @override
@@ -30,7 +33,7 @@ class ProjectCardState extends State<ProjectCard> {
         backgroundColor: Colors.blueGrey.shade900,
         appBar: AppBar(
           backgroundColor: Colors.green.shade500,
-          title: Text("Dashboard"),
+          title: Text("Project Log"),
           leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _handleDrawer,
@@ -39,38 +42,23 @@ class ProjectCardState extends State<ProjectCard> {
             Image.asset('assets/images/gcf_white.png'),
           ],
         ),
-        body: _buildBody(context, record),
-        bottomNavigationBar: BottomNavigationBar(
-          fixedColor: Color.fromARGB(255, 140, 188, 63),
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                backgroundColor: Colors.black,
-                icon: Icon(Icons.rate_review),
-                title: Text('View Report')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.timeline), title: Text('View Statistics')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.add), title: Text('Add project')),
-          ],
-          onTap: (index) {
-            onItemTapped(context, index);
-          },
-        ),
+        body: _buildBody(context, log),
         drawer: OpenDrawer());
   }
 }
 
-Widget _buildBody(BuildContext context, Record record) {
+Widget _buildBody(BuildContext context, Log log) {
   return new Card(
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         ListTile(
           leading: Icon(Icons.library_books),
-          title: Text(record.projectName,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          title: Text(
+            log.projectName,
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          subtitle: Text(record.projectDescription),
+          subtitle: Text(log.projectClient),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -80,7 +68,7 @@ Widget _buildBody(BuildContext context, Record record) {
                 backgroundColor: Colors.grey.shade800,
                 child: Text('FM'),
               ),
-              label: Text(record.projectForeman),
+              label: Text(log.projectForeman),
             ),
             ButtonTheme.bar(
               child: ButtonBar(
@@ -92,9 +80,7 @@ Widget _buildBody(BuildContext context, Record record) {
                         color: Color.fromARGB(255, 140, 188, 63),
                       ),
                     ),
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                   )
                 ],
               ),

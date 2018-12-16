@@ -2,6 +2,7 @@ import 'add_user.dart';
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 import 'splash.dart';
+import 'log_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final storage = new FlutterSecureStorage();
@@ -73,7 +74,9 @@ class OpenDrawer extends StatelessWidget {
             'Log',
             style: _navMenuText,
           ),
-          onTap: () {},
+          onTap: () {
+            openpage(context, "Log");
+          },
         ),
         ListTile(
           leading: Icon(Icons.timeline),
@@ -140,5 +143,10 @@ void openpage(BuildContext context, String page) {
     Navigator.pop(context);
     Navigator.of(context).pushReplacement(
                 new MaterialPageRoute(builder: (context) => SplashScreen()));
+  }
+
+  if (page == "Log"){
+    Navigator.pop(context);
+    Navigator.push(context, new MaterialPageRoute(builder: (context) => LogPage()));
   }
 }
