@@ -98,8 +98,8 @@ class AddUserState extends State<AddUser> {
                               popUpInfo(
                                   context,
                                   "Error",
-                                  "1. All fields must not be left" +
-                                      "2. Password must be 8 or more characters." +
+                                  "1. All fields must not be left.\n" +
+                                      "2. Password must be 8 or more characters.\n" +
                                       "3. Number must be 10 digits (Only numbers).");
                             }
                           },
