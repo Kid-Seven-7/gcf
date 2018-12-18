@@ -8,6 +8,7 @@ import 'package:validators/validators.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final storage = new FlutterSecureStorage();
+
 class DataBaseEngine {
   BuildContext _context;
   DBCrypt dBCrypt = DBCrypt();
@@ -52,8 +53,8 @@ class DataBaseEngine {
     });
   }
 
-  String  createHash(String value){
-    if (value.isNotEmpty){
+  String createHash(String value) {
+    if (value.isNotEmpty) {
       String salt = dBCrypt.gensalt();
       return dBCrypt.hashpw(value, salt);
     }
@@ -75,7 +76,7 @@ class DataBaseEngine {
         roleStatus = role;
 
         await storage.deleteAll();
-        if (rememberMe == "yes"){
+        if (rememberMe == "yes") {
           await storage.write(key: "name", value: name);
           await storage.write(key: "role", value: role);
           await storage.write(key: "rememberMe", value: "yes");
@@ -104,14 +105,19 @@ class DataBaseEngine {
     }
   }
 
-   validateData(Map<String, String> data) {
+  bool validateData(Map<String, String> data) {
     if (data['name'].isEmpty) {
       return (false);
     }
     if (data['password'].isEmpty || data['password'].length < 8) {
       return (false);
     }
-    if (data['number'].isEmpty || data['number'].length < 10 || !isNumeric(data['number'])) {
+    if (data['number'].isEmpty ||
+        data['number'].length < 10 ||
+        !isNumeric(data['number'])) {
+      return (false);
+    }
+    if (userExists(data['number'])) {
       return (false);
     }
     return (true);
@@ -133,5 +139,10 @@ class DataBaseEngine {
     newUser['password'] = password;
     newUser['number'] = number;
     return newUser;
+  }
+
+  bool userExists(String number) {
+    bool userFound = false;
+    return userFound;
   }
 }

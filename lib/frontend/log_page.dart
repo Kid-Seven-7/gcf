@@ -39,12 +39,13 @@ class _LogPageState extends State<LogPage> {
         ),
         body: _buildBody(context),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: stat,
           fixedColor: Color.fromARGB(255, 140, 188, 63),
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.assignment), title: Text('General')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.monetization_on), title: Text('Budget')),
+                icon: Icon(Icons.attach_money), title: Text('Budget')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.access_time), title: Text('Time')),
           ],
@@ -82,7 +83,10 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
       padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
       child: stat == 0
           ? generalInfo(context, log)
-          : stat == 1 ? budgetInfo(context, log) : timeInfo(context, log));
+          : stat == 1
+          ? budgetInfo(context, log)
+          : timeInfo(context, log)
+  );
 }
 
 class Log {
@@ -92,8 +96,11 @@ class Log {
   String projectClient;
   String projectType;
   String projectLocation;
+  String projectEndDate;
+  String projectStartDate;
+  String projectBudget;
 
-  //TODO calculate time taken
+  //TODO calculate time take cn
   DocumentReference reference;
 
   Log.fromMap(Map<String, dynamic> map, {this.reference})
@@ -103,12 +110,18 @@ class Log {
         assert(map['projectClient'] != null),
         assert(map['projectType'] != null),
         assert(map['projectLocation'] != null),
+        assert(map['projectEndDate'] != null),
+        assert(map['projectStartDate'] != null),
+        assert(map['projectBudget'] != null),
         projectName = map['projectName'],
         projectForeman = map['projectForeman'],
         projectDescription = map['projectDescription'],
         projectClient = map['projectClient'],
         projectType = map['projectType'],
-        projectLocation = map['projectLocation'];
+        projectLocation = map['projectLocation'],
+        projectEndDate = map['projectEndDate'],
+        projectStartDate = map['projectStartDate'],
+        projectBudget = map['projectBudget'];
 
   Log.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);

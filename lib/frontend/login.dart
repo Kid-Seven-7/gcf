@@ -16,11 +16,10 @@ class LoginPageState extends State<LoginPage>
   Animation<double> _iconAnimation;
   bool _checked = false;
 
-
-  void onChanged(bool value){
+  void onChanged(bool value) {
     setState(() {
-          _checked = value;
-        });
+      _checked = value;
+    });
   }
 
   final textName = new TextEditingController();
@@ -106,8 +105,23 @@ class LoginPageState extends State<LoginPage>
                         ),
                         new Row(
                           children: <Widget>[
-                            new Text("Remember me", style: TextStyle(color:Colors.white ),),
-                            new Checkbox(value: _checked, onChanged: (bool value) {onChanged(value);},activeColor: Color.fromARGB(255, 140, 188, 63) ,)
+                            new Text(
+                              "Remember me",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            new Checkbox(
+                              value: _checked,
+                              onChanged: (bool value) {
+                                onChanged(value);
+                                if (value){
+                                  rememberMe = "yes";
+                                }else {
+                                  rememberMe = "no";
+                                }
+                                print("Bool value: $value");
+                              },
+                              activeColor: Color.fromARGB(255, 140, 188, 63),
+                            )
                           ],
                         ),
                         new FlatButton(
@@ -135,9 +149,11 @@ class LoginPageState extends State<LoginPage>
                         new MaterialButton(
                           color: Color.fromARGB(0, 0, 0, 0),
                           child: new Text("Create New Account"),
-                          onPressed: (){
-                          Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => AddUser()));
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AddUser()));
                           },
                         ),
                       ],
