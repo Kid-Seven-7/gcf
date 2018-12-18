@@ -30,11 +30,7 @@ void popUpInfo(BuildContext context, String header, String message) {
           contentPadding: EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 15.0),
           title: new Text(header),
           content: new Text(message),
-          actions: <Widget>[
-             new FlatButton(
-              child: new Text('Exit'),
-              onPressed: ()=> exit(0),
-            ),  
+          actions: <Widget>[ 
             new FlatButton(
               child: new Text('Ok'),
               onPressed: (){

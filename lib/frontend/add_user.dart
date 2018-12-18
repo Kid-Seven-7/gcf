@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../backend/database_engine.dart';
 import 'alert_popups.dart';
+import 'login.dart';
+import 'dart:async';
 
 class AddUser extends StatefulWidget {
   @override
@@ -82,14 +84,23 @@ class AddUserState extends State<AddUser> {
                                 nameController.text,
                                 passwordController.text,
                                 numberController.text);
-                            if (databaseEngine.processData(newUserData)){
-                              print ('Pop up good');
-                              popUpInfo(context, "Success", "Your account has been created.");
-                            }else {
-                              print ('Pop up bad');
-                              popUpInfo(context, "Error", "1. All fields must not be left" + 
-                                                            "2. Password must be 8 or more characters." + 
-                                                            "3. Number must be 10 digits (Only numbers).");
+                            if (databaseEngine.processData(newUserData)) {
+                              print('Pop up good');
+                              popUpInfo(context, "Success",
+                                  "Your account has been created.");
+                              Timer(Duration(seconds: 3), () {
+                                Navigator.of(context).pushReplacement(
+                                    new MaterialPageRoute(
+                                        builder: (context) => LoginPage()));
+                              });
+                            } else {
+                              print('Pop up bad');
+                              popUpInfo(
+                                  context,
+                                  "Error",
+                                  "1. All fields must not be left" +
+                                      "2. Password must be 8 or more characters." +
+                                      "3. Number must be 10 digits (Only numbers).");
                             }
                           },
                           shape: new RoundedRectangleBorder(
