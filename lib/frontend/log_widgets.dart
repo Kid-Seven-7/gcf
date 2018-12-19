@@ -77,6 +77,45 @@ Widget budgetInfo(BuildContext context, Log log) {
                 "Some value", //Tile subtitle
                 Icons.access_time //Tile icon
             ),
+            logDivider(context),
+            Container(
+              margin: EdgeInsets.all(25.0),
+              padding: EdgeInsets.only(right: 10.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Text("item1 %\n"),
+                      CircularProgressIndicator(
+                        value: 0.15,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text("item2 %\n"),
+                      CircularProgressIndicator(
+                        value: 0.65,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text("item3 %\n"),
+                      CircularProgressIndicator(
+                        backgroundColor: Color.fromARGB(255, 255, 0, 0),
+                        value: 0.85,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+
+            logDivider(context),
+
           ],
         ),
       ));
