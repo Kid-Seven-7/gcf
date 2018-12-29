@@ -20,3 +20,4 @@ Map<String, String> userData;
 
 //app variables
 bool  skipLogin = false;
+String currentPage = "";

@@ -19,6 +19,7 @@ class OpenDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return new Drawer(
         child: ListView(
       padding: EdgeInsets.zero,
@@ -51,7 +52,7 @@ class OpenDrawer extends StatelessWidget {
             image: DecorationImage(
               image: new AssetImage("assets/images/burger_back.png"),
               fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(Colors.black54 , BlendMode.darken),
+              colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken),
             ),
             color: Colors.blueGrey.shade900,
             backgroundBlendMode: BlendMode.darken,
@@ -144,9 +145,14 @@ class OpenDrawer extends StatelessWidget {
 
 void openpage(BuildContext context, String page) {
   if (page == "Manage Users") {
-    print(context.findRenderObject());
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => ManageUsers()));
+    if (currentPage != "Manage Users") {
+      currentPage = "Manage Users";
+
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ManageUsers()));
+    }else{
+      Navigator.pop(context);
+    }
   }
   if (page == "LogOut") {
     Navigator.pop(context);
@@ -154,13 +160,23 @@ void openpage(BuildContext context, String page) {
         new MaterialPageRoute(builder: (context) => SplashScreen()));
   }
   if (page == "Log") {
-    Navigator.pop(context);
-    Navigator.push(
-        context, new MaterialPageRoute(builder: (context) => LogPage()));
+    if (currentPage != "Log") {
+      currentPage = "Log";
+      Navigator.push(
+          context, new MaterialPageRoute(builder: (context) => LogPage()));
+    }else{
+      Navigator.pop(context);
+    }
   }
   if (page == "Projects") {
-    Navigator.pop(context);
-    Navigator.of(context).pushReplacement(
-        new MaterialPageRoute(builder: (context) => HomeScreen()));
+    if (currentPage != "Projects") {
+      currentPage = "Projects";
+
+      Navigator.pop(context);
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => HomeScreen()));
+    }else{
+      Navigator.pop(context);
+    }
   }
 }

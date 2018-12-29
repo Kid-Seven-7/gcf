@@ -4,6 +4,7 @@ import '../backend/login_engine.dart';
 import '../backend/database_engine.dart';
 import 'package:dbcrypt/dbcrypt.dart';
 import 'add_user.dart';
+import 'alert_popups.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -113,9 +114,9 @@ class LoginPageState extends State<LoginPage>
                               value: _checked,
                               onChanged: (bool value) {
                                 onChanged(value);
-                                if (value){
+                                if (value) {
                                   rememberMe = "yes";
-                                }else {
+                                } else {
                                   rememberMe = "no";
                                 }
                                 print("Bool value: $value");
@@ -136,7 +137,8 @@ class LoginPageState extends State<LoginPage>
                               dataBaseEngine.checkUser(
                                   textName.text, textPassword.text, context);
                             } else {
-                              print("Do an awesome popup");
+                              popUpInfo(context, "Error",
+                                  "Fields can't be empty!. Please put your login name and password.");
                             }
                           },
                           shape: new RoundedRectangleBorder(

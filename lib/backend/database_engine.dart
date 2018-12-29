@@ -42,7 +42,8 @@ class DataBaseEngine {
         }
       });
     } catch (_) {
-      print('Failed to connect to the database');
+      popUpInfo(context, "Error: Connection failed",
+          "Unable to connect to the database. Please check your data connection and try again.");
     }
   }
 

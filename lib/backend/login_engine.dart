@@ -7,7 +7,6 @@ class LoginEngine
   {
     if ((name == null || name == "") || (password == null || password == ""))
     {
-      print ("Login invalid");
       return (false);
     }
     return (true);
