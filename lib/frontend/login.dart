@@ -39,10 +39,6 @@ class LoginPageState extends State<LoginPage>
 
   @override
   void initState() {
-    //TEST
-    pageNumber += 1;
-    print('Login Page Number: $pageNumber');
-    //TEST
     super.initState();
     _iconAnimationController = new AnimationController(
         vsync: this, duration: new Duration(milliseconds: 1000));
@@ -119,7 +115,6 @@ class LoginPageState extends State<LoginPage>
                                 } else {
                                   rememberMe = "no";
                                 }
-                                print("Bool value: $value");
                               },
                               activeColor: Color.fromARGB(255, 140, 188, 63),
                             )
@@ -131,9 +126,6 @@ class LoginPageState extends State<LoginPage>
                           onPressed: () {
                             if (loginEngine.checkLogin(
                                 textName.text, textPassword.text)) {
-                              var hash = dBCrypt.hashpw(
-                                  textPassword.text, dBCrypt.gensalt());
-                              print(hash);
                               dataBaseEngine.checkUser(
                                   textName.text, textPassword.text, context);
                             } else {
