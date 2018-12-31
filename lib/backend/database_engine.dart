@@ -47,11 +47,15 @@ class DataBaseEngine {
     }
   }
 
-  void getLength(Firestore firestore) async {
+  void getLength(var firestore) async {
+    try{
     var futureAmount =
         await firestore.collection('users').getDocuments().then((data) {
       amount = data.documents.length;
     });
+    }catch(_){
+
+    }
   }
 
   String createHash(String value) {
@@ -68,7 +72,7 @@ class DataBaseEngine {
     if ((name == dataName)) {
       try {
         assert(dBCrypt.checkpw(password, dataPassword), true);
-        if (role == 'admin') {
+        if (role == 'Administrator') {
           isAdmin = true;
         }
 
@@ -101,8 +105,7 @@ class DataBaseEngine {
     try {
       //CHECK IF DATA EXISTS IN DATABASEE
       firestore.collection(collection).document().setData(data);
-    } catch (e) {
-      print("Problem: $e");
+    } catch (_) {
     }
   }
 

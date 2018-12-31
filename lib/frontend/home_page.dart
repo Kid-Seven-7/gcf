@@ -11,6 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int currentIndex_ = 0;
+
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
   _handleDrawer() {
     _key.currentState.openDrawer();
@@ -34,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: _buildBody(context),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentIndex_,
           fixedColor: Color.fromARGB(255, 140, 188, 63),
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -46,7 +49,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(Icons.add), title: Text('Add project')),
           ],
           onTap: (index) {
+            print("Index: $currentIndex_");
             onItemTapped(context, index);
+            setState(() {
+              currentIndex_ = index;
+            });
           },
         ),
         drawer: OpenDrawer());
@@ -73,11 +80,8 @@ Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
 
 void onItemTapped(BuildContext context, int index) {
   if (index == 0) {
-    debugPrint('View Report');
   } else if (index == 1) {
-    debugPrint('View Statistics');
   } else if (index == 2) {
-    debugPrint('Add project');
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => CreateProjectPage()));
   }
@@ -123,9 +127,8 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.of(context).push(
-                            new MaterialPageRoute(
-                                builder: (context) => ProjectCard(record)));
+                        Navigator.of(context).push(new MaterialPageRoute(
+                            builder: (context) => ProjectCard(record)));
                         // _viewproject();
                       },
                     )
