@@ -180,7 +180,7 @@ class _ManageUsersState extends State<ManageUsers> {
                                     child: const Text(
                                       'Approve User',
                                       style: TextStyle(
-                                        color: Colors.white70,
+                                        color: Colors.white,
                                       ),
                                     ),
                                     onPressed: () {
@@ -188,8 +188,8 @@ class _ManageUsersState extends State<ManageUsers> {
                                           new Map();
 
                                       newUserData['name'] = data['name'];
-                                      newUserData['numberData'] =
-                                          data['numberData'];
+                                      newUserData['number'] =
+                                          data['number'];
                                       newUserData['password'] =
                                           data['password'];
                                       newUserData['role'] = "user";

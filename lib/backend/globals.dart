@@ -23,6 +23,7 @@ Map<String, String> userData;
 //app variables
 bool  skipLogin = false;
 String currentPage = "";
+int notifications = 0;
 
 //app icons
 var messageIcon = Icons.markunread;

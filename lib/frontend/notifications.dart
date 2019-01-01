@@ -72,9 +72,15 @@ class _NotificationsState extends State<Notifications> {
           .collection("notifications")
           .getDocuments()
           .then((snapshot) {
-            for (var doc in snapshot.documents){
-              doc.reference.delete();
-            }
+        for (var doc in snapshot.documents) {
+          doc.reference.delete();
+        }
+      });
+      Firestore.instance
+          .collection("notifications")
+          .getDocuments()
+          .then((value) {
+        notifications = value.documents.length;
       });
     }
     if (index == 1) {
@@ -206,5 +212,21 @@ class _NotificationsState extends State<Notifications> {
             ),
           ),
         ));
+  }
+}
+
+void sendMessage(BuildContext context, String title, String message) {
+  Map newNotification = new Map<String, String>();
+  newNotification['title'] = title;
+  newNotification['message'] = message;
+
+  try {
+    Firestore.instance
+        .collection("notifications")
+        .document()
+        .setData(newNotification);
+  } catch (_) {
+    popUpInfo(context, "Error",
+        "Unable to send notification. Please check your internet connection");
   }
 }

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'add_project.dart';
-import 'burger_menu_drawer.dart';
 import 'project_view.dart';
+import 'burger_menu_drawer.dart';
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -20,6 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Firestore.instance.collection("notifications").getDocuments().then((value) {
+      notifications = value.documents.length;
+    });
+
     return Scaffold(
         key: _key,
         backgroundColor: Colors.blueGrey.shade900,

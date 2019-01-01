@@ -21,6 +21,10 @@ class OpenDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Firestore.instance.collection("notifications").getDocuments().then((value) {
+      notifications = value.documents.length;
+    });
+
     try {
       Firestore.instance
           .collection("users")
@@ -120,10 +124,15 @@ class OpenDrawer extends StatelessWidget {
         ),
         ListTile(
           leading: Icon(Icons.notifications),
-          title: Text(
-            'Notifications',
-            style: _navMenuText,
-          ),
+          title: (notifications > 0)
+              ? Text(
+                  'Notifications($notifications)',
+                  style: _navMenuText,
+                )
+              : Text(
+                  'Notifications',
+                  style: _navMenuText,
+                ),
           onTap: () {
             openpage(context, "Notifications");
           },
