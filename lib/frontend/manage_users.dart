@@ -54,7 +54,6 @@ class _ManageUsersState extends State<ManageUsers> {
             setState(() {
               _currentIndex = index;
               updatePage(context, index);
-              print("Index is $index and Current Index is $_currentIndex");
             });
           },
         ),
