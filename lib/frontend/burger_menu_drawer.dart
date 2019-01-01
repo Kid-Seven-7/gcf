@@ -20,16 +20,18 @@ class OpenDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Firestore.instance
-        .collection("users")
-        .reference()
-        .where("name", isEqualTo: userName)
-        .where("number", isEqualTo: number)
-        .getDocuments()
-        .then((onValue){
-          var doc = onValue.documents[0];
-          roleStatus = doc['role'];
-        });
+    try {
+      Firestore.instance
+          .collection("users")
+          .reference()
+          .where("name", isEqualTo: userName)
+          .where("number", isEqualTo: number)
+          .getDocuments()
+          .then((onValue) {
+        var doc = onValue.documents[0];
+        roleStatus = doc['role'];
+      });
+    } catch (_) {}
 
     return new Drawer(
         child: ListView(
@@ -166,6 +168,7 @@ void openpage(BuildContext context, String page) {
     }
   }
   if (page == "LogOut") {
+    currentPage = "";
     Navigator.pop(context);
     Navigator.of(context).pushReplacement(
         new MaterialPageRoute(builder: (context) => SplashScreen()));
