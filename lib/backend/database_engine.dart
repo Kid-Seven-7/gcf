@@ -32,9 +32,10 @@ class DataBaseEngine {
           String dataName = doc['name'];
           String dataPassword = doc['password'];
           String dataRole = doc['role'];
+          String dataNumber = doc['number'];
 
           checkDetails(context, name, password, dataName, dataPassword,
-              dataRole, counter);
+              dataRole, counter, dataNumber);
           counter++;
           if (checkComplete) {
             break;
@@ -68,7 +69,7 @@ class DataBaseEngine {
 
   //Checks if users' name and password matches those in the database
   void checkDetails(BuildContext context, String name, String password,
-      String dataName, String dataPassword, String role, int index) async {
+      String dataName, String dataPassword, String role, int index, String dataNumber) async {
     if ((name == dataName)) {
       try {
         if (dBCrypt.checkpw(password, dataPassword)) {
@@ -79,12 +80,14 @@ class DataBaseEngine {
           checkComplete = true;
           userName = name;
           roleStatus = role;
+          number = dataNumber;
 
           await storage.deleteAll();
           if (rememberMe == "yes") {
             await storage.write(key: "name", value: name);
             await storage.write(key: "role", value: role);
             await storage.write(key: "rememberMe", value: "yes");
+            await storage.write(key: "number", value: dataNumber);
           }
           Navigator.of(context).pushReplacement(
               new MaterialPageRoute(builder: (context) => HomeScreen()));

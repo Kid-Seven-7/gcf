@@ -94,8 +94,10 @@ class SplashScreenState extends State<SplashScreen>
 
         userName = userData['name'];
         roleStatus = userData['role'];
+        number = userData['number'];
         userData['name'] = userName;
         userData['role'] = roleStatus;
+        userData['number'] = number;
 
         //Going to Home Page
         Navigator.of(context).pushReplacement(

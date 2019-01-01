@@ -14,6 +14,7 @@ bool  isAdmin = false;
 //User Variables
 String  userName;
 String  roleStatus;
+String  number;
 String  rememberMe = "no";
 
 Map<String, String> userData;

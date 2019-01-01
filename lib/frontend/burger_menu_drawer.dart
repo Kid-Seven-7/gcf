@@ -5,6 +5,7 @@ import 'manage_users.dart';
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 final storage = new FlutterSecureStorage();
 void _handleDrawer() {
@@ -19,6 +20,16 @@ class OpenDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Firestore.instance
+        .collection("users")
+        .reference()
+        .where("name", isEqualTo: userName)
+        .where("number", isEqualTo: number)
+        .getDocuments()
+        .then((onValue){
+          var doc = onValue.documents[0];
+          roleStatus = doc['role'];
+        });
 
     return new Drawer(
         child: ListView(
@@ -150,7 +161,7 @@ void openpage(BuildContext context, String page) {
 
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => ManageUsers()));
-    }else{
+    } else {
       Navigator.pop(context);
     }
   }
@@ -164,7 +175,7 @@ void openpage(BuildContext context, String page) {
       currentPage = "Log";
       Navigator.push(
           context, new MaterialPageRoute(builder: (context) => LogPage()));
-    }else{
+    } else {
       Navigator.pop(context);
     }
   }
@@ -175,7 +186,7 @@ void openpage(BuildContext context, String page) {
       Navigator.pop(context);
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => HomeScreen()));
-    }else{
+    } else {
       Navigator.pop(context);
     }
   }
