@@ -2,6 +2,7 @@ import 'splash.dart';
 import 'log_page.dart';
 import 'home_page.dart';
 import 'manage_users.dart';
+import 'notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -123,7 +124,9 @@ class OpenDrawer extends StatelessWidget {
             'Notifications',
             style: _navMenuText,
           ),
-          onTap: () {},
+          onTap: () {
+            openpage(context, "Notifications");
+          },
         ),
         Divider(
           height: 20.0,
@@ -189,6 +192,17 @@ void openpage(BuildContext context, String page) {
       Navigator.pop(context);
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => HomeScreen()));
+    } else {
+      Navigator.pop(context);
+    }
+  }
+  if (page == "Notifications") {
+    if (currentPage != "Notifications") {
+      currentPage = "Notifications";
+
+      Navigator.pop(context);
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => Notifications()));
     } else {
       Navigator.pop(context);
     }

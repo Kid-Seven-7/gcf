@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 //ALL GLOBALS NEEDED ARE TO BE KEPT IN THIS FILE ONLY
 //To keep value of variables between file call this dart file this way (import 'package:gcf_projects_app/globals.dart')
 //If you call this file this way (import 'globals.dart') it won't be able to keep it's value between files
@@ -22,3 +23,6 @@ Map<String, String> userData;
 //app variables
 bool  skipLogin = false;
 String currentPage = "";
+
+//app icons
+var messageIcon = Icons.markunread;
