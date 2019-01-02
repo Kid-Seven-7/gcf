@@ -4,9 +4,38 @@ import 'alert_popups.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import '../backend/add_project_back.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 Map<String, String> projectData = new Map(); //All data for the new project
+
+//This list is for the project type
+List<DropdownMenuItem<String>> projectTypeItems = [
+  new DropdownMenuItem(
+    value: "Project Type...",
+    child: Text(
+      "Project Type...",
+    ),
+  ),
+  new DropdownMenuItem(
+    value: "Residential",
+    child: Text("Residential"),
+  ),
+  new DropdownMenuItem(
+    value: "Business",
+    child: Text("Business"),
+  ),
+];
+
+List<DropdownMenuItem<String>> projectFormanItems = [
+  new DropdownMenuItem(
+    value: "Project Forman...",
+    child: Text("Project Forman..."),
+  ),
+];
+
+String currentForman = "Project Forman...";
+String currentProjectType = "Project Type...";
 
 class CreateProjectPage extends StatefulWidget {
   @override
@@ -19,9 +48,9 @@ class _CreateProjectPage extends State<CreateProjectPage> {
   final projectDescription = new TextEditingController();
   final projectLocation = new TextEditingController();
   final projectClient = new TextEditingController();
-  final projectType = new TextEditingController();
-  final projectForeman = new TextEditingController();
   final projectBudget = new TextEditingController();
+  String projectForeman;
+  String projectType;
 
   //Date picker variables
   final dateFormat = DateFormat("EEEE, MMMM d, yyyy");
@@ -34,6 +63,36 @@ class _CreateProjectPage extends State<CreateProjectPage> {
 
   @override
   Widget build(BuildContext context) {
+    Firestore.instance
+        .collection("users")
+        .reference()
+        .where("role", isEqualTo: "Foreman")
+        .getDocuments()
+        .then((data) {
+      for (var doc in data.documents) {
+        String name = doc['name'];
+        bool nameExists = false;
+
+        if (name != null) {
+          DropdownMenuItem item = new DropdownMenuItem<String>(
+            value: name,
+            child: Text(name),
+          );
+
+          projectFormanItems.forEach((data) {
+            if (data.value != null && data.value == name) {
+              nameExists = true;
+            }
+          });
+
+          if (!nameExists) {
+            projectFormanItems.add(item);
+            nameExists = false;
+          }
+        }
+      }
+    });
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 140, 188, 63),
@@ -66,13 +125,37 @@ class _CreateProjectPage extends State<CreateProjectPage> {
             decoration: InputDecoration(labelText: 'Client'),
             controller: projectClient,
           ),
-          TextField(
-            decoration: InputDecoration(labelText: 'Project Type'),
-            controller: projectType,
+          Padding(
+            padding: EdgeInsets.only(top: 10.0),
           ),
-          TextField(
-            decoration: InputDecoration(labelText: 'Project Foreman'),
-            controller: projectForeman,
+          DropdownButton(
+            isExpanded: true,
+            value: currentProjectType,
+            items: projectTypeItems,
+            onChanged: (type) {
+              setState(() {
+                currentProjectType = type;
+                if (currentProjectType != "Project Type...") {
+                  projectType = currentProjectType;
+                }
+              });
+            },
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 10.0),
+          ),
+          DropdownButton(
+            isExpanded: true,
+            value: "Project Forman...",
+            items: projectFormanItems,
+            onChanged: (forman) {
+              setState(() {
+                currentForman = forman;
+                if (currentForman != "Project Forman...") {
+                  projectForeman = currentForman;
+                }
+              });
+            },
           ),
           TextField(
             decoration: InputDecoration(labelText: 'Project Budget'),
@@ -115,12 +198,12 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           projectData['projectDescription'] = projectDescription.text;
           projectData['projectLocation'] = projectLocation.text;
           projectData['projectClient'] = projectClient.text;
-          projectData['projectType'] = projectType.text;
-          projectData['projectForeman'] = projectForeman.text;
+          projectData['projectType'] = projectType;
+          projectData['projectForeman'] = projectForeman;
           projectData['projectBudget'] = projectBudget.text;
           projectData['projectStartDate'] = projectStartDate;
           projectData['projectEndDate'] = projectEndDate;
-
+          currentProjectType = "Project Type...";
           _onItemTapped(context, index, projectName.text);
         },
       ),
