@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
 import 'home_page.dart';
-import '../backend/add_project_back.dart';
 import 'alert_popups.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter/material.dart';
+import '../backend/add_project_back.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 Map<String, String> projectData = new Map(); //All data for the new project
 
@@ -19,8 +21,14 @@ class _CreateProjectPage extends State<CreateProjectPage> {
   final projectType = new TextEditingController();
   final projectForeman = new TextEditingController();
   final projectBudget = new TextEditingController();
-  final projectStartDate = new TextEditingController();
-  final projectEndDate = new TextEditingController();
+  // final projectStartDate = new TextEditingController();
+  // final projectEndDate = new TextEditingController();
+
+  //Date picker variables
+  final dateFormat = DateFormat("EEEE, MMMM d, yyyy");
+  DateTime date;
+  String projectStartDate;
+  String projectEndDate;
 
   @override
   Widget build(BuildContext context) {
@@ -68,17 +76,24 @@ class _CreateProjectPage extends State<CreateProjectPage> {
             decoration: InputDecoration(labelText: 'Project Budget'),
             controller: projectBudget,
           ),
-          TextField(
-            decoration: InputDecoration(
-                labelText: 'Project Start Date',
-                hintText: 'DD/MM/YYYY',
-                hintStyle: TextStyle(fontStyle: FontStyle.italic)),
-            controller: projectStartDate,
-          ),
-          TextField(
-            decoration: InputDecoration(labelText: 'Project End Date'),
-            controller: projectEndDate,
-          ),
+          DateTimePickerFormField(
+              format: dateFormat,
+              decoration: InputDecoration(labelText: 'Project Start Date'),
+              onChanged: (dt) {
+                setState(() {
+                  date = dt;
+                  projectStartDate = date.toString().substring(0, 11);
+                });
+              }),
+          DateTimePickerFormField(
+              format: dateFormat,
+              decoration: InputDecoration(labelText: 'Project End Date'),
+              onChanged: (dt) {
+                setState(() {
+                  date = dt;
+                  projectEndDate = date.toString().substring(0, 11);
+                });
+              }),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -100,8 +115,8 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           projectData['projectType'] = projectType.text;
           projectData['projectForeman'] = projectForeman.text;
           projectData['projectBudget'] = projectBudget.text;
-          projectData['projectStartDate'] = projectStartDate.text;
-          projectData['projectEndDate'] = projectEndDate.text;
+          projectData['projectStartDate'] = projectStartDate;
+          projectData['projectEndDate'] = projectEndDate;
 
           _onItemTapped(context, index, projectName.text);
         },
