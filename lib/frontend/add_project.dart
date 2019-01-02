@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'home_page.dart';
 import 'alert_popups.dart';
 import 'package:intl/intl.dart';
@@ -21,14 +22,15 @@ class _CreateProjectPage extends State<CreateProjectPage> {
   final projectType = new TextEditingController();
   final projectForeman = new TextEditingController();
   final projectBudget = new TextEditingController();
-  // final projectStartDate = new TextEditingController();
-  // final projectEndDate = new TextEditingController();
 
   //Date picker variables
   final dateFormat = DateFormat("EEEE, MMMM d, yyyy");
   DateTime date;
   String projectStartDate;
   String projectEndDate;
+
+  //Project creation variables
+  bool projectCreated = false;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +76,7 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           ),
           TextField(
             decoration: InputDecoration(labelText: 'Project Budget'),
+            keyboardType: TextInputType.number,
             controller: projectBudget,
           ),
           DateTimePickerFormField(
@@ -123,6 +126,11 @@ class _CreateProjectPage extends State<CreateProjectPage> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }
 
 void _onItemTapped(BuildContext context, int index, String name) {
@@ -132,7 +140,6 @@ void _onItemTapped(BuildContext context, int index, String name) {
         context, MaterialPageRoute(builder: (context) => CreateProjectPage()));
   } else if (index == 1) {
     debugPrint('Create');
-    debugPrint(name);
     _newproject(context, name);
   }
 }
