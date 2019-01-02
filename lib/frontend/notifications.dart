@@ -154,6 +154,13 @@ class _NotificationsState extends State<Notifications> {
                                   .collection("notifications")
                                   .document(data.documentID)
                                   .delete();
+                              
+                              Firestore.instance
+                                  .collection("notifications")
+                                  .getDocuments()
+                                  .then((value) {
+                                notifications = value.documents.length;
+                              });
                             },
                           )
                         ],

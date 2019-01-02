@@ -127,7 +127,7 @@ class OpenDrawer extends StatelessWidget {
           title: (notifications > 0)
               ? Text(
                   'Notifications($notifications)',
-                  style: _navMenuText,
+                  style: TextStyle(fontSize: 18.0, color: Colors.redAccent),
                 )
               : Text(
                   'Notifications',
