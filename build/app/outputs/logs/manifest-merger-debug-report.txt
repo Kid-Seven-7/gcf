@@ -1,0 +1,438 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:1:1-39:12
+INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:1:1-39:12
+INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:1:1-39:12
+INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:1:1-39:12
+MERGED from [:flutter_secure_storage] /goinfre/amatshiy/Desktop/gcf_app_home/build/flutter_secure_storage/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-11:12
+MERGED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-23:12
+MERGED from [:connectivity] /goinfre/amatshiy/Desktop/gcf_app_home/build/connectivity/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-10:12
+MERGED from [:cloud_firestore] /goinfre/amatshiy/Desktop/gcf_app_home/build/cloud_firestore/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-7:12
+MERGED from [:firebase_core] /goinfre/amatshiy/Desktop/gcf_app_home/build/firebase_core/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:firebase-core:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.4.aar/a48a80a2e5eb9bbaaaf8a9ed69a03e45/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:2:1-21:12
+MERGED from [com.google.firebase:firebase-auth-interop:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-auth-interop-16.0.1.aar/5a3a0561b9b7bbf2ca7c9323ac657e9b/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:17:1-34:12
+MERGED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:17:1-55:12
+MERGED from [com.google.android.gms:play-services-measurement-api:16.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-measurement-api-16.0.2.aar/7cbf183ff9c9717ecc4303c7e3836539/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:17:1-59:12
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-interop-16.0.1.aar/81a59df9d315f0fb302b3a609bc18660/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/e793de56df123cda23798cc8e2f733ff/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.firebase:firebase-common:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.3.aar/25bf6cfb6ef5e789f71022a8ad5277b9/AndroidManifest.xml:2:1-17:12
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/4079fe29937539ff050ac2994c087812/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-database-collection:16.0.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-database-collection-16.0.0.aar/5ef961b79993f738767022373e9486e6/AndroidManifest.xml:2:1-8:12
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-stats-16.0.1.aar/4132d7bab3fbab5ffeec5fd35a799be3/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-17.0.1.aar/08c7d504eaa3ed807d08a9f67a8fe1ff/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-ads-identifier-16.0.0.aar/9af5c8b714480f1ca43835753ca67fb2/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/34db0c0ba6c768c37544e91b60703fa5/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/bba225cc0101420e5729d2e4772a4c04/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/616e72367409a38e9440ae26e43dea57/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/e142f2b387b53ef5fce4187a2fcce2d1/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/f413e380c7f332a3740861746eee251a/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/c449d19b8298c409f169d86976cf257e/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/6e53bff462dba0e58c99ba98f16d24c0/AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/d1047880eab00d5afdf53f24a6276d1f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:protolite-well-known-types:16.0.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/protolite-well-known-types-16.0.0.aar/1ee6bfc9767fb98a3dfc079812c50391/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.gms:play-services-measurement-base:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.3.aar/d0a2953cee50c52dd29594108fe659ec/AndroidManifest.xml:2:1-9:12
+INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:1:1-39:12
+INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:1:1-39:12
+INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:1:1-39:12
+	package
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:2:5-49
+		INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+		INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:1:1-39:12
+		INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:1:1-39:12
+		INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:8:5-66
+MERGED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:23:5-67
+	android:name
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:8:22-64
+application
+ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:15:5-38:19
+MERGED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:11:5-21:19
+MERGED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:11:5-21:19
+MERGED from [com.google.firebase:firebase-core:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.4.aar/a48a80a2e5eb9bbaaaf8a9ed69a03e45/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-core:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.4.aar/a48a80a2e5eb9bbaaaf8a9ed69a03e45/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:13:5-19:19
+MERGED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:13:5-19:19
+MERGED from [com.google.firebase:firebase-auth-interop:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-auth-interop-16.0.1.aar/5a3a0561b9b7bbf2ca7c9323ac657e9b/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-auth-interop-16.0.1.aar/5a3a0561b9b7bbf2ca7c9323ac657e9b/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:26:5-32:19
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:26:5-32:19
+MERGED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement-api:16.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-measurement-api-16.0.2.aar/7cbf183ff9c9717ecc4303c7e3836539/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement-api:16.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-measurement-api-16.0.2.aar/7cbf183ff9c9717ecc4303c7e3836539/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:28:5-57:19
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:28:5-57:19
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-interop-16.0.1.aar/81a59df9d315f0fb302b3a609bc18660/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-interop-16.0.1.aar/81a59df9d315f0fb302b3a609bc18660/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/e793de56df123cda23798cc8e2f733ff/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/e793de56df123cda23798cc8e2f733ff/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.firebase:firebase-common:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.3.aar/25bf6cfb6ef5e789f71022a8ad5277b9/AndroidManifest.xml:9:5-15:19
+MERGED from [com.google.firebase:firebase-common:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.3.aar/25bf6cfb6ef5e789f71022a8ad5277b9/AndroidManifest.xml:9:5-15:19
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/4079fe29937539ff050ac2994c087812/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/4079fe29937539ff050ac2994c087812/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-stats-16.0.1.aar/4132d7bab3fbab5ffeec5fd35a799be3/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-stats-16.0.1.aar/4132d7bab3fbab5ffeec5fd35a799be3/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-17.0.1.aar/08c7d504eaa3ed807d08a9f67a8fe1ff/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-17.0.1.aar/08c7d504eaa3ed807d08a9f67a8fe1ff/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-ads-identifier-16.0.0.aar/9af5c8b714480f1ca43835753ca67fb2/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-ads-identifier-16.0.0.aar/9af5c8b714480f1ca43835753ca67fb2/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/34db0c0ba6c768c37544e91b60703fa5/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/34db0c0ba6c768c37544e91b60703fa5/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/bba225cc0101420e5729d2e4772a4c04/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/bba225cc0101420e5729d2e4772a4c04/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/616e72367409a38e9440ae26e43dea57/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/616e72367409a38e9440ae26e43dea57/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/e142f2b387b53ef5fce4187a2fcce2d1/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/e142f2b387b53ef5fce4187a2fcce2d1/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/f413e380c7f332a3740861746eee251a/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/f413e380c7f332a3740861746eee251a/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/c449d19b8298c409f169d86976cf257e/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/c449d19b8298c409f169d86976cf257e/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/6e53bff462dba0e58c99ba98f16d24c0/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/6e53bff462dba0e58c99ba98f16d24c0/AndroidManifest.xml:25:5-29:19
+MERGED from [com.google.android.gms:play-services-measurement-base:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.3.aar/d0a2953cee50c52dd29594108fe659ec/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-base:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.3.aar/d0a2953cee50c52dd29594108fe659ec/AndroidManifest.xml:7:5-20
+	android:label
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:17:9-41
+	android:icon
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:18:9-43
+	android:name
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:16:9-57
+activity#com.knd.wethinkcode.gcfprojectsapp.MainActivity
+ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:19:9-37:20
+	android:launchMode
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:21:13-43
+	android:hardwareAccelerated
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:24:13-47
+	android:windowSoftInputMode
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:25:13-55
+	android:configChanges
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:23:13-137
+	android:theme
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:22:13-47
+	android:name
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:20:13-41
+meta-data#io.flutter.app.android.SplashScreenUntilFirstFrame
+ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:30:13-32:40
+	android:value
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:32:17-37
+	android:name
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:31:17-82
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:33:13-36:29
+action#android.intent.action.MAIN
+ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:34:17-68
+	android:name
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:34:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:35:17-76
+	android:name
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml:35:27-74
+uses-sdk
+INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+MERGED from [:flutter_secure_storage] /goinfre/amatshiy/Desktop/gcf_app_home/build/flutter_secure_storage/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
+MERGED from [:flutter_secure_storage] /goinfre/amatshiy/Desktop/gcf_app_home/build/flutter_secure_storage/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
+MERGED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:5:5-44
+MERGED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] /goinfre/amatshiy/Desktop/gcf_app_home/build/connectivity/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] /goinfre/amatshiy/Desktop/gcf_app_home/build/connectivity/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] /goinfre/amatshiy/Desktop/gcf_app_home/build/cloud_firestore/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] /goinfre/amatshiy/Desktop/gcf_app_home/build/cloud_firestore/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] /goinfre/amatshiy/Desktop/gcf_app_home/build/firebase_core/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] /goinfre/amatshiy/Desktop/gcf_app_home/build/firebase_core/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-core:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.4.aar/a48a80a2e5eb9bbaaaf8a9ed69a03e45/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-core:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.4.aar/a48a80a2e5eb9bbaaaf8a9ed69a03e45/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-auth-interop:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-auth-interop-16.0.1.aar/5a3a0561b9b7bbf2ca7c9323ac657e9b/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-auth-interop-16.0.1.aar/5a3a0561b9b7bbf2ca7c9323ac657e9b/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:16.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-measurement-api-16.0.2.aar/7cbf183ff9c9717ecc4303c7e3836539/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:16.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-measurement-api-16.0.2.aar/7cbf183ff9c9717ecc4303c7e3836539/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-interop-16.0.1.aar/81a59df9d315f0fb302b3a609bc18660/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-interop-16.0.1.aar/81a59df9d315f0fb302b3a609bc18660/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/e793de56df123cda23798cc8e2f733ff/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/e793de56df123cda23798cc8e2f733ff/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.3.aar/25bf6cfb6ef5e789f71022a8ad5277b9/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-common:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.3.aar/25bf6cfb6ef5e789f71022a8ad5277b9/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/4079fe29937539ff050ac2994c087812/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/4079fe29937539ff050ac2994c087812/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-database-collection:16.0.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-database-collection-16.0.0.aar/5ef961b79993f738767022373e9486e6/AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-database-collection:16.0.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-database-collection-16.0.0.aar/5ef961b79993f738767022373e9486e6/AndroidManifest.xml:6:5-44
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-stats-16.0.1.aar/4132d7bab3fbab5ffeec5fd35a799be3/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-stats-16.0.1.aar/4132d7bab3fbab5ffeec5fd35a799be3/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-17.0.1.aar/08c7d504eaa3ed807d08a9f67a8fe1ff/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-17.0.1.aar/08c7d504eaa3ed807d08a9f67a8fe1ff/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-ads-identifier-16.0.0.aar/9af5c8b714480f1ca43835753ca67fb2/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-ads-identifier-16.0.0.aar/9af5c8b714480f1ca43835753ca67fb2/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/34db0c0ba6c768c37544e91b60703fa5/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/34db0c0ba6c768c37544e91b60703fa5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/bba225cc0101420e5729d2e4772a4c04/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/bba225cc0101420e5729d2e4772a4c04/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/616e72367409a38e9440ae26e43dea57/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/616e72367409a38e9440ae26e43dea57/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/e142f2b387b53ef5fce4187a2fcce2d1/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/e142f2b387b53ef5fce4187a2fcce2d1/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/f413e380c7f332a3740861746eee251a/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/f413e380c7f332a3740861746eee251a/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/c449d19b8298c409f169d86976cf257e/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/c449d19b8298c409f169d86976cf257e/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/6e53bff462dba0e58c99ba98f16d24c0/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/6e53bff462dba0e58c99ba98f16d24c0/AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/d1047880eab00d5afdf53f24a6276d1f/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/d1047880eab00d5afdf53f24a6276d1f/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:protolite-well-known-types:16.0.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/protolite-well-known-types-16.0.0.aar/1ee6bfc9767fb98a3dfc079812c50391/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:protolite-well-known-types:16.0.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/protolite-well-known-types-16.0.0.aar/1ee6bfc9767fb98a3dfc079812c50391/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.gms:play-services-measurement-base:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.3.aar/d0a2953cee50c52dd29594108fe659ec/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.3.aar/d0a2953cee50c52dd29594108fe659ec/AndroidManifest.xml:5:5-44
+INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/bba225cc0101420e5729d2e4772a4c04/AndroidManifest.xml:23:9-51
+	android:targetSdkVersion
+		INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+		INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+		ADDED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+		INJECTED from /goinfre/amatshiy/Desktop/gcf_app_home/android/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-80
+	android:name
+		ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:8:5-81
+	android:name
+		ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:8:22-78
+uses-permission#android.permission.CAMERA
+ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:9:5-65
+	android:name
+		ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:9:22-62
+provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
+ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:12:9-20:20
+	android:grantUriPermissions
+		ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:16:13-47
+	android:authorities
+		ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:14:13-74
+	android:exported
+		ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:15:13-37
+	android:name
+		ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:13:13-82
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:17:13-19:75
+	android:resource
+		ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:19:17-72
+	android:name
+		ADDED from [:image_picker] /goinfre/amatshiy/Desktop/gcf_app_home/build/image_picker/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:18:17-67
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:connectivity] /goinfre/amatshiy/Desktop/gcf_app_home/build/connectivity/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-79
+MERGED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:22:5-79
+	android:name
+		ADDED from [:connectivity] /goinfre/amatshiy/Desktop/gcf_app_home/build/connectivity/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [:connectivity] /goinfre/amatshiy/Desktop/gcf_app_home/build/connectivity/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:8:5-76
+	android:name
+		ADDED from [:connectivity] /goinfre/amatshiy/Desktop/gcf_app_home/build/connectivity/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:8:22-73
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:14:9-18:19
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:27:9-31:19
+MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:27:9-31:19
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:29:9-35:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:31:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:14:18-89
+meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
+ADDED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:15:13-17:85
+	android:value
+		ADDED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:17:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-firestore:17.1.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-firestore-17.1.1.aar/323a35a0456128f37afe68e965778757/AndroidManifest.xml:16:17-111
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:24:5-68
+	android:name
+		ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:24:22-65
+meta-data#com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
+ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:28:13-30:85
+	android:value
+		ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:30:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.2.aar/163daf98e504b80f22305462760ae710/AndroidManifest.xml:29:17-139
+uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:26:5-110
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:26:5-110
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:26:5-110
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:26:22-107
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:29:9-33:20
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:31:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:30:13-85
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:34:9-42:20
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:29:9-37:20
+MERGED from [com.google.firebase:firebase-analytics-impl:16.2.2] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.2.2.aar/4358c2a7f5ea858d8e848dad331f283d/AndroidManifest.xml:29:9-37:20
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:36:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:37:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:38:13-69
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:35:13-100
+intent-filter#action:name:com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:39:13-41:29
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:40:17-79
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:40:25-76
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:44:9-47:40
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:46:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:47:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:45:13-84
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:48:9-52:72
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:50:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:51:13-37
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:52:13-69
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:16.0.4] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.4.aar/f8e31e7bdc5f23b40bdca037b22ffb67/AndroidManifest.xml:49:13-87
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:26:5-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:26:22-79
+meta-data#com.google.firebase.components:com.google.firebase.iid.Registrar
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:33:17-96
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:37:9-44:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:39:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:40:13-73
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:38:13-78
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:41:13-43:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:42:17-81
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:42:25-78
+service#com.google.firebase.iid.FirebaseInstanceIdService
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:50:9-56:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:52:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:51:13-77
+intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:53:13-55:29
+	android:priority
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:53:28-51
+action#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:54:17-80
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.0.3.aar/87ccd44071c145fcebfbcbf98f2a0d1c/AndroidManifest.xml:54:25-77
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/e793de56df123cda23798cc8e2f733ff/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/e793de56df123cda23798cc8e2f733ff/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/e793de56df123cda23798cc8e2f733ff/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/e793de56df123cda23798cc8e2f733ff/AndroidManifest.xml:24:13-79
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.3.aar/25bf6cfb6ef5e789f71022a8ad5277b9/AndroidManifest.xml:10:9-14:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.3.aar/25bf6cfb6ef5e789f71022a8ad5277b9/AndroidManifest.xml:12:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.3.aar/25bf6cfb6ef5e789f71022a8ad5277b9/AndroidManifest.xml:13:13-37
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.3.aar/25bf6cfb6ef5e789f71022a8ad5277b9/AndroidManifest.xml:14:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.3.aar/25bf6cfb6ef5e789f71022a8ad5277b9/AndroidManifest.xml:11:13-77
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/34db0c0ba6c768c37544e91b60703fa5/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/34db0c0ba6c768c37544e91b60703fa5/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/34db0c0ba6c768c37544e91b60703fa5/AndroidManifest.xml:24:13-58
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v4:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/bba225cc0101420e5729d2e4772a4c04/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/616e72367409a38e9440ae26e43dea57/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/616e72367409a38e9440ae26e43dea57/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/e142f2b387b53ef5fce4187a2fcce2d1/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/e142f2b387b53ef5fce4187a2fcce2d1/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/f413e380c7f332a3740861746eee251a/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/f413e380c7f332a3740861746eee251a/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/c449d19b8298c409f169d86976cf257e/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/c449d19b8298c409f169d86976cf257e/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/6e53bff462dba0e58c99ba98f16d24c0/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/6e53bff462dba0e58c99ba98f16d24c0/AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:support-v4:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/bba225cc0101420e5729d2e4772a4c04/AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:support-v4:26.1.0] /goinfre/amatshiy/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/bba225cc0101420e5729d2e4772a4c04/AndroidManifest.xml:27:13-51

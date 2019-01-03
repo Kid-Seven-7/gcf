@@ -148,8 +148,13 @@ class _ManageUsersState extends State<ManageUsers> {
                             children: <Widget>[
                               RaisedButton(
                                 color: Colors.blueGrey.shade700,
-                                child: const Text(
+                                child: (currentTable == "pendingUsers") ? const Text(
                                   'Delete Request',
+                                  style: TextStyle(
+                                    color: Colors.redAccent,
+                                  ),
+                                ) : const Text(
+                                  'Delete Account',
                                   style: TextStyle(
                                     color: Colors.redAccent,
                                   ),
