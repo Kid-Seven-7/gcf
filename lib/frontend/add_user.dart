@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
-import '../backend/database_engine.dart';
-import 'alert_popups.dart';
 import 'login.dart';
 import 'dart:async';
+import 'alert_popups.dart';
+import 'notifications.dart';
+import 'package:flutter/material.dart';
+import '../backend/database_engine.dart';
 
 class AddUser extends StatefulWidget {
   @override
@@ -85,7 +86,12 @@ class AddUserState extends State<AddUser> {
                                 passwordController.text,
                                 numberController.text);
                             if (databaseEngine.processData(newUserData)) {
+                              String nameN = nameController.text;
+                              String numberN = numberController.text;
+                              
                               print('Pop up good');
+                              sendMessage(context, "New User Request",
+                                  "$nameN has requested permission to use the app. Phone number is $numberN");
                               popUpInfo(context, "Success",
                                   "Your account has been created.");
                               Timer(Duration(seconds: 3), () {

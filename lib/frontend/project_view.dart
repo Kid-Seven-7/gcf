@@ -60,38 +60,67 @@ class ProjectCardState extends State<ProjectCard> {
 }
 
 Widget _buildBody(BuildContext context, Record record) {
+  var textStyle = TextStyle(fontWeight: FontWeight.bold);
   return new Card(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
+    margin: EdgeInsets.all(10.0),
+    child: ListView(
+      // crossAxisAlignment: CrossAxisAlignment.center,
+      padding: EdgeInsets.only(top: 10.0),
       children: <Widget>[
         ListTile(
           leading: Icon(Icons.library_books),
-          title: Text(
-            record.projectName,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+          title: Text(record.projectName, style: textStyle),
           subtitle: Text(record.projectDescription),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Chip(
-              avatar: CircleAvatar(
-                backgroundColor: Colors.grey.shade800,
-                child: Text('FM'),
-              ),
-              label: Text(record.projectForeman),
-            ),
-            ButtonTheme.bar(
-              child: ButtonBar(
-                children: <Widget>[
-                  FlatButton(
-                    onPressed: () {},
-                  )
-                ],
-              ),
-            )
-          ],
+        ListTile(
+          leading: Icon(Icons.person),
+          title: Text("Forman: ", style: textStyle),
+          subtitle: Text(record.projectForeman),
+        ),
+        ListTile(
+          leading: Icon(Icons.perm_identity),
+          title: Text(
+            "Project Client: ",
+            style: textStyle,
+          ),
+          subtitle: Text(record.projectClient),
+        ),
+        ListTile(
+          leading: Icon(Icons.location_on),
+          title: Text("Project Location: ", style: textStyle),
+          subtitle: Text(record.projectLocation),
+        ),
+        ListTile(
+          leading: Icon(Icons.monetization_on),
+          title: Text(
+            "Project Budget:",
+            style: textStyle,
+          ),
+          subtitle: Text("R${record.projectBudget}"),
+        ),
+        ListTile(
+          leading: Icon(Icons.payment),
+          title: Text(
+            "Proejct Type: ",
+            style: textStyle,
+          ),
+          subtitle: Text(record.projectType),
+        ),
+        ListTile(
+          leading: Icon(Icons.bookmark),
+          title: Text(
+            "Project Start Date: ",
+            style: textStyle,
+          ),
+          subtitle: Text(record.projectStartDate),
+        ),
+        ListTile(
+          leading: Icon(Icons.bookmark_border),
+          title: Text(
+            "Project End Date: ",
+            style: textStyle,
+          ),
+          subtitle: Text(record.projectEndDate),
         ),
       ],
     ),

@@ -2,9 +2,11 @@ import 'splash.dart';
 import 'log_page.dart';
 import 'home_page.dart';
 import 'manage_users.dart';
+import 'notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 final storage = new FlutterSecureStorage();
 void _handleDrawer() {
@@ -19,6 +21,22 @@ class OpenDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Firestore.instance.collection("notifications").getDocuments().then((value) {
+      notifications = value.documents.length;
+    });
+
+    try {
+      Firestore.instance
+          .collection("users")
+          .reference()
+          .where("name", isEqualTo: userName)
+          .where("number", isEqualTo: number)
+          .getDocuments()
+          .then((onValue) {
+        var doc = onValue.documents[0];
+        roleStatus = doc['role'];
+      });
+    } catch (_) {}
 
     return new Drawer(
         child: ListView(
@@ -106,11 +124,18 @@ class OpenDrawer extends StatelessWidget {
         ),
         ListTile(
           leading: Icon(Icons.notifications),
-          title: Text(
-            'Notifications',
-            style: _navMenuText,
-          ),
-          onTap: () {},
+          title: (notifications > 0)
+              ? Text(
+                  'Notifications($notifications)',
+                  style: TextStyle(fontSize: 18.0, color: Colors.redAccent),
+                )
+              : Text(
+                  'Notifications',
+                  style: _navMenuText,
+                ),
+          onTap: () {
+            openpage(context, "Notifications");
+          },
         ),
         Divider(
           height: 20.0,
@@ -150,11 +175,12 @@ void openpage(BuildContext context, String page) {
 
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => ManageUsers()));
-    }else{
+    } else {
       Navigator.pop(context);
     }
   }
   if (page == "LogOut") {
+    currentPage = "";
     Navigator.pop(context);
     Navigator.of(context).pushReplacement(
         new MaterialPageRoute(builder: (context) => SplashScreen()));
@@ -164,7 +190,7 @@ void openpage(BuildContext context, String page) {
       currentPage = "Log";
       Navigator.push(
           context, new MaterialPageRoute(builder: (context) => LogPage()));
-    }else{
+    } else {
       Navigator.pop(context);
     }
   }
@@ -175,7 +201,18 @@ void openpage(BuildContext context, String page) {
       Navigator.pop(context);
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => HomeScreen()));
-    }else{
+    } else {
+      Navigator.pop(context);
+    }
+  }
+  if (page == "Notifications") {
+    if (currentPage != "Notifications") {
+      currentPage = "Notifications";
+
+      Navigator.pop(context);
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => Notifications()));
+    } else {
       Navigator.pop(context);
     }
   }

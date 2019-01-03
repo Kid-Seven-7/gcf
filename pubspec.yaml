@@ -17,6 +17,7 @@ dependencies:
   validators: ^1.0.0+1
   image_picker: ^0.4.10
   flutter_secure_storage: ^3.1.2
+  datetime_picker_formfield: ^0.1.7
 
 dev_dependencies:
   flutter_test:

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'add_project.dart';
-import 'burger_menu_drawer.dart';
 import 'project_view.dart';
+import 'burger_menu_drawer.dart';
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,6 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int currentIndex_ = 0;
+
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
   _handleDrawer() {
     _key.currentState.openDrawer();
@@ -18,6 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Firestore.instance.collection("notifications").getDocuments().then((value) {
+      notifications = value.documents.length;
+    });
+
     return Scaffold(
         key: _key,
         backgroundColor: Colors.blueGrey.shade900,
@@ -34,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: _buildBody(context),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentIndex_,
           fixedColor: Color.fromARGB(255, 140, 188, 63),
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -46,7 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(Icons.add), title: Text('Add project')),
           ],
           onTap: (index) {
+            print("Index: $currentIndex_");
             onItemTapped(context, index);
+            setState(() {
+              currentIndex_ = index;
+            });
           },
         ),
         drawer: OpenDrawer());
@@ -73,11 +84,8 @@ Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
 
 void onItemTapped(BuildContext context, int index) {
   if (index == 0) {
-    debugPrint('View Report');
   } else if (index == 1) {
-    debugPrint('View Statistics');
   } else if (index == 2) {
-    debugPrint('Add project');
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => CreateProjectPage()));
   }
@@ -123,9 +131,8 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.of(context).push(
-                            new MaterialPageRoute(
-                                builder: (context) => ProjectCard(record)));
+                        Navigator.of(context).push(new MaterialPageRoute(
+                            builder: (context) => ProjectCard(record)));
                         // _viewproject();
                       },
                     )
@@ -141,19 +148,21 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
 }
 
 class Record {
-  String projectName;
-  String projectForeman;
-  String projectDescription;
+  String projectName, projectForeman, projectDescription, projectClient, 
+  projectStartDate, projectEndDate, projectType, projectLocation, projectBudget;
 
   DocumentReference reference;
 
   Record.fromMap(Map<String, dynamic> map, {this.reference})
-      : assert(map['projectName'] != null),
-        assert(map['projectForeman'] != null),
-        assert(map['projectDescription'] != null),
-        projectName = map['projectName'],
+      : projectName = map['projectName'],
         projectForeman = map['projectForeman'],
-        projectDescription = map['projectDescription'];
+        projectDescription = map['projectDescription'],
+        projectClient = map['projectClient'],
+        projectStartDate = map['projectStartDate'],
+        projectEndDate = map['projectEndDate'],
+        projectType = map['projectType'],
+        projectLocation = map['projectLocation'],
+        projectBudget = map['projectBudget'];
 
   Record.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);

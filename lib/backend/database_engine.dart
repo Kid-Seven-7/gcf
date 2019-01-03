@@ -27,31 +27,36 @@ class DataBaseEngine {
 
       getLength(firestore);
 
-      firestore.collection('users').getDocuments().asStream().listen((data) {
+      firestore.collection('users').getDocuments().then((data) {
         for (var doc in data.documents) {
           String dataName = doc['name'];
           String dataPassword = doc['password'];
           String dataRole = doc['role'];
+          String dataNumber = doc['number'];
 
           checkDetails(context, name, password, dataName, dataPassword,
-              dataRole, counter);
+              dataRole, counter, dataNumber);
           counter++;
           if (checkComplete) {
             break;
           }
         }
       });
+
+      // firestore.collection('users').getDocuments().asStream().listen((data) {});
     } catch (_) {
       popUpInfo(context, "Error: Connection failed",
           "Unable to connect to the database. Please check your data connection and try again.");
     }
   }
 
-  void getLength(Firestore firestore) async {
-    var futureAmount =
-        await firestore.collection('users').getDocuments().then((data) {
-      amount = data.documents.length;
-    });
+  void getLength(var firestore) async {
+    try {
+      var futureAmount =
+          await firestore.collection('users').getDocuments().then((data) {
+        amount = data.documents.length;
+      });
+    } catch (_) {}
   }
 
   String createHash(String value) {
@@ -64,27 +69,34 @@ class DataBaseEngine {
 
   //Checks if users' name and password matches those in the database
   void checkDetails(BuildContext context, String name, String password,
-      String dataName, String dataPassword, String role, int index) async {
+      String dataName, String dataPassword, String role, int index, String dataNumber) async {
     if ((name == dataName)) {
       try {
-        assert(dBCrypt.checkpw(password, dataPassword), true);
-        if (role == 'admin') {
-          isAdmin = true;
-        }
+        if (dBCrypt.checkpw(password, dataPassword)) {
+          if (role == 'Administrator') {
+            isAdmin = true;
+          }
 
-        checkComplete = true;
-        userName = name;
-        roleStatus = role;
+          checkComplete = true;
+          userName = name;
+          roleStatus = role;
+          number = dataNumber;
 
-        await storage.deleteAll();
-        if (rememberMe == "yes") {
-          await storage.write(key: "name", value: name);
-          await storage.write(key: "role", value: role);
-          await storage.write(key: "rememberMe", value: "yes");
+          await storage.deleteAll();
+          if (rememberMe == "yes") {
+            await storage.write(key: "name", value: name);
+            await storage.write(key: "role", value: role);
+            await storage.write(key: "rememberMe", value: "yes");
+            await storage.write(key: "number", value: dataNumber);
+          }
+          Navigator.of(context).pushReplacement(
+              new MaterialPageRoute(builder: (context) => HomeScreen()));
+        } else {
+          throw Exception("Password doesn't match");
         }
-        Navigator.of(context).pushReplacement(
-            new MaterialPageRoute(builder: (context) => HomeScreen()));
       } catch (_) {
+        popUpInfo(context, 'Login Failed',
+            'Incorrect name/password. Please try again.');
         //This is to silence the warning after assert failure
       }
     } else {
@@ -101,9 +113,7 @@ class DataBaseEngine {
     try {
       //CHECK IF DATA EXISTS IN DATABASEE
       firestore.collection(collection).document().setData(data);
-    } catch (e) {
-      print("Problem: $e");
-    }
+    } catch (_) {}
   }
 
   bool validateData(Map<String, String> data) {
