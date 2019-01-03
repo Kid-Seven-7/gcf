@@ -38,6 +38,36 @@ class ProjectCardState extends State<ProjectCard> {
             Image.asset('assets/images/gcf_white.png'),
           ],
         ),
+        persistentFooterButtons: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 65.0),
+              child: ButtonTheme.bar(
+                child: ButtonBar(
+                  children: <Widget>[
+                    RaisedButton(
+                      color: Colors.blueGrey.shade700,
+                      child: const Text(
+                        'Add Expense',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {},
+                    ),
+                    RaisedButton(
+                      color: Colors.blueGrey.shade700,
+                      child: const Text(
+                        'Add to TODO-List',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
+              ))
+        ],
         body: _buildBody(context, record),
         bottomNavigationBar: BottomNavigationBar(
           fixedColor: Color.fromARGB(255, 140, 188, 63),
@@ -47,12 +77,11 @@ class ProjectCardState extends State<ProjectCard> {
                 icon: Icon(Icons.rate_review),
                 title: Text('View Report')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.timeline), title: Text('View Statistics')),
+                icon: Icon(Icons.money_off), title: Text('View Expanses')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.add), title: Text('Add project')),
+                icon: Icon(Icons.toc), title: Text('View TODO-List')),
           ],
           onTap: (index) {
-            onItemTapped(context, index);
           },
         ),
         drawer: OpenDrawer());
@@ -62,7 +91,7 @@ class ProjectCardState extends State<ProjectCard> {
 Widget _buildBody(BuildContext context, Record record) {
   var textStyle = TextStyle(fontWeight: FontWeight.bold);
   return new Card(
-    margin: EdgeInsets.all(10.0),
+    margin: EdgeInsets.only(top: 10.0, right: 10.0, left: 10.0),
     child: ListView(
       // crossAxisAlignment: CrossAxisAlignment.center,
       padding: EdgeInsets.only(top: 10.0),
@@ -122,6 +151,22 @@ Widget _buildBody(BuildContext context, Record record) {
           ),
           subtitle: Text(record.projectEndDate),
         ),
+        // ButtonTheme.bar(
+        //   child: ButtonBar(
+        //     children: <Widget>[
+        //       RaisedButton(
+        //         color: Colors.blueGrey.shade700,
+        //         child: const Text(
+        //           'Mark Project As Complete',
+        //           style: TextStyle(
+        //             color: Colors.white,
+        //           ),
+        //         ),
+        //         onPressed: () {},
+        //       )
+        //     ],
+        //   ),
+        // )
       ],
     ),
   );
