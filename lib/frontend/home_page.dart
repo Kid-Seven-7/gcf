@@ -148,19 +148,21 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
 }
 
 class Record {
-  String projectName;
-  String projectForeman;
-  String projectDescription;
+  String projectName, projectForeman, projectDescription, projectClient, 
+  projectStartDate, projectEndDate, projectType, projectLocation, projectBudget;
 
   DocumentReference reference;
 
   Record.fromMap(Map<String, dynamic> map, {this.reference})
-      : assert(map['projectName'] != null),
-        assert(map['projectForeman'] != null),
-        assert(map['projectDescription'] != null),
-        projectName = map['projectName'],
+      : projectName = map['projectName'],
         projectForeman = map['projectForeman'],
-        projectDescription = map['projectDescription'];
+        projectDescription = map['projectDescription'],
+        projectClient = map['projectClient'],
+        projectStartDate = map['projectStartDate'],
+        projectEndDate = map['projectEndDate'],
+        projectType = map['projectType'],
+        projectLocation = map['projectLocation'],
+        projectBudget = map['projectBudget'];
 
   Record.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);
