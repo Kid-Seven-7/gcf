@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'log_page.dart';
 
-//TODO add general info
 Widget generalInfo(BuildContext context, Log log) {
   return Container(
       child: Card(
@@ -42,7 +41,6 @@ Widget generalInfo(BuildContext context, Log log) {
       ));
 }
 
-//TODO add budget info
 Widget budgetInfo(BuildContext context, Log log) {
   return Container(
       child: Card(
@@ -60,7 +58,7 @@ Widget budgetInfo(BuildContext context, Log log) {
             logListTile(
                 context,
                 "Budget", //Tile title
-                log.projectBudget, //Tile subtitle
+                "R"+log.projectBudget, //Tile subtitle
                 Icons.monetization_on //Tile icon
             ),
             logDivider(context),
@@ -74,7 +72,7 @@ Widget budgetInfo(BuildContext context, Log log) {
             logListTile(
                 context,
                 "Time taken", //Tile title
-                "Some value", //Tile subtitle
+                dateDiff(log), //Tile subtitle
                 Icons.access_time //Tile icon
             ),
             logDivider(context),
@@ -87,41 +85,38 @@ Widget budgetInfo(BuildContext context, Log log) {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      Text("item1 %\n"),
+                      Text("Profit \n" + getProfit(log).toString()+"% \nof budget\n"),
                       CircularProgressIndicator(
-                        value: 0.15,
+                        value: getProfit(log)/100,
                       ),
                     ],
                   ),
                   Column(
                     children: <Widget>[
-                      Text("item2 %\n"),
-                      CircularProgressIndicator(
-                        value: 0.65,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Text("item3 %\n"),
+                      Text("Profit/day \n" + getProfitPerDay(log).toStringAsFixed(2)+"% \nof budget\n"),
                       CircularProgressIndicator(
                         backgroundColor: Color.fromARGB(255, 255, 0, 0),
-                        value: 0.85,
+                        value: getProfitPerDay(log)/100,
                       ),
                     ],
-                  )
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text("Expenses \n" + getExpenses(log).toString()+"% \nof budget\n"),
+                      CircularProgressIndicator(
+                        value: getExpenses(log)/100,
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
-
             logDivider(context),
-
           ],
         ),
       ));
 }
 
-//TODO add time info
 Widget timeInfo(BuildContext context, Log log) {
   return Container(
       child: Card(
@@ -153,7 +148,7 @@ Widget timeInfo(BuildContext context, Log log) {
             logListTile(
                 context,
                 "Time taken", //Tile title
-                "Some value", //Tile subtitle
+                dateDiff(log), //Tile subtitle
                 Icons.access_time //Tile icon
             ),
           ],
@@ -184,4 +179,69 @@ Widget logListTile(BuildContext context, String title, String subtitle,
       checked = !checked;
     },
   );
+}
+
+double getProfit(Log log){
+  double budget = double.parse(log.projectBudget);
+  double expenses = 900000.00;
+  double profit  = budget - expenses;
+  double percent = profit / (budget/100);
+
+  return percent;
+}
+
+double getExpenses(Log log){
+  double budget = double.parse(log.projectBudget);
+  double expenses = 250000.00;
+  double percent = expenses / (budget/100);
+
+  return percent;
+}
+
+double getProfitPerDay(Log log){
+  double budget = double.parse(log.projectBudget);
+  double expenses = 500000.00;
+  double profit  = budget - expenses;
+  double percent = profit / (budget/100);
+
+  return (percent/14);
+}
+
+String dateDiff(Log log){
+  String startYear = "";
+  String startMonth = "";
+  String startDay = "";
+  String endYear = "";
+  String endMonth = "";
+  String endDay = "";
+
+  for (int i = 0; i < 10; i++){
+    if (i < 4){
+      startYear += log.projectStartDate[i];
+      endYear += log.projectEndDate[i];
+    }else if (i > 4 && i < 7){
+      startMonth += log.projectStartDate[i];
+      endMonth += log.projectEndDate[i];
+    }else if (i > 7){
+      startDay += log.projectStartDate[i];
+      endDay += log.projectEndDate[i];
+    }
+  }
+
+  var end = new DateTime.utc(int.parse(endYear), int.parse(endMonth), int.parse(endDay));
+  var start = new DateTime.utc(int.parse(startYear), int.parse(startMonth), int.parse(startDay));
+  String hours = "";
+  String diffString;
+
+  Duration difference = end.difference(start);
+  diffString = difference.toString();
+  for (int i = 0; diffString[i] != ':'; i++){
+    hours += diffString[i];
+  }
+
+  int days = (int.parse(hours)/24).round();
+
+  String ret = (days > 1) ? " Days" : " Day" ;
+
+  return (days.toStringAsFixed(0) + ret);
 }

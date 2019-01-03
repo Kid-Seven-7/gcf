@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         key: _key,
         backgroundColor: Colors.blueGrey.shade900,
         appBar: AppBar(
-          backgroundColor: Colors.green.shade500,
+          backgroundColor: Color.fromARGB(255, 140, 188, 63),
           title: Text("Dashboard"),
           leading: IconButton(
             icon: Icon(Icons.menu),
