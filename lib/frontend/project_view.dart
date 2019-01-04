@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'burger_menu_drawer.dart';
+import 'alert_popups.dart';
+import 'todo_list.dart';
 
 class ProjectCard extends StatefulWidget {
   Record record;
@@ -62,7 +64,11 @@ class ProjectCardState extends State<ProjectCard> {
                           color: Colors.white,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                            new MaterialPageRoute(
+                                builder: (context) => TodoList(record.projectTodo)));
+                      },
                     )
                   ],
                 ),
@@ -82,6 +88,14 @@ class ProjectCardState extends State<ProjectCard> {
                 icon: Icon(Icons.toc), title: Text('View TODO-List')),
           ],
           onTap: (index) {
+            if (index == 2) {
+              if (record.projectTodo != null && record.projectTodo != ",") {
+                showTodoList(context, "TODO List", record.projectTodo);
+              } else {
+                popUpInfo(context, "Alert", "TODO List is currently empty.");
+              }
+              // showTodoList(context, "TODO List", record.projectTodo);
+            }
           },
         ),
         drawer: OpenDrawer());
@@ -170,4 +184,33 @@ Widget _buildBody(BuildContext context, Record record) {
       ],
     ),
   );
+}
+
+void showTodoList(BuildContext context, String header, String list) {
+  var todoList = list.split(",");
+  String patchedList = "";
+
+  todoList.forEach((data) {
+    if (data != "") {
+      patchedList = patchedList + "\n - " + data;
+    }
+  });
+
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 5.0),
+          title: new Text(header),
+          content: new Text(patchedList),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      });
 }

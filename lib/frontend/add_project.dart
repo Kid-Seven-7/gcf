@@ -203,6 +203,7 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           projectData['projectBudget'] = projectBudget.text;
           projectData['projectStartDate'] = projectStartDate;
           projectData['projectEndDate'] = projectEndDate;
+          projectData['projectTodo'] = ",";
           currentProjectType = "Project Type...";
           _onItemTapped(context, index, projectName.text);
         },
@@ -218,11 +219,9 @@ class _CreateProjectPage extends State<CreateProjectPage> {
 
 void _onItemTapped(BuildContext context, int index, String name) {
   if (index == 0) {
-    debugPrint('Cancel');
     Navigator.pop(
         context, MaterialPageRoute(builder: (context) => CreateProjectPage()));
   } else if (index == 1) {
-    debugPrint('Create');
     _newproject(context, name);
   }
 }

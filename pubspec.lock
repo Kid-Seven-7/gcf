@@ -7,7 +7,7 @@ packages:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.34.0"
+    version: "0.34.1"
   archive:
     dependency: transitive
     description:
@@ -70,7 +70,7 @@ packages:
       name: convert
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.1"
   crypto:
     dependency: transitive
     description:
@@ -152,7 +152,7 @@ packages:
       name: front_end
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.7"
+    version: "0.1.8"
   glob:
     dependency: transitive
     description:
@@ -236,7 +236,7 @@ packages:
       name: kernel
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.7"
+    version: "0.3.8"
   logging:
     dependency: transitive
     description:
@@ -306,7 +306,7 @@ packages:
       name: percent_indicator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.10"
+    version: "1.0.12"
   petitparser:
     dependency: transitive
     description:
@@ -348,7 +348,7 @@ packages:
       name: shelf
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.3+3"
+    version: "0.7.4"
   shelf_packages_handler:
     dependency: transitive
     description:
