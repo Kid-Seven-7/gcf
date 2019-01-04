@@ -208,7 +208,7 @@ class ProjectCardState extends State<ProjectCard> {
           ),
           actions: <Widget>[
             new FlatButton(
-                child: const Text(''),
+                child: (action == "add") ? const Text('CANCEL') : const Text(''),
                 onPressed: () {
                   Navigator.pop(context);
                 }),
