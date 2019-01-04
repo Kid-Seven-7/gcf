@@ -42,7 +42,7 @@ class ProjectCardState extends State<ProjectCard> {
         ),
         persistentFooterButtons: <Widget>[
           Padding(
-              padding: EdgeInsets.only(right: 65.0),
+              padding: EdgeInsets.only(right: 35.0),
               child: ButtonTheme.bar(
                 child: ButtonBar(
                   children: <Widget>[
@@ -65,7 +65,19 @@ class ProjectCardState extends State<ProjectCard> {
                         ),
                       ),
                       onPressed: () {
-                        _showDialog();
+                        _showDialog("add");
+                      },
+                    ),
+                    RaisedButton(
+                      color: Colors.blueGrey.shade700,
+                      child: const Text(
+                        'Delete Item',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {
+                        _showDialog("delete");
                       },
                     )
                   ],
@@ -99,8 +111,26 @@ class ProjectCardState extends State<ProjectCard> {
         drawer: OpenDrawer());
   }
 
-  _showDialog() async {
+  _showDialog(String action) async {
     String todoListItem;
+    String currentTodoItem = "Delete item from TODO-List...";
+    List<DropdownMenuItem<String>> todoItems = [
+      DropdownMenuItem(
+        value: "Delete item from TODO-List...",
+        child: Text("Delete item from TODO-List..."),
+      ),
+    ];
+
+    var todoList = record.projectTodo.split(",");
+    todoList.forEach((todoItem) {
+      if (todoItem != "") {
+        if (todoItem != null) {
+          DropdownMenuItem _item =
+              DropdownMenuItem<String>(value: todoItem, child: Text(todoItem));
+          todoItems.add(_item);
+        }
+      }
+    });
 
     await showDialog<String>(
       context: context,
@@ -110,33 +140,83 @@ class ProjectCardState extends State<ProjectCard> {
           content: new Row(
             children: <Widget>[
               new Expanded(
-                child: new TextField(
-                  scrollPadding: EdgeInsets.all(30),
-                  autofocus: true,
-                  decoration: new InputDecoration(
-                      labelStyle: TextStyle(fontSize: 25),
-                      hintStyle: TextStyle(fontSize: 15),
-                      labelText: 'Add Item to list',
-                      hintText: 'e.g Get new tools'),
-                  onChanged: (data) {
-                    todoListItem = data;
-                  },
-                ),
+                child: (action == "add")
+                    ? new TextField(
+                        scrollPadding: EdgeInsets.all(30),
+                        autofocus: true,
+                        decoration: new InputDecoration(
+                            labelStyle: TextStyle(fontSize: 25),
+                            hintStyle: TextStyle(fontSize: 15),
+                            labelText: 'Add Item to list',
+                            hintText: 'e.g Get new tools'),
+                        onChanged: (data) {
+                          todoListItem = data;
+                        },
+                      )
+                    : DropdownButton(
+                        value: currentTodoItem,
+                        items: todoItems,
+                        onChanged: (_data) {
+                          setState(() {
+                            currentTodoItem = _data;
+                            if (currentTodoItem !=
+                                "Delete item from TODO-List...") {
+                              Navigator.of(context).pop();
+                              if (record.projectTodo
+                                  .contains(currentTodoItem)) {
+                                String updatedTodo = record.projectTodo
+                                    .replaceAll(currentTodoItem, "");
+
+                                if (record.projectID != null) {
+                                  Firestore.instance
+                                      .collection("activeProjects")
+                                      .reference()
+                                      .where("projectID",
+                                          isEqualTo: record.projectID)
+                                      .getDocuments()
+                                      .then((data) {
+                                    var docs = data.documents;
+
+                                    String docID = docs[0].documentID;
+
+                                    if (docID != null) {
+                                      Map _data = new Map<String, String>();
+                                      _data['projectTodo'] = updatedTodo;
+                                      Firestore.instance
+                                          .collection("activeProjects")
+                                          .document(docID)
+                                          .updateData(_data);
+                                    }
+                                  });
+                                } else {
+                                  popUpInfo(context, "Error",
+                                      "Unable to delete item from the list.\n Reason: Project-ID was not found.");
+                                }
+                              }
+                              //Remove from database
+                            }
+                          });
+                        },
+                      ),
               )
             ],
           ),
           actions: <Widget>[
             new FlatButton(
-                child: const Text('CANCEL'),
+                child: const Text(''),
                 onPressed: () {
                   Navigator.pop(context);
                 }),
             new FlatButton(
-                child: const Text('ADD'),
+                child: (action == "add")
+                    ? const Text('ADD')
+                    : const Text('CANCEL'),
                 onPressed: () {
-                  String newTodoList = record.projectTodo + ", " + todoListItem;
+                  if (action == "add") {
+                    String newTodoList =
+                        record.projectTodo + ", " + todoListItem;
 
-                  // Adding item to the database
+                    // Adding item to the database
                     if (record.projectID != null) {
                       Firestore.instance
                           .collection("activeProjects")
@@ -161,6 +241,7 @@ class ProjectCardState extends State<ProjectCard> {
                       popUpInfo(context, "Error",
                           "Unable to add item to list.\n Reason: Project-ID was not found.");
                     }
+                  }
                   Navigator.pop(context);
                 })
           ],

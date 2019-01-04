@@ -147,7 +147,7 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           ),
           DropdownButton(
             isExpanded: true,
-            value: "Project Forman...",
+            value: currentForman,
             items: projectFormanItems,
             onChanged: (forman) {
               setState(() {
