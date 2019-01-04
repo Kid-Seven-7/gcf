@@ -149,7 +149,8 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
 
 class Record {
   String projectName, projectForeman, projectDescription, projectClient, 
-  projectStartDate, projectEndDate, projectType, projectLocation, projectBudget, projectTodo;
+  projectStartDate, projectEndDate, projectType, projectLocation, projectBudget, 
+  projectTodo, projectID;
 
   DocumentReference reference;
 
@@ -163,7 +164,9 @@ class Record {
         projectType = map['projectType'],
         projectLocation = map['projectLocation'],
         projectBudget = map['projectBudget'],
-        projectTodo = map['projectTodo'];
+        projectTodo = map['projectTodo'],
+        projectID = map['projectID'];
+      
 
   Record.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);

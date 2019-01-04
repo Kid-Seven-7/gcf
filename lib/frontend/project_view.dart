@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'burger_menu_drawer.dart';
 import 'alert_popups.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProjectCard extends StatefulWidget {
   Record record;
@@ -99,6 +100,8 @@ class ProjectCardState extends State<ProjectCard> {
   }
 
   _showDialog() async {
+    String todoListItem;
+
     await showDialog<String>(
       context: context,
       child: new _SystemPadding(
@@ -111,18 +114,18 @@ class ProjectCardState extends State<ProjectCard> {
                   scrollPadding: EdgeInsets.all(30),
                   autofocus: true,
                   decoration: new InputDecoration(
-                    labelStyle: TextStyle(fontSize: 25),
-                    hintStyle: TextStyle(fontSize: 15),
-                      labelText: 'Add Item to list', 
+                      labelStyle: TextStyle(fontSize: 25),
+                      hintStyle: TextStyle(fontSize: 15),
+                      labelText: 'Add Item to list',
                       hintText: 'e.g Get new tools'),
+                  onChanged: (data) {
+                    todoListItem = data;
+                  },
                 ),
               )
             ],
           ),
           actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 0),
-            ),
             new FlatButton(
                 child: const Text('CANCEL'),
                 onPressed: () {
@@ -131,6 +134,33 @@ class ProjectCardState extends State<ProjectCard> {
             new FlatButton(
                 child: const Text('ADD'),
                 onPressed: () {
+                  String newTodoList = record.projectTodo + ", " + todoListItem;
+
+                  // Adding item to the database
+                    if (record.projectID != null) {
+                      Firestore.instance
+                          .collection("activeProjects")
+                          .reference()
+                          .where("projectID", isEqualTo: record.projectID)
+                          .getDocuments()
+                          .then((data) {
+                        var docs = data.documents;
+
+                        String docID = docs[0].documentID;
+
+                        if (docID != null) {
+                          Map _data = new Map<String, String>();
+                          _data['projectTodo'] = newTodoList;
+                          Firestore.instance
+                              .collection("activeProjects")
+                              .document(docID)
+                              .updateData(_data);
+                        }
+                      });
+                    } else {
+                      popUpInfo(context, "Error",
+                          "Unable to add item to list.\n Reason: Project-ID was not found.");
+                    }
                   Navigator.pop(context);
                 })
           ],

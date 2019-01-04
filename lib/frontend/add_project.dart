@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'home_page.dart';
 import 'alert_popups.dart';
+import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import '../backend/add_project_back.dart';
@@ -194,6 +195,8 @@ class _CreateProjectPage extends State<CreateProjectPage> {
         ],
         onTap: (index) {
           //Populate the map
+          var projectID = new Uuid();
+
           projectData['projectName'] = projectName.text;
           projectData['projectDescription'] = projectDescription.text;
           projectData['projectLocation'] = projectLocation.text;
@@ -204,6 +207,7 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           projectData['projectStartDate'] = projectStartDate;
           projectData['projectEndDate'] = projectEndDate;
           projectData['projectTodo'] = ",";
+          projectData['projectID'] = projectID.v1();
           currentProjectType = "Project Type...";
           _onItemTapped(context, index, projectName.text);
         },
