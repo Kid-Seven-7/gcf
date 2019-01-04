@@ -3,6 +3,7 @@ import 'home_page.dart';
 import 'burger_menu_drawer.dart';
 import 'alert_popups.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'camera.dart';
 
 class ProjectCard extends StatefulWidget {
   Record record;
@@ -54,7 +55,11 @@ class ProjectCardState extends State<ProjectCard> {
                           color: Colors.white,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          new MaterialPageRoute(builder: (builder) => CameraPage()),
+                        );
+                      },
                     ),
                     RaisedButton(
                       color: Colors.blueGrey.shade700,
@@ -91,7 +96,7 @@ class ProjectCardState extends State<ProjectCard> {
             BottomNavigationBarItem(
                 backgroundColor: Colors.black,
                 icon: Icon(Icons.rate_review),
-                title: Text('View Report')),
+                title: Text('View Project Images')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.money_off), title: Text('View Expanses')),
             BottomNavigationBarItem(
