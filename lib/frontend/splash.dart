@@ -96,7 +96,8 @@ class SplashScreenState extends State<SplashScreen>
 
   void checkUser() async {
     try {
-      Map<String, String> userData = await storage.readAll();
+      Map<String, String> userData =
+          await storage.readAll().catchError((onError) {});
 
       if (userData['name'] != null) {
         if (userData['rememberMe'] == "yes") {
