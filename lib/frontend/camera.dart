@@ -136,17 +136,23 @@ class CameraPageState extends State<CameraPage> {
 
                           final StorageReference storageReference =
                               firebaseStorage.ref().child(imageName);
+
                           final StorageUploadTask storageUploadTask =
                               storageReference.putFile(_image);
-                          
-                            Map newImage = Map<String, String>();
 
-                            newImage['imageID'] = imageID.v1();
-                            newImage['name'] = imageName;
-                            newImage['amount'] = expenseAmount;
-                            newImage['projectID'] = projectID;
-                            dataBaseEngine.addData("expensesImages", newImage);
-                          
+                          (storageUploadTask.onComplete).then((onValue) {
+                            (onValue.ref.getDownloadURL()).then((onValue) {
+                              Map newImage = Map<String, String>();
+
+                              newImage['imageID'] = imageID.v1();
+                              newImage['name'] = imageName;
+                              newImage['amount'] = expenseAmount;
+                              newImage['projectID'] = projectID;
+                              newImage['imageUrl'] = onValue.toString();
+                              dataBaseEngine.addData(
+                                  "expensesImages", newImage);
+                            });
+                          });
                         }).catchError((onError) {
                           popUpInfo(context, "Error",
                               "Unable to process image.\n Error Code: 677FJ4\n Details: $onError");
@@ -168,11 +174,11 @@ class CameraPageState extends State<CameraPage> {
     );
   }
 
-  bool isNumeric(String data){
+  bool isNumeric(String data) {
     if (data == null) return false;
-    try{
-    return double.parse(data) != null;
-    }catch(_){
+    try {
+      return double.parse(data) != null;
+    } catch (_) {
       return false;
     }
   }
