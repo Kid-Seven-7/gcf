@@ -22,8 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Firestore.instance.collection("notifications").getDocuments().then((value) {
       notifications = value.documents.length;
-    });
-
+    }).catchError((onError) {});
     return Scaffold(
         key: _key,
         backgroundColor: Colors.blueGrey.shade900,
@@ -148,8 +147,17 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
 }
 
 class Record {
-  String projectName, projectForeman, projectDescription, projectClient, 
-  projectStartDate, projectEndDate, projectType, projectLocation, projectBudget;
+  String projectName,
+      projectForeman,
+      projectDescription,
+      projectClient,
+      projectStartDate,
+      projectEndDate,
+      projectType,
+      projectLocation,
+      projectBudget,
+      projectTodo,
+      projectID;
 
   DocumentReference reference;
 
@@ -162,7 +170,9 @@ class Record {
         projectEndDate = map['projectEndDate'],
         projectType = map['projectType'],
         projectLocation = map['projectLocation'],
-        projectBudget = map['projectBudget'];
+        projectBudget = map['projectBudget'],
+        projectTodo = map['projectTodo'],
+        projectID = map['projectID'];
 
   Record.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);

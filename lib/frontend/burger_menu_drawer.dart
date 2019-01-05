@@ -9,6 +9,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 final storage = new FlutterSecureStorage();
+Firestore firestore = new Firestore();
+
 void _handleDrawer() {
   GlobalKey<ScaffoldState> key = new GlobalKey<ScaffoldState>();
   key.currentState.openDrawer();
@@ -21,12 +23,14 @@ class OpenDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Firestore.instance.collection("notifications").getDocuments().then((value) {
+    firestore.settings(timestampsInSnapshotsEnabled: true, sslEnabled: true);
+
+    firestore.collection("notifications").getDocuments().then((value) {
       notifications = value.documents.length;
-    });
+    }).catchError((onError) {});
 
     try {
-      Firestore.instance
+      firestore
           .collection("users")
           .reference()
           .where("name", isEqualTo: userName)
@@ -35,7 +39,7 @@ class OpenDrawer extends StatelessWidget {
           .then((onValue) {
         var doc = onValue.documents[0];
         roleStatus = doc['role'];
-      });
+      }).catchError((onError) {});
     } catch (_) {}
 
     return new Drawer(

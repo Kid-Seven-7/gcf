@@ -104,6 +104,8 @@ class _ManageUsersState extends State<ManageUsers> {
             .then((onValue) {
           var doc = onValue.documents[0];
           roleStatus = doc['role'];
+        }).catchError((onError){
+          
         });
       } catch (_) {
         popUpInfo(context, "Error",
@@ -112,7 +114,7 @@ class _ManageUsersState extends State<ManageUsers> {
     }
 
     try {
-      if (name != userName && numberData != number) {
+      if (numberData != number) {
         return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
             child: Container(
@@ -160,7 +162,7 @@ class _ManageUsersState extends State<ManageUsers> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  if (data['name'] == userName) {
+                                  if (data['number'] == number) {
                                     popUpInfo(
                                         context,
                                         "Alert!",
@@ -170,7 +172,9 @@ class _ManageUsersState extends State<ManageUsers> {
                                     Firestore.instance
                                         .collection(currentTable)
                                         .document(data.documentID)
-                                        .delete();
+                                        .delete().catchError((onError){
+                                          popUpInfo(context, "Error", "Failed to delete user");
+                                        });
                                   }
                                 },
                               )
@@ -208,11 +212,11 @@ class _ManageUsersState extends State<ManageUsers> {
                                           Firestore.instance
                                               .collection("users")
                                               .document(data.documentID)
-                                              .setData(newUserData);
+                                              .setData(newUserData).catchError((onError){});
                                           Firestore.instance
                                               .collection("pendingUsers")
                                               .document(data.documentID)
-                                              .delete();
+                                              .delete().catchError((onError){});
                                           popUpInfo(context, "User Added",
                                               "Users has been added successfully.");
                                         } else {
@@ -221,8 +225,10 @@ class _ManageUsersState extends State<ManageUsers> {
                                           Firestore.instance
                                               .collection("pendingUsers")
                                               .document(data.documentID)
-                                              .delete();
+                                              .delete().catchError((onError){});
                                         }
+                                      }).catchError((onError){
+                                        popUpInfo(context, "Error", "Failed to add new user.");
                                       });
                                     },
                                   )
@@ -241,7 +247,9 @@ class _ManageUsersState extends State<ManageUsers> {
                                           Firestore.instance
                                               .collection("users")
                                               .document(data.documentID)
-                                              .updateData(roleUpdate);
+                                              .updateData(roleUpdate).catchError((onError){
+                                                popUpInfo(context, "Error", "Failed to update user role. Check your connection and try again");
+                                              });
                                           popUpInfo(context, "Success",
                                               "$name's role has been updated!.");
                                           currentItemMenu = "Edit User Role...";

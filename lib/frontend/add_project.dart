@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'home_page.dart';
 import 'alert_popups.dart';
+import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import '../backend/add_project_back.dart';
@@ -91,6 +92,8 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           }
         }
       }
+    }).catchError((onError){
+      popUpInfo(context, "Error", "Unable to connect to the database.\n Error Code: 7URHFHD" );
     });
 
     return Scaffold(
@@ -146,7 +149,7 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           ),
           DropdownButton(
             isExpanded: true,
-            value: "Project Forman...",
+            value: currentForman,
             items: projectFormanItems,
             onChanged: (forman) {
               setState(() {
@@ -194,6 +197,8 @@ class _CreateProjectPage extends State<CreateProjectPage> {
         ],
         onTap: (index) {
           //Populate the map
+          var projectID = new Uuid();
+
           projectData['projectName'] = projectName.text;
           projectData['projectDescription'] = projectDescription.text;
           projectData['projectLocation'] = projectLocation.text;
@@ -203,6 +208,8 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           projectData['projectBudget'] = projectBudget.text;
           projectData['projectStartDate'] = projectStartDate;
           projectData['projectEndDate'] = projectEndDate;
+          projectData['projectTodo'] = ",";
+          projectData['projectID'] = projectID.v1();
           currentProjectType = "Project Type...";
           _onItemTapped(context, index, projectName.text);
         },
@@ -218,11 +225,9 @@ class _CreateProjectPage extends State<CreateProjectPage> {
 
 void _onItemTapped(BuildContext context, int index, String name) {
   if (index == 0) {
-    debugPrint('Cancel');
     Navigator.pop(
         context, MaterialPageRoute(builder: (context) => CreateProjectPage()));
   } else if (index == 1) {
-    debugPrint('Create');
     _newproject(context, name);
   }
 }
