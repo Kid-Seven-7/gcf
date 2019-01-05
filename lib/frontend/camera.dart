@@ -80,6 +80,7 @@ class CameraPageState extends State<CameraPage> {
     FirebaseStorage firebaseStorage =
         new FirebaseStorage(storageBucket: "gs://gcfdatabasetest.appspot.com");
     String expenseAmount = "";
+    String expenseName = "";
 
     await showDialog<String>(
       context: context,
@@ -95,7 +96,20 @@ class CameraPageState extends State<CameraPage> {
                 decoration: new InputDecoration(
                     labelStyle: TextStyle(fontSize: 25),
                     hintStyle: TextStyle(fontSize: 15),
-                    labelText: 'ENTER EXPENSE AMOUNT',
+                    labelText: 'Name',
+                    hintText: 'e.g tools'),
+                onChanged: (data) {
+                  expenseName = data ;
+                }
+              )),
+              new Expanded(
+                  child: new TextField(
+                scrollPadding: EdgeInsets.all(30),
+                autofocus: true,
+                decoration: new InputDecoration(
+                    labelStyle: TextStyle(fontSize: 25),
+                    hintStyle: TextStyle(fontSize: 15),
+                    labelText: 'Amount',
                     hintText: 'e.g 10'),
                 onChanged: (data) {
                   expenseAmount = data;
@@ -115,7 +129,7 @@ class CameraPageState extends State<CameraPage> {
             new FlatButton(
                 child: const Text('ADD EXPENSE'),
                 onPressed: () async {
-                  if (expenseAmount != "" && isNumeric(expenseAmount)) {
+                  if ((expenseAmount != "" && isNumeric(expenseAmount)) && (expenseName != "") ) {
                     var path1 = _image.toString().split("'");
                     if (path1[1] != null) {
                       String path = path1[1];
@@ -144,6 +158,7 @@ class CameraPageState extends State<CameraPage> {
                             (onValue.ref.getDownloadURL()).then((onValue) {
                               Map newImage = Map<String, String>();
 
+                              newImage['expenseName'] = expenseName;
                               newImage['imageID'] = imageID.v1();
                               newImage['name'] = imageName;
                               newImage['amount'] = expenseAmount;
