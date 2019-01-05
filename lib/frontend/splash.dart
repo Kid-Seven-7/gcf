@@ -71,7 +71,7 @@ class SplashScreenState extends State<SplashScreen>
   }
 
   @override
-  void dispose(){
+  void dispose() {
     timer1.cancel();
     timer2.cancel();
     timer3.cancel();
@@ -95,27 +95,29 @@ class SplashScreenState extends State<SplashScreen>
   }
 
   void checkUser() async {
-    Map<String, String> userData = await storage.readAll();
+    try {
+      Map<String, String> userData = await storage.readAll();
 
-    if (userData['name'] != null) {
-      if (userData['rememberMe'] == "yes") {
-        skipLogin = true;
+      if (userData['name'] != null) {
+        if (userData['rememberMe'] == "yes") {
+          skipLogin = true;
 
-        userName = userData['name'];
-        roleStatus = userData['role'];
-        number = userData['number'];
-        userData['name'] = userName;
-        userData['role'] = roleStatus;
-        userData['number'] = number;
+          userName = userData['name'];
+          roleStatus = userData['role'];
+          number = userData['number'];
+          userData['name'] = userName;
+          userData['role'] = roleStatus;
+          userData['number'] = number;
 
-        _iconAnimationController.dispose();
-        //Going to Home Page
-        Navigator.of(context).pushReplacement(
-            new MaterialPageRoute(builder: (context) => HomeScreen()));
-      } else {
-        skipLogin = false;
+          _iconAnimationController.dispose();
+          //Going to Home Page
+          Navigator.of(context).pushReplacement(
+              new MaterialPageRoute(builder: (context) => HomeScreen()));
+        } else {
+          skipLogin = false;
+        }
       }
-    }
+    } catch (_) {}
   }
 
   @override

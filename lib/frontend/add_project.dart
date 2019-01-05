@@ -92,6 +92,8 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           }
         }
       }
+    }).catchError((onError){
+      popUpInfo(context, "Error", "Unable to connect to the database.\n Error Code: 7URHFHD" );
     });
 
     return Scaffold(

@@ -75,13 +75,13 @@ class _NotificationsState extends State<Notifications> {
         for (var doc in snapshot.documents) {
           doc.reference.delete();
         }
-      });
+      }).catchError((onError){});
       Firestore.instance
           .collection("notifications")
           .getDocuments()
           .then((value) {
         notifications = value.documents.length;
-      });
+      }).catchError((onError){});
     }
     if (index == 1) {
       messageIcon = Icons.mail;
@@ -166,53 +166,6 @@ class _NotificationsState extends State<Notifications> {
                         ],
                       ),
                     ),
-                    // ButtonTheme.bar(
-                    //     child: ButtonBar(
-                    //   children: <Widget>[
-                    //     RaisedButton(
-                    //       child: const Text(
-                    //         'Approve User',
-                    //         style: TextStyle(
-                    //           color: Colors.white70,
-                    //         ),
-                    //       ),
-                    //       onPressed: () {
-                    //         Map<String, dynamic> newUserData = new Map();
-
-                    //         newUserData['name'] = data['name'];
-                    //         newUserData['numberData'] = data['numberData'];
-                    //         newUserData['password'] = data['password'];
-                    //         newUserData['role'] = "user";
-
-                    //         Firestore.instance
-                    //             .collection("users")
-                    //             .document(data.documentID)
-                    //             .get()
-                    //             .then((doc) {
-                    //           if (!doc.exists) {
-                    //             Firestore.instance
-                    //                 .collection("users")
-                    //                 .document(data.documentID)
-                    //                 .setData(newUserData);
-                    //             Firestore.instance
-                    //                 .collection("pendingUsers")
-                    //                 .document(data.documentID)
-                    //                 .delete();
-                    //             popUpInfo(context, "User Added",
-                    //                 "Users has been added successfully.");
-                    //           } else {
-                    //             popUpInfo(context, "User Exists",
-                    //                 "Couldn't add new user because they already exists in the database.");
-                    //             Firestore.instance
-                    //                 .collection("pendingUsers")
-                    //                 .document(data.documentID)
-                    //                 .delete();
-                    //           }
-                    //         });
-                    //       },
-                    //     ),
-                    //   ],
-                    // )),
                   ],
                 )
               ],

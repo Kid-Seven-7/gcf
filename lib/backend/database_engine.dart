@@ -25,9 +25,14 @@ class DataBaseEngine {
     try {
       firestore.settings(timestampsInSnapshotsEnabled: true, sslEnabled: true);
 
-      getLength(firestore);
+      getLength(context, firestore);
 
-      firestore.collection('users').getDocuments().then((data) {
+      firestore
+          .collection('users')
+          .reference()
+          .where("name", isEqualTo: name)
+          .getDocuments()
+          .then((data) {
         for (var doc in data.documents) {
           String dataName = doc['name'];
           String dataPassword = doc['password'];
@@ -41,6 +46,9 @@ class DataBaseEngine {
             break;
           }
         }
+      }).catchError((onError) {
+        popUpInfo(context, "Error: Connection failed",
+            "Unable to connect to the database. Please check your data connection and try again.");
       });
 
       // firestore.collection('users').getDocuments().asStream().listen((data) {});
@@ -50,11 +58,13 @@ class DataBaseEngine {
     }
   }
 
-  void getLength(var firestore) async {
+  void getLength(BuildContext context,  var firestore) async {
     try {
-      var futureAmount =
-          await firestore.collection('users').getDocuments().then((data) {
+      await firestore.collection('users').getDocuments().then((data) {
         amount = data.documents.length;
+      }).catcgError((){
+        popUpInfo(context, "Error: Connection failed",
+            "Unable to connect to the database. Please check your data connection and try again.\n Error Code: 6573HF");
       });
     } catch (_) {}
   }
@@ -68,8 +78,15 @@ class DataBaseEngine {
   }
 
   //Checks if users' name and password matches those in the database
-  void checkDetails(BuildContext context, String name, String password,
-      String dataName, String dataPassword, String role, int index, String dataNumber) async {
+  void checkDetails(
+      BuildContext context,
+      String name,
+      String password,
+      String dataName,
+      String dataPassword,
+      String role,
+      int index,
+      String dataNumber) async {
     if ((name == dataName)) {
       try {
         if (dBCrypt.checkpw(password, dataPassword)) {
@@ -109,10 +126,16 @@ class DataBaseEngine {
     }
   }
 
-  void addData(String collection, Map<String, String> data) {
+  void addData(String collection, Map<String, dynamic> data) {
     try {
       //CHECK IF DATA EXISTS IN DATABASEE
-      firestore.collection(collection).document().setData(data);
+      firestore
+          .collection(collection)
+          .document()
+          .setData(data)
+          .catchError((error) {
+            print(error);
+          });
     } catch (_) {}
   }
 

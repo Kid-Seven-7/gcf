@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-import 'home_page.dart';
-import 'burger_menu_drawer.dart';
-import 'alert_popups.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'camera.dart';
+import 'home_page.dart';
+import 'alert_popups.dart';
+import 'burger_menu_drawer.dart';
+import 'package:flutter/material.dart';
+import '../backend/system_padding.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProjectCard extends StatefulWidget {
   Record record;
@@ -57,7 +58,7 @@ class ProjectCardState extends State<ProjectCard> {
                       ),
                       onPressed: () {
                         Navigator.of(context).push(
-                          new MaterialPageRoute(builder: (builder) => CameraPage()),
+                          new MaterialPageRoute(builder: (builder) => CameraPage(record.projectID)),
                         );
                       },
                     ),
@@ -139,7 +140,7 @@ class ProjectCardState extends State<ProjectCard> {
 
     await showDialog<String>(
       context: context,
-      child: new _SystemPadding(
+      child: new SystemPadding(
         child: new AlertDialog(
           contentPadding: const EdgeInsets.all(16.0),
           content: new Row(
@@ -367,19 +368,4 @@ void showTodoList(BuildContext context, String header, String list) {
           ],
         );
       });
-}
-
-class _SystemPadding extends StatelessWidget {
-  final Widget child;
-
-  _SystemPadding({Key key, this.child}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // var mediaQuery = MediaQuery.of(context);
-    return new AnimatedContainer(
-        padding: EdgeInsets.only(top: 50),
-        duration: const Duration(milliseconds: 300),
-        child: child);
-  }
 }
