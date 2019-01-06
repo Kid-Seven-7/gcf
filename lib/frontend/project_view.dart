@@ -109,9 +109,11 @@ class ProjectCardState extends State<ProjectCard> {
                 icon: Icon(Icons.toc), title: Text('View TODO-List')),
           ],
           onTap: (index) {
-            if (index == 1){
+            if (index == 1) {
               Navigator.of(context).push(
-                new MaterialPageRoute(builder: (context) => ExpensesView(record.projectID)),
+                new MaterialPageRoute(
+                    builder: (context) => ExpensesView(record.projectID,
+                        record.projectExpenses, record.projectBudget)),
               );
             }
             if (index == 2) {

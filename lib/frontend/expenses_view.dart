@@ -6,10 +6,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 
 String _projectID = "";
+String _projectExpenses = "";
+String _budget = "";
 
 class ExpensesView extends StatefulWidget {
-  ExpensesView(String projectID) {
+  ExpensesView(String projectID, String projectExpenses, String budget) {
     _projectID = projectID;
+    _projectExpenses = projectExpenses;
+    _budget = budget;
   }
   _ExpensesViewState createState() => _ExpensesViewState();
 }
@@ -52,6 +56,28 @@ class _ExpensesViewState extends State<ExpensesView> {
             //     icon: Icon(Icons.add), title: Text('Edit Profile')),
           ],
           onTap: (index) {
+            //Getting expenses and budget remaining
+            Firestore.instance
+                .collection("activeProjects")
+                .reference()
+                .where("projectID", isEqualTo: _projectID)
+                .getDocuments()
+                .then((onValue) {
+              String _expensesData = onValue.documents[0]['projectExpenses'];
+              String _budgetData = onValue.documents[0]['projectBudget'];
+
+              if (index == 0) {
+                int _expenses = int.parse(_expensesData);
+                int budget = int.parse(_budgetData);
+                int budgetLeft = budget - _expenses;
+                popUpInfo(context, "Information",
+                    "Budget Left: R${budgetLeft.toString()}");
+              }
+              if (index == 1) {
+                popUpInfo(context, "Information",
+                    "Total Expenses: R$_expensesData");
+              }
+            });
             setState(() {
               _currentIndex = index;
             });
@@ -122,7 +148,8 @@ class _ExpensesViewState extends State<ExpensesView> {
                             ),
                             onPressed: () {
                               Navigator.of(context).push(
-                                new MaterialPageRoute(builder: (context) => ImageView(imageUrl)),
+                                new MaterialPageRoute(
+                                    builder: (context) => ImageView(imageUrl)),
                               );
                               // _viewproject();
                             },

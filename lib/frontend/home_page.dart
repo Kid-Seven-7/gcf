@@ -167,7 +167,9 @@ class Record {
       projectLocation,
       projectBudget,
       projectTodo,
-      projectID;
+      projectID,
+      projectExpenses;
+
 
   DocumentReference reference;
 
@@ -182,7 +184,8 @@ class Record {
         projectLocation = map['projectLocation'],
         projectBudget = map['projectBudget'],
         projectTodo = map['projectTodo'],
-        projectID = map['projectID'];
+        projectID = map['projectID'],
+        projectExpenses = map['projectExpenses'];
 
   Record.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);
