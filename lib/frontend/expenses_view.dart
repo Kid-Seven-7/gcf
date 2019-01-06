@@ -6,14 +6,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 
 String _projectID = "";
-String _projectExpenses = "";
-String _budget = "";
+String _currentTable = "";
 
 class ExpensesView extends StatefulWidget {
-  ExpensesView(String projectID, String projectExpenses, String budget) {
+  ExpensesView(String projectID, String table) {
     _projectID = projectID;
-    _projectExpenses = projectExpenses;
-    _budget = budget;
+    _currentTable = table;
   }
   _ExpensesViewState createState() => _ExpensesViewState();
 }
@@ -32,7 +30,9 @@ class _ExpensesViewState extends State<ExpensesView> {
         backgroundColor: Colors.blueGrey.shade900,
         appBar: AppBar(
           backgroundColor: Colors.green.shade500,
-          title: Text("Project Expenses"),
+          title: (_currentTable == "expensesImages")
+              ? Text("Project Expenses")
+              : Text("Site Images"),
           leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _handleDrawer,
@@ -74,8 +74,8 @@ class _ExpensesViewState extends State<ExpensesView> {
                     "Budget Left: R${budgetLeft.toString()}");
               }
               if (index == 1) {
-                popUpInfo(context, "Information",
-                    "Total Expenses: R$_expensesData");
+                popUpInfo(
+                    context, "Information", "Total Expenses: R$_expensesData");
               }
             });
             setState(() {
@@ -89,7 +89,7 @@ class _ExpensesViewState extends State<ExpensesView> {
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance
-          .collection("expensesImages")
+          .collection(_currentTable)
           .reference()
           .where("projectID", isEqualTo: _projectID)
           .snapshots(),
@@ -104,11 +104,13 @@ class _ExpensesViewState extends State<ExpensesView> {
   Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
     return ListView(
       padding: EdgeInsets.only(top: 20.0),
-      children: snapshot.map((data) => _buildNewCard(context, data)).toList(),
+      children: (_currentTable == "expensesImages")
+          ? snapshot.map((data) => _expenseDataCard(context, data)).toList()
+          : snapshot.map((data) => _onSiteImageCard(context, data)).toList(),
     );
   }
 
-  Widget _buildNewCard(BuildContext context, DocumentSnapshot data) {
+  Widget _expenseDataCard(BuildContext context, DocumentSnapshot data) {
     String expenseAmount = data['amount'];
     String expenseName = data['expenseName'];
     String uploadedBy = data['uploadedBy'];
@@ -163,5 +165,11 @@ class _ExpensesViewState extends State<ExpensesView> {
             ),
           ),
         ));
+  }
+
+  Widget _onSiteImageCard(BuildContext context, DocumentSnapshot data) {
+    return Padding(
+      padding: EdgeInsets.all(0),
+    );
   }
 }
