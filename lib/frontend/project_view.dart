@@ -17,6 +17,7 @@ class ProjectCard extends StatefulWidget {
 
 class ProjectCardState extends State<ProjectCard> {
   Record record;
+  int _currentIndex = 0;
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
   _handleDrawer() {
     _key.currentState.openDrawer();
@@ -58,7 +59,9 @@ class ProjectCardState extends State<ProjectCard> {
                       ),
                       onPressed: () {
                         Navigator.of(context).push(
-                          new MaterialPageRoute(builder: (builder) => CameraPage(record.projectID)),
+                          new MaterialPageRoute(
+                              builder: (builder) =>
+                                  CameraPage(record.projectID)),
                         );
                       },
                     ),
@@ -92,6 +95,7 @@ class ProjectCardState extends State<ProjectCard> {
         ],
         body: _buildBody(context, record),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
           fixedColor: Color.fromARGB(255, 140, 188, 63),
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -112,6 +116,9 @@ class ProjectCardState extends State<ProjectCard> {
               }
               // showTodoList(context, "TODO List", record.projectTodo);
             }
+            setState(() {
+              _currentIndex = index;
+            });
           },
         ),
         drawer: OpenDrawer());
@@ -209,7 +216,8 @@ class ProjectCardState extends State<ProjectCard> {
           ),
           actions: <Widget>[
             new FlatButton(
-                child: (action == "add") ? const Text('CANCEL') : const Text(''),
+                child:
+                    (action == "add") ? const Text('CANCEL') : const Text(''),
                 onPressed: () {
                   Navigator.pop(context);
                 }),

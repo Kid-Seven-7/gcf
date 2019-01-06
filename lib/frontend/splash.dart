@@ -110,6 +110,10 @@ class SplashScreenState extends State<SplashScreen>
           userData['role'] = roleStatus;
           userData['number'] = number;
 
+          if (roleStatus == "Administrator"){
+            isAdmin = true;
+          }
+
           _iconAnimationController.dispose();
           //Going to Home Page
           Navigator.of(context).pushReplacement(

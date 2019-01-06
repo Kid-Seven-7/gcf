@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../backend/system_padding.dart';
 import '../backend/database_engine.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 String projectID;
@@ -164,6 +164,7 @@ class CameraPageState extends State<CameraPage> {
                               newImage['amount'] = expenseAmount;
                               newImage['projectID'] = projectID;
                               newImage['imageUrl'] = onValue.toString();
+                              newImage['uploadedBy'] = userName;
                               dataBaseEngine.addData(
                                   "expensesImages", newImage);
                             });

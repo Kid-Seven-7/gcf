@@ -67,7 +67,11 @@ Widget _buildBody(BuildContext context) {
   return StreamBuilder<QuerySnapshot>(
     stream: Firestore.instance.collection('activeProjects').snapshots(),
     builder: (context, snapshot) {
-      if (!snapshot.hasData) return LinearProgressIndicator();
+      if (!snapshot.hasData) {
+        return LinearProgressIndicator();
+      } else if (snapshot.hasError) {
+        return LinearProgressIndicator();
+      }
 
       return _buildList(context, snapshot.data.documents);
     },
@@ -92,58 +96,64 @@ void onItemTapped(BuildContext context, int index) {
 
 Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   Record record = Record.fromSnapshot(data);
-
-  return Padding(
-    key: ValueKey(record.projectName),
-    padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
-    child: Container(
-        child: Card(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTile(
-            leading: Icon(Icons.library_books),
-            title: Text(
-              record.projectName,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text(record.projectDescription),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Chip(
-                avatar: CircleAvatar(
-                  backgroundColor: Colors.grey.shade800,
-                  child: Text('FM'),
-                ),
-                label: Text(record.projectForeman),
+  
+  if ((record.projectForeman == userName) || (isAdmin == true)) {
+    return Padding(
+      key: ValueKey(record.projectName),
+      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
+      child: Container(
+          child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.library_books),
+              title: Text(
+                record.projectName,
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              ButtonTheme.bar(
-                child: ButtonBar(
-                  children: <Widget>[
-                    FlatButton(
-                      child: const Text(
-                        'View project',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 140, 188, 63),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).push(new MaterialPageRoute(
-                            builder: (context) => ProjectCard(record)));
-                        // _viewproject();
-                      },
-                    )
-                  ],
+              subtitle: Text(record.projectDescription),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Chip(
+                  avatar: CircleAvatar(
+                    backgroundColor: Colors.grey.shade800,
+                    child: Text('FM'),
+                  ),
+                  label: Text(record.projectForeman),
                 ),
-              )
-            ],
-          ),
-        ],
-      ),
-    )),
-  );
+                ButtonTheme.bar(
+                  child: ButtonBar(
+                    children: <Widget>[
+                      FlatButton(
+                        child: const Text(
+                          'View project',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 140, 188, 63),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).push(new MaterialPageRoute(
+                              builder: (context) => ProjectCard(record)));
+                          // _viewproject();
+                        },
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      )),
+    );
+  } else {
+    return Padding(
+      padding: EdgeInsets.all(0),
+    );
+  }
 }
 
 class Record {

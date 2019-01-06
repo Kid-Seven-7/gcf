@@ -104,9 +104,7 @@ class _ManageUsersState extends State<ManageUsers> {
             .then((onValue) {
           var doc = onValue.documents[0];
           roleStatus = doc['role'];
-        }).catchError((onError){
-          
-        });
+        }).catchError((onError) {});
       } catch (_) {
         popUpInfo(context, "Error",
             "A connection error was detected. Please check if you're connected to the internet.");
@@ -150,17 +148,19 @@ class _ManageUsersState extends State<ManageUsers> {
                             children: <Widget>[
                               RaisedButton(
                                 color: Colors.blueGrey.shade700,
-                                child: (currentTable == "pendingUsers") ? const Text(
-                                  'Delete Request',
-                                  style: TextStyle(
-                                    color: Colors.redAccent,
-                                  ),
-                                ) : const Text(
-                                  'Delete Account',
-                                  style: TextStyle(
-                                    color: Colors.redAccent,
-                                  ),
-                                ),
+                                child: (currentTable == "pendingUsers")
+                                    ? const Text(
+                                        'Delete Request',
+                                        style: TextStyle(
+                                          color: Colors.redAccent,
+                                        ),
+                                      )
+                                    : const Text(
+                                        'Delete Account',
+                                        style: TextStyle(
+                                          color: Colors.redAccent,
+                                        ),
+                                      ),
                                 onPressed: () {
                                   if (data['number'] == number) {
                                     popUpInfo(
@@ -168,13 +168,22 @@ class _ManageUsersState extends State<ManageUsers> {
                                         "Alert!",
                                         "You can't delete your own account." +
                                             "\nTo delete an account you must press delete on an account that doesn't belong to you.");
+                                  } else if (!isAdmin) {
+                                    String _type =
+                                        (currentTable == "pendingUsers")
+                                            ? "requests"
+                                            : "accounts";
+                                    popUpInfo(context, "Error",
+                                        "Failed to delete account. Only the Administrator can delete $_type.");
                                   } else {
                                     Firestore.instance
                                         .collection(currentTable)
                                         .document(data.documentID)
-                                        .delete().catchError((onError){
-                                          popUpInfo(context, "Error", "Failed to delete user");
-                                        });
+                                        .delete()
+                                        .catchError((onError) {
+                                      popUpInfo(context, "Error",
+                                          "Failed to delete user");
+                                    });
                                   }
                                 },
                               )
@@ -193,43 +202,51 @@ class _ManageUsersState extends State<ManageUsers> {
                                       ),
                                     ),
                                     onPressed: () {
-                                      Map<String, dynamic> newUserData =
-                                          new Map();
+                                      if (!isAdmin) {
+                                        popUpInfo(context, "Alert",
+                                            "Failed to approve user. Only the Administrator can approve new user to the system");
+                                      } else {
+                                        Map<String, dynamic> newUserData =
+                                            new Map();
 
-                                      newUserData['name'] = data['name'];
-                                      newUserData['number'] =
-                                          data['number'];
-                                      newUserData['password'] =
-                                          data['password'];
-                                      newUserData['role'] = "user";
+                                        newUserData['name'] = data['name'];
+                                        newUserData['number'] = data['number'];
+                                        newUserData['password'] =
+                                            data['password'];
+                                        newUserData['role'] = "user";
 
-                                      Firestore.instance
-                                          .collection("users")
-                                          .document(data.documentID)
-                                          .get()
-                                          .then((doc) {
-                                        if (!doc.exists) {
-                                          Firestore.instance
-                                              .collection("users")
-                                              .document(data.documentID)
-                                              .setData(newUserData).catchError((onError){});
-                                          Firestore.instance
-                                              .collection("pendingUsers")
-                                              .document(data.documentID)
-                                              .delete().catchError((onError){});
-                                          popUpInfo(context, "User Added",
-                                              "Users has been added successfully.");
-                                        } else {
-                                          popUpInfo(context, "User Exists",
-                                              "Couldn't add new user because they already exists in the database.");
-                                          Firestore.instance
-                                              .collection("pendingUsers")
-                                              .document(data.documentID)
-                                              .delete().catchError((onError){});
-                                        }
-                                      }).catchError((onError){
-                                        popUpInfo(context, "Error", "Failed to add new user.");
-                                      });
+                                        Firestore.instance
+                                            .collection("users")
+                                            .document(data.documentID)
+                                            .get()
+                                            .then((doc) {
+                                          if (!doc.exists) {
+                                            Firestore.instance
+                                                .collection("users")
+                                                .document(data.documentID)
+                                                .setData(newUserData)
+                                                .catchError((onError) {});
+                                            Firestore.instance
+                                                .collection("pendingUsers")
+                                                .document(data.documentID)
+                                                .delete()
+                                                .catchError((onError) {});
+                                            popUpInfo(context, "User Added",
+                                                "Users has been added successfully.");
+                                          } else {
+                                            popUpInfo(context, "User Exists",
+                                                "Couldn't add new user because they already exists in the database.");
+                                            Firestore.instance
+                                                .collection("pendingUsers")
+                                                .document(data.documentID)
+                                                .delete()
+                                                .catchError((onError) {});
+                                          }
+                                        }).catchError((onError) {
+                                          popUpInfo(context, "Error",
+                                              "Failed to add new user.");
+                                        });
+                                      }
                                     },
                                   )
                                 : DropdownButton(
@@ -238,21 +255,31 @@ class _ManageUsersState extends State<ManageUsers> {
                                     onChanged: (_data) {
                                       setState(() {
                                         currentItemMenu = _data;
-                                        if (_data != "Edit User Role...") {
-                                          Map roleUpdate =
-                                              new Map<String, String>();
-                                          String name = data['name'];
+                                        if (isAdmin) {
+                                          if (_data != "Edit User Role...") {
+                                            Map roleUpdate =
+                                                new Map<String, String>();
+                                            String name = data['name'];
 
-                                          roleUpdate['role'] = currentItemMenu;
-                                          Firestore.instance
-                                              .collection("users")
-                                              .document(data.documentID)
-                                              .updateData(roleUpdate).catchError((onError){
-                                                popUpInfo(context, "Error", "Failed to update user role. Check your connection and try again");
-                                              });
-                                          popUpInfo(context, "Success",
-                                              "$name's role has been updated!.");
+                                            roleUpdate['role'] =
+                                                currentItemMenu;
+                                            Firestore.instance
+                                                .collection("users")
+                                                .document(data.documentID)
+                                                .updateData(roleUpdate)
+                                                .catchError((onError) {
+                                              popUpInfo(context, "Error",
+                                                  "Failed to update user role. Check your connection and try again");
+                                            });
+                                            popUpInfo(context, "Success",
+                                                "$name's role has been updated!.");
+                                            currentItemMenu =
+                                                "Edit User Role...";
+                                          }
+                                        } else {
                                           currentItemMenu = "Edit User Role...";
+                                          popUpInfo(context, "Alert",
+                                              "Failed to update user role. Only the Administrator can update roles. Contact the Administrator for more information.");
                                         }
                                       });
                                     },
