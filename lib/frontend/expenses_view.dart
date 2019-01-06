@@ -1,3 +1,4 @@
+import 'image_view.dart';
 import 'alert_popups.dart';
 import 'burger_menu_drawer.dart';
 import 'package:flutter/material.dart';
@@ -120,6 +121,9 @@ class _ExpensesViewState extends State<ExpensesView> {
                               ),
                             ),
                             onPressed: () {
+                              Navigator.of(context).push(
+                                new MaterialPageRoute(builder: (context) => ImageView(imageUrl)),
+                              );
                               // _viewproject();
                             },
                           )
