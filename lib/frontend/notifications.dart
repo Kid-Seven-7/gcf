@@ -3,6 +3,7 @@ import 'alert_popups.dart';
 import 'burger_menu_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
+import 'package:uuid/uuid.dart';
 
 String currentTable = "pendingUsers";
 String currentItemMenu = "Edit User Role...";
@@ -177,9 +178,13 @@ class _NotificationsState extends State<Notifications> {
 }
 
 void sendMessage(BuildContext context, String title, String message) {
+  var notificationID = new Uuid();
   Map newNotification = new Map<String, String>();
+  
   newNotification['title'] = title;
   newNotification['message'] = message;
+  newNotification['read'] = "no";
+  newNotification['notificationID'] = notificationID.v1();
 
   try {
     Firestore.instance
