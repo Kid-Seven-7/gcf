@@ -21,8 +21,6 @@ dependencies:
   uuid: ^1.0.3
   image: ^2.0.5
   firebase_storage: ^1.0.4
-  firebase_core: ^0.2.5+1
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -42,3 +40,4 @@ flutter:
     - assets/images/login_back.png
     - assets/images/GCF-logo.png
     - assets/images/burger_back.png
+    - assets/images/loading.gif

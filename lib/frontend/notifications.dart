@@ -3,6 +3,7 @@ import 'alert_popups.dart';
 import 'burger_menu_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
+import 'package:uuid/uuid.dart';
 
 String currentTable = "pendingUsers";
 String currentItemMenu = "Edit User Role...";
@@ -67,21 +68,25 @@ class _NotificationsState extends State<Notifications> {
 
   void updatePage(BuildContext context, int index) {
     if (index == 0) {
-      print("Index: $index");
-      Firestore.instance
-          .collection("notifications")
-          .getDocuments()
-          .then((snapshot) {
-        for (var doc in snapshot.documents) {
-          doc.reference.delete();
-        }
-      }).catchError((onError){});
-      Firestore.instance
-          .collection("notifications")
-          .getDocuments()
-          .then((value) {
-        notifications = value.documents.length;
-      }).catchError((onError){});
+      if (isAdmin) {
+        Firestore.instance
+            .collection("notifications")
+            .getDocuments()
+            .then((snapshot) {
+          for (var doc in snapshot.documents) {
+            doc.reference.delete();
+          }
+        }).catchError((onError) {});
+        Firestore.instance
+            .collection("notifications")
+            .getDocuments()
+            .then((value) {
+          notifications = value.documents.length;
+        }).catchError((onError) {});
+      } else {
+        popUpInfo(context, "Alert",
+            "Error trying to delete notifications. Only an Administrator can delete notifications");
+      }
     }
     if (index == 1) {
       messageIcon = Icons.mail;
@@ -131,13 +136,6 @@ class _NotificationsState extends State<Notifications> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    // Chip(
-                    //   avatar: CircleAvatar(
-                    //     backgroundColor: Colors.grey.shade800,
-                    //     child: Text(''),
-                    //   ),
-                    //   // label: Text(record.projectForeman),
-                    // ),
                     ButtonTheme.bar(
                       child: ButtonBar(
                         children: <Widget>[
@@ -150,17 +148,21 @@ class _NotificationsState extends State<Notifications> {
                               ),
                             ),
                             onPressed: () {
+                              if (isAdmin){
                               Firestore.instance
                                   .collection("notifications")
                                   .document(data.documentID)
                                   .delete();
-                              
+
                               Firestore.instance
                                   .collection("notifications")
                                   .getDocuments()
                                   .then((value) {
                                 notifications = value.documents.length;
                               });
+                              }else{
+                                popUpInfo(context, "Alert", "Error trying to delete notification. Only an Administrator can delete notifications");
+                              }
                             },
                           )
                         ],
@@ -176,9 +178,13 @@ class _NotificationsState extends State<Notifications> {
 }
 
 void sendMessage(BuildContext context, String title, String message) {
+  var notificationID = new Uuid();
   Map newNotification = new Map<String, String>();
+  
   newNotification['title'] = title;
   newNotification['message'] = message;
+  newNotification['read'] = "no";
+  newNotification['notificationID'] = notificationID.v1();
 
   try {
     Firestore.instance

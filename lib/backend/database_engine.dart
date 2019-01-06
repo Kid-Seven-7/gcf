@@ -99,12 +99,12 @@ class DataBaseEngine {
           roleStatus = role;
           number = dataNumber;
 
-          await storage.deleteAll();
+          await storage.deleteAll().catchError((onError){});
           if (rememberMe == "yes") {
-            await storage.write(key: "name", value: name);
-            await storage.write(key: "role", value: role);
-            await storage.write(key: "rememberMe", value: "yes");
-            await storage.write(key: "number", value: dataNumber);
+            await storage.write(key: "name", value: name).catchError((onError){});
+            await storage.write(key: "role", value: role).catchError((onError){});
+            await storage.write(key: "rememberMe", value: "yes").catchError((onError){});
+            await storage.write(key: "number", value: dataNumber).catchError((onError){});
           }
           Navigator.of(context).pushReplacement(
               new MaterialPageRoute(builder: (context) => HomeScreen()));

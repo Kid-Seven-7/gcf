@@ -4,6 +4,7 @@ import 'alert_popups.dart';
 import 'burger_menu_drawer.dart';
 import 'package:flutter/material.dart';
 import '../backend/system_padding.dart';
+import 'expenses_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProjectCard extends StatefulWidget {
@@ -17,6 +18,7 @@ class ProjectCard extends StatefulWidget {
 
 class ProjectCardState extends State<ProjectCard> {
   Record record;
+  int _currentIndex = 0;
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
   _handleDrawer() {
     _key.currentState.openDrawer();
@@ -58,7 +60,9 @@ class ProjectCardState extends State<ProjectCard> {
                       ),
                       onPressed: () {
                         Navigator.of(context).push(
-                          new MaterialPageRoute(builder: (builder) => CameraPage(record.projectID)),
+                          new MaterialPageRoute(
+                              builder: (builder) =>
+                                  CameraPage(record.projectID)),
                         );
                       },
                     ),
@@ -92,11 +96,12 @@ class ProjectCardState extends State<ProjectCard> {
         ],
         body: _buildBody(context, record),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
           fixedColor: Color.fromARGB(255, 140, 188, 63),
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 backgroundColor: Colors.black,
-                icon: Icon(Icons.rate_review),
+                icon: Icon(Icons.image),
                 title: Text('View Project Images')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.money_off), title: Text('View Expanses')),
@@ -104,6 +109,13 @@ class ProjectCardState extends State<ProjectCard> {
                 icon: Icon(Icons.toc), title: Text('View TODO-List')),
           ],
           onTap: (index) {
+            if (index == 1) {
+              Navigator.of(context).push(
+                new MaterialPageRoute(
+                    builder: (context) => ExpensesView(record.projectID,
+                        record.projectExpenses, record.projectBudget)),
+              );
+            }
             if (index == 2) {
               if (record.projectTodo != null && record.projectTodo != ",") {
                 showTodoList(context, "TODO List", record.projectTodo);
@@ -112,6 +124,9 @@ class ProjectCardState extends State<ProjectCard> {
               }
               // showTodoList(context, "TODO List", record.projectTodo);
             }
+            setState(() {
+              _currentIndex = index;
+            });
           },
         ),
         drawer: OpenDrawer());
@@ -209,7 +224,8 @@ class ProjectCardState extends State<ProjectCard> {
           ),
           actions: <Widget>[
             new FlatButton(
-                child: (action == "add") ? const Text('CANCEL') : const Text(''),
+                child:
+                    (action == "add") ? const Text('CANCEL') : const Text(''),
                 onPressed: () {
                   Navigator.pop(context);
                 }),
@@ -320,22 +336,6 @@ Widget _buildBody(BuildContext context, Record record) {
           ),
           subtitle: Text(record.projectEndDate),
         ),
-        // ButtonTheme.bar(
-        //   child: ButtonBar(
-        //     children: <Widget>[
-        //       RaisedButton(
-        //         color: Colors.blueGrey.shade700,
-        //         child: const Text(
-        //           'Mark Project As Complete',
-        //           style: TextStyle(
-        //             color: Colors.white,
-        //           ),
-        //         ),
-        //         onPressed: () {},
-        //       )
-        //     ],
-        //   ),
-        // )
       ],
     ),
   );

@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import '../backend/system_padding.dart';
 import '../backend/database_engine.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 String projectID;
 
@@ -80,6 +81,7 @@ class CameraPageState extends State<CameraPage> {
     FirebaseStorage firebaseStorage =
         new FirebaseStorage(storageBucket: "gs://gcfdatabasetest.appspot.com");
     String expenseAmount = "";
+    String expenseName = "";
 
     await showDialog<String>(
       context: context,
@@ -90,12 +92,24 @@ class CameraPageState extends State<CameraPage> {
             children: <Widget>[
               new Expanded(
                   child: new TextField(
+                      scrollPadding: EdgeInsets.all(30),
+                      autofocus: true,
+                      decoration: new InputDecoration(
+                          labelStyle: TextStyle(fontSize: 25),
+                          hintStyle: TextStyle(fontSize: 15),
+                          labelText: 'Name',
+                          hintText: 'e.g tools'),
+                      onChanged: (data) {
+                        expenseName = data;
+                      })),
+              new Expanded(
+                  child: new TextField(
                 scrollPadding: EdgeInsets.all(30),
                 autofocus: true,
                 decoration: new InputDecoration(
                     labelStyle: TextStyle(fontSize: 25),
                     hintStyle: TextStyle(fontSize: 15),
-                    labelText: 'ENTER EXPENSE AMOUNT',
+                    labelText: 'Amount',
                     hintText: 'e.g 10'),
                 onChanged: (data) {
                   expenseAmount = data;
@@ -115,7 +129,8 @@ class CameraPageState extends State<CameraPage> {
             new FlatButton(
                 child: const Text('ADD EXPENSE'),
                 onPressed: () async {
-                  if (expenseAmount != "" && isNumeric(expenseAmount)) {
+                  if ((expenseAmount != "" && isNumeric(expenseAmount)) &&
+                      (expenseName != "")) {
                     var path1 = _image.toString().split("'");
                     if (path1[1] != null) {
                       String path = path1[1];
@@ -136,17 +151,62 @@ class CameraPageState extends State<CameraPage> {
 
                           final StorageReference storageReference =
                               firebaseStorage.ref().child(imageName);
+
                           final StorageUploadTask storageUploadTask =
                               storageReference.putFile(_image);
-                          
-                            Map newImage = Map<String, String>();
 
-                            newImage['imageID'] = imageID.v1();
-                            newImage['name'] = imageName;
-                            newImage['amount'] = expenseAmount;
-                            newImage['projectID'] = projectID;
-                            dataBaseEngine.addData("expensesImages", newImage);
-                          
+                          (storageUploadTask.onComplete).then((onValue) {
+                            (onValue.ref.getDownloadURL()).then((onValue) {
+                              Map newImage = Map<String, String>();
+
+                              newImage['expenseName'] = expenseName;
+                              newImage['imageID'] = imageID.v1();
+                              newImage['name'] = imageName;
+                              newImage['amount'] = expenseAmount;
+                              newImage['projectID'] = projectID;
+                              newImage['imageUrl'] = onValue.toString();
+                              newImage['uploadedBy'] = userName;
+                              dataBaseEngine.addData(
+                                  "expensesImages", newImage);
+
+                              //
+                              Firestore.instance
+                                  .collection("activeProjects")
+                                  .reference()
+                                  .where("projectID", isEqualTo: projectID)
+                                  .getDocuments()
+                                  .then((onValue) {
+                                // String docID = onValue.documents[0]
+                                //     .documentID; //Getting project document ID
+                                //Getting the latest expenses
+                                String expensesRaw =
+                                    onValue.documents[0]['projectExpenses'];
+
+                                int expenses = int.parse(expensesRaw);
+                                int newExpense = int.parse(expenseAmount);
+                                int newAmount = expenses + newExpense;
+                                Map _updatedExpenses = Map<String, String>();
+                                _updatedExpenses['projectExpenses'] =
+                                    newAmount.toString();
+
+                                //Updating the expenses field in the current project
+                                Firestore.instance
+                                    .runTransaction((transactionHandler) async {
+                                  await transactionHandler
+                                      .get(onValue.documents[0].reference);
+                                  await transactionHandler.update(
+                                      onValue.documents[0].reference,
+                                      _updatedExpenses);
+                                }).catchError((onError) {
+                                  popUpInfo(context, "Error",
+                                      "Failed to add expense amount to the project. Check your network connection and try again\nError Code: 7SDFKYHVB");
+                                });
+                              }).catchError((onError) {
+                                popUpInfo(context, "Error",
+                                    "Failed to add expense amount to the project. Check your network connection and try again");
+                              });
+                            });
+                          });
                         }).catchError((onError) {
                           popUpInfo(context, "Error",
                               "Unable to process image.\n Error Code: 677FJ4\n Details: $onError");
@@ -168,11 +228,11 @@ class CameraPageState extends State<CameraPage> {
     );
   }
 
-  bool isNumeric(String data){
+  bool isNumeric(String data) {
     if (data == null) return false;
-    try{
-    return double.parse(data) != null;
-    }catch(_){
+    try {
+      return double.parse(data) != null;
+    } catch (_) {
       return false;
     }
   }

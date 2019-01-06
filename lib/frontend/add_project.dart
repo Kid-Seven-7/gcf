@@ -210,6 +210,7 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           projectData['projectEndDate'] = projectEndDate;
           projectData['projectTodo'] = ",";
           projectData['projectID'] = projectID.v1();
+          projectData['projectExpenses'] = "0";
           currentProjectType = "Project Type...";
           _onItemTapped(context, index, projectName.text);
         },

@@ -96,7 +96,8 @@ class SplashScreenState extends State<SplashScreen>
 
   void checkUser() async {
     try {
-      Map<String, String> userData = await storage.readAll();
+      Map<String, String> userData =
+          await storage.readAll().catchError((onError) {});
 
       if (userData['name'] != null) {
         if (userData['rememberMe'] == "yes") {
@@ -108,6 +109,10 @@ class SplashScreenState extends State<SplashScreen>
           userData['name'] = userName;
           userData['role'] = roleStatus;
           userData['number'] = number;
+
+          if (roleStatus == "Administrator"){
+            isAdmin = true;
+          }
 
           _iconAnimationController.dispose();
           //Going to Home Page

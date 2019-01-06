@@ -23,8 +23,6 @@ class OpenDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    firestore.settings(timestampsInSnapshotsEnabled: true, sslEnabled: true);
-
     firestore.collection("notifications").getDocuments().then((value) {
       notifications = value.documents.length;
     }).catchError((onError) {});
@@ -160,9 +158,9 @@ class OpenDrawer extends StatelessWidget {
             style: _navMenuText,
           ),
           onTap: () async {
-            await storage.delete(key: "name");
-            await storage.delete(key: "role");
-            await storage.delete(key: "rememberMe");
+            await storage.delete(key: "name").catchError((onError){});
+            await storage.delete(key: "role").catchError((onError){});
+            await storage.delete(key: "rememberMe").catchError((onError){});
 
             openpage(context, "LogOut");
           },
