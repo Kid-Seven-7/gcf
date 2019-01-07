@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
+import 'package:gcf_projects_app/frontend/home_page.dart';
 
 List< DropdownMenuItem<String>> items =[
   new DropdownMenuItem(value: "Edit User Role...", child: Text("Edit User Role...", style: TextStyle(fontWeight: FontWeight.bold)),),
@@ -20,7 +21,11 @@ void popUpInfo(BuildContext context, String header, String message) {
             new FlatButton(
               child: new Text('Ok'),
               onPressed: () {
-                Navigator.of(context).pop();
+                message == "Project added successfully."
+                ? Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => HomeScreen()))
+                : Navigator.of(context).pop()
+                ;
               },
             ),
           ],
