@@ -6,6 +6,8 @@ import 'package:dbcrypt/dbcrypt.dart';
 import 'add_user.dart';
 import 'alert_popups.dart';
 
+LoginEngine loginEngine = new LoginEngine();
+
 class LoginPage extends StatefulWidget {
   @override
   State createState() => new LoginPageState();
@@ -27,8 +29,6 @@ class LoginPageState extends State<LoginPage>
   final textPassword = new TextEditingController();
 
   DBCrypt dBCrypt = DBCrypt();
-  LoginEngine loginEngine = new LoginEngine();
-  DataBaseEngine dataBaseEngine = new DataBaseEngine();
 
   @override
   void dispose() {
@@ -126,7 +126,7 @@ class LoginPageState extends State<LoginPage>
                           onPressed: () {
                             if (loginEngine.checkLogin(
                                 textName.text, textPassword.text)) {
-                              dataBaseEngine.checkUser(
+                              loginEngine.checkUser(
                                   textName.text, textPassword.text, context);
                             } else {
                               popUpInfo(context, "Error",

@@ -92,8 +92,9 @@ class _CreateProjectPage extends State<CreateProjectPage> {
           }
         }
       }
-    }).catchError((onError){
-      popUpInfo(context, "Error", "Unable to connect to the database.\n Error Code: 7URHFHD" );
+    }).catchError((onError) {
+      popUpInfo(context, "Error",
+          "Unable to connect to the database.\n Error Code: 7URHFHD");
     });
 
     return Scaffold(
@@ -128,6 +129,11 @@ class _CreateProjectPage extends State<CreateProjectPage> {
             decoration: InputDecoration(labelText: 'Client'),
             controller: projectClient,
           ),
+          TextField(
+            decoration: InputDecoration(labelText: 'Project Budget'),
+            keyboardType: TextInputType.number,
+            controller: projectBudget,
+          ),
           Padding(
             padding: EdgeInsets.only(top: 10.0),
           ),
@@ -160,12 +166,9 @@ class _CreateProjectPage extends State<CreateProjectPage> {
               });
             },
           ),
-          TextField(
-            decoration: InputDecoration(labelText: 'Project Budget'),
-            keyboardType: TextInputType.number,
-            controller: projectBudget,
-          ),
           DateTimePickerFormField(
+              controller: TextEditingController(),
+              dateOnly: true,
               format: dateFormat,
               decoration: InputDecoration(labelText: 'Project Start Date'),
               onChanged: (dt) {
@@ -175,6 +178,8 @@ class _CreateProjectPage extends State<CreateProjectPage> {
                 });
               }),
           DateTimePickerFormField(
+              controller: TextEditingController(),
+              dateOnly: true,
               format: dateFormat,
               decoration: InputDecoration(labelText: 'Project End Date'),
               onChanged: (dt) {
@@ -255,7 +260,6 @@ Future<void> _newproject(BuildContext context, String name) async {
 
               Project project = new Project();
 
-              print(projectData);
               Navigator.of(context).pop();
 
               if (project.processProjectData(projectData)) {
