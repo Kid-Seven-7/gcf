@@ -202,6 +202,7 @@ class CameraPageState extends State<CameraPage> {
                                 newImage['projectID'] = projectID;
                                 newImage['imageUrl'] = onValue.toString();
                                 newImage['uploadedBy'] = userName;
+                                newImage['uploadReason'] = imageReason;
                               }
                               dataBaseEngine.addData(
                                   (_currentTable == _expenseTable)
