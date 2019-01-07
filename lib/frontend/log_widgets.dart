@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'log_page.dart';
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget generalInfo(BuildContext context, Log log) {
   return Container(
       child: Card(
@@ -41,6 +49,14 @@ Widget generalInfo(BuildContext context, Log log) {
       ));
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget budgetInfo(BuildContext context, Log log) {
   return Container(
       child: Card(
@@ -117,6 +133,14 @@ Widget budgetInfo(BuildContext context, Log log) {
       ));
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget timeInfo(BuildContext context, Log log) {
   return Container(
       child: Card(
@@ -156,12 +180,28 @@ Widget timeInfo(BuildContext context, Log log) {
       ));
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget logDivider(BuildContext context) {
   return Divider(
     color: Color.fromARGB(255, 140, 188, 63),
   );
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget logListTile(BuildContext context, String title, String subtitle,
     IconData icon) {
   var checked = true;
@@ -181,6 +221,14 @@ Widget logListTile(BuildContext context, String title, String subtitle,
   );
 }
 
+/*
+  Parameter:
+    Log
+  Function:
+    Calculates the percentage of the profit
+  Return:
+    Percent of profit
+*/
 double getProfit(Log log){
   double budget = double.parse(log.projectBudget);
   double expenses = 900000.00;
@@ -190,6 +238,14 @@ double getProfit(Log log){
   return percent;
 }
 
+/*
+  Parameter:
+    Log
+  Function:
+    Calculates the percentage of the expenses
+  Return:
+    Percent of expenses
+*/
 double getExpenses(Log log){
   double budget = double.parse(log.projectBudget);
   double expenses = 250000.00;
@@ -198,15 +254,26 @@ double getExpenses(Log log){
   return percent;
 }
 
+/*
+  Parameter:
+    Log
+  Function:
+    Divides the profit by the number of days taken
+  Return:
+    The profit per day
+*/
 double getProfitPerDay(Log log){
-  double budget = double.parse(log.projectBudget);
-  double expenses = 500000.00;
-  double profit  = budget - expenses;
-  double percent = profit / (budget/100);
-
-  return (percent/14);
+  return (getProfit(log)/dateDiffAsInt(log));
 }
 
+/*
+  Parameter:
+    Log
+  Function:
+    Calculates the time between the start and end of project
+  Return:
+    A string stating how long a project will take
+*/
 String dateDiff(Log log){
   String startYear = "";
   String startMonth = "";
@@ -244,4 +311,49 @@ String dateDiff(Log log){
   String ret = (days > 1) ? " Days" : " Day" ;
 
   return (days.toStringAsFixed(0) + ret);
+}
+
+/*
+  Parameter:
+    Log
+  Function:
+    Calculates the time between the start and end of project
+  Return:
+    A string stating how long a project will take
+*/
+int dateDiffAsInt(Log log){
+  String startYear = "";
+  String startMonth = "";
+  String startDay = "";
+  String endYear = "";
+  String endMonth = "";
+  String endDay = "";
+
+  for (int i = 0; i < 10; i++){
+    if (i < 4){
+      startYear += log.projectStartDate[i];
+      endYear += log.projectEndDate[i];
+    }else if (i > 4 && i < 7){
+      startMonth += log.projectStartDate[i];
+      endMonth += log.projectEndDate[i];
+    }else if (i > 7){
+      startDay += log.projectStartDate[i];
+      endDay += log.projectEndDate[i];
+    }
+  }
+
+  var end = new DateTime.utc(int.parse(endYear), int.parse(endMonth), int.parse(endDay));
+  var start = new DateTime.utc(int.parse(startYear), int.parse(startMonth), int.parse(startDay));
+  String hours = "";
+  String diffString;
+
+  Duration difference = end.difference(start);
+  diffString = difference.toString();
+  for (int i = 0; diffString[i] != ':'; i++){
+    hours += diffString[i];
+  }
+
+  int days = (int.parse(hours)/24).round();
+
+  return (days);
 }
