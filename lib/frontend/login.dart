@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
-import '../backend/login_engine.dart';
-import '../backend/database_engine.dart';
 import 'package:dbcrypt/dbcrypt.dart';
-import 'add_user.dart';
-import 'alert_popups.dart';
+
+import 'package:gcf_projects_app/backend/login_engine.dart';
+import 'package:gcf_projects_app/backend/database_engine.dart';
+import 'package:gcf_projects_app/frontend/add_user.dart';
+import 'package:gcf_projects_app/frontend/alert_popups.dart';
 
 class LoginPage extends StatefulWidget {
   @override

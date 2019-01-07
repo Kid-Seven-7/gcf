@@ -1,15 +1,17 @@
 import 'dart:io';
-import 'alert_popups.dart';
 import 'package:uuid/uuid.dart';
 import 'package:image/image.dart'
     as ImageFormatter; //This is to prevent ambiguous_import error
-import 'package:flutter/material.dart';
-import '../backend/system_padding.dart';
-import '../backend/database_engine.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'package:gcf_projects_app/frontend/alert_popups.dart';
+import 'package:gcf_projects_app/backend/system_padding.dart';
+import 'package:gcf_projects_app/backend/database_engine.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
+
 
 String projectID;
 String _currentTable = "";

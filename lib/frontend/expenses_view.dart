@@ -1,8 +1,9 @@
-import 'image_view.dart';
-import 'alert_popups.dart';
-import 'burger_menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:gcf_projects_app/frontend/image_view.dart';
+import 'package:gcf_projects_app/frontend/alert_popups.dart';
+import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
 // import 'package:gcf_projects_app/backend/globals.dart';
 
 String _projectID = "";

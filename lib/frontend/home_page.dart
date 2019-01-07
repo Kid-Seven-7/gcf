@@ -1,8 +1,9 @@
-import 'add_project.dart';
-import 'project_view.dart';
-import 'burger_menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:gcf_projects_app/frontend/add_project.dart';
+import 'package:gcf_projects_app/frontend/project_view.dart';
+import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 
 class HomeScreen extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'burger_menu_drawer.dart';
-import 'log_widgets.dart';
+import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
+import 'package:gcf_projects_app/frontend/log_widgets.dart';
 
 var stat = 1;
 

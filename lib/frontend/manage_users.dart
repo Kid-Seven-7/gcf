@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
-import 'alert_popups.dart';
-import 'burger_menu_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:gcf_projects_app/frontend/home_page.dart';
+import 'package:gcf_projects_app/frontend/alert_popups.dart';
+import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 
 String currentTable = "pendingUsers";

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'log_page.dart';
+import 'package:gcf_projects_app/frontend/log_page.dart';
 
 /*
   Parameter:
