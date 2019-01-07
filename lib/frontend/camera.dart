@@ -182,6 +182,27 @@ class CameraPageState extends State<CameraPage> {
 
                           final StorageUploadTask storageUploadTask =
                               storageReference.putFile(_image);
+                          bool displayOnce = false;
+                          try {
+                            storageUploadTask.events.listen((onData) {
+                              if (onData.type ==
+                                  StorageTaskEventType.progress) {
+                                if (!displayOnce) {
+                                  popUpInfo(context, "Information",
+                                      "Uploading Image...");
+                                  displayOnce = true;
+                                }
+                              } else if (onData.type ==
+                                  StorageTaskEventType.success) {
+                                if (displayOnce) {
+                                  Navigator.of(context).pop();
+                                  displayOnce = false;
+                                  popUpInfo(context, "Information",
+                                      "Upload successful");
+                                }
+                              }
+                            });
+                          } catch (_) {}
 
                           (storageUploadTask.onComplete).then((onValue) {
                             (onValue.ref.getDownloadURL()).then((onValue) {
