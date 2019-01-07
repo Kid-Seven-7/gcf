@@ -20,6 +20,7 @@ class SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   AnimationController _iconAnimationController;
   Animation<double> _iconAnimation;
+  Timer timer1, timer2, timer3;
 
   @override
   void initState() {
@@ -35,13 +36,13 @@ class SplashScreenState extends State<SplashScreen>
     _iconAnimation.addListener(() => this.setState(() {}));
     _iconAnimationController.forward();
 
-    Timer(Duration(seconds: 1), () {
+    timer1 = Timer(Duration(seconds: 1), () {
       status = "Checking connection...";
     });
-    Timer(Duration(seconds: 2), () {
+    timer2 = Timer(Duration(seconds: 2), () {
       checkConnection();
     });
-    Timer(Duration(seconds: 5), () {
+    timer3 = Timer(Duration(seconds: 5), () {
       if (isConnected) {
         Navigator.of(context).pushReplacement(
             new MaterialPageRoute(builder: (context) => LoginPage()));
@@ -69,6 +70,14 @@ class SplashScreenState extends State<SplashScreen>
     });
   }
 
+  @override
+  void dispose() {
+    timer1.cancel();
+    timer2.cancel();
+    timer3.cancel();
+    super.dispose();
+  }
+
   void checkConnection() async {
     checkUser();
     try {
@@ -86,24 +95,34 @@ class SplashScreenState extends State<SplashScreen>
   }
 
   void checkUser() async {
-    Map<String, String> userData = await storage.readAll();
+    try {
+      Map<String, String> userData =
+          await storage.readAll().catchError((onError) {});
 
-    if (userData['name'] != null) {
-      if (userData['rememberMe'] == "yes") {
-        skipLogin = true;
+      if (userData['name'] != null) {
+        if (userData['rememberMe'] == "yes") {
+          skipLogin = true;
 
-        userName = userData['name'];
-        roleStatus = userData['role'];
-        userData['name'] = userName;
-        userData['role'] = roleStatus;
+          userName = userData['name'];
+          roleStatus = userData['role'];
+          number = userData['number'];
+          userData['name'] = userName;
+          userData['role'] = roleStatus;
+          userData['number'] = number;
 
-        //Going to Home Page
-        Navigator.of(context).pushReplacement(
-            new MaterialPageRoute(builder: (context) => HomeScreen()));
-      } else {
-        skipLogin = false;
+          if (roleStatus == "Administrator"){
+            isAdmin = true;
+          }
+
+          _iconAnimationController.dispose();
+          //Going to Home Page
+          Navigator.of(context).pushReplacement(
+              new MaterialPageRoute(builder: (context) => HomeScreen()));
+        } else {
+          skipLogin = false;
+        }
       }
-    }
+    } catch (_) {}
   }
 
   @override

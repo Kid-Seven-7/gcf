@@ -22,7 +22,6 @@ class Project {
       }
     });
 
-    print(emptyFieldFound);
     if (emptyFieldFound) {
       return false;
     } else {
