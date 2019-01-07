@@ -3,17 +3,16 @@ import 'alert_popups.dart';
 import 'burger_menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gcf_projects_app/backend/globals.dart';
+// import 'package:gcf_projects_app/backend/globals.dart';
 
 String _projectID = "";
-String _projectExpenses = "";
-String _budget = "";
+String _currentTable = "";
+String _expensesTable = "expensesImages";
 
 class ExpensesView extends StatefulWidget {
-  ExpensesView(String projectID, String projectExpenses, String budget) {
+  ExpensesView(String projectID, String table) {
     _projectID = projectID;
-    _projectExpenses = projectExpenses;
-    _budget = budget;
+    _currentTable = table;
   }
   _ExpensesViewState createState() => _ExpensesViewState();
 }
@@ -32,7 +31,9 @@ class _ExpensesViewState extends State<ExpensesView> {
         backgroundColor: Colors.blueGrey.shade900,
         appBar: AppBar(
           backgroundColor: Colors.green.shade500,
-          title: Text("Project Expenses"),
+          title: (_currentTable == _expensesTable)
+              ? Text("Project Expenses")
+              : Text("Site Images"),
           leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _handleDrawer,
@@ -74,8 +75,8 @@ class _ExpensesViewState extends State<ExpensesView> {
                     "Budget Left: R${budgetLeft.toString()}");
               }
               if (index == 1) {
-                popUpInfo(context, "Information",
-                    "Total Expenses: R$_expensesData");
+                popUpInfo(
+                    context, "Information", "Total Expenses: R$_expensesData");
               }
             });
             setState(() {
@@ -89,7 +90,7 @@ class _ExpensesViewState extends State<ExpensesView> {
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance
-          .collection("expensesImages")
+          .collection(_currentTable)
           .reference()
           .where("projectID", isEqualTo: _projectID)
           .snapshots(),
@@ -104,11 +105,13 @@ class _ExpensesViewState extends State<ExpensesView> {
   Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
     return ListView(
       padding: EdgeInsets.only(top: 20.0),
-      children: snapshot.map((data) => _buildNewCard(context, data)).toList(),
+      children: (_currentTable == "expensesImages")
+          ? snapshot.map((data) => _expenseDataCard(context, data)).toList()
+          : snapshot.map((data) => _onSiteImageCard(context, data)).toList(),
     );
   }
 
-  Widget _buildNewCard(BuildContext context, DocumentSnapshot data) {
+  Widget _expenseDataCard(BuildContext context, DocumentSnapshot data) {
     String expenseAmount = data['amount'];
     String expenseName = data['expenseName'];
     String uploadedBy = data['uploadedBy'];
@@ -132,6 +135,63 @@ class _ExpensesViewState extends State<ExpensesView> {
                   ),
                   subtitle:
                       Text("Amount: R$expenseAmount\nUploaded By: $uploadedBy"),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ButtonTheme.bar(
+                      child: ButtonBar(
+                        children: <Widget>[
+                          FlatButton(
+                            child: const Text(
+                              'View Image',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 140, 188, 63),
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                new MaterialPageRoute(
+                                    builder: (context) => ImageView(imageUrl)),
+                              );
+                              // _viewproject();
+                            },
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        ));
+  }
+
+  Widget _onSiteImageCard(BuildContext context, DocumentSnapshot data) {
+    String siteName = data['siteName'];
+    String uploadedBy = data['uploadedBy'];
+    String reason = data['uploadReason'];
+    String imageUrl = data['imageUrl'];
+
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
+        child: Container(
+          child: Card(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  leading: Icon(
+                    Icons.attach_money,
+                    size: 40.0,
+                  ),
+                  title: Text(
+                    "Expense: $siteName",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle:
+                      Text("Details: $reason\nUploaded By: $uploadedBy"),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

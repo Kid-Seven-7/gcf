@@ -7,13 +7,25 @@ import '../backend/system_padding.dart';
 import 'expenses_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+BuildContext _context;
+Record _record;
+
 class ProjectCard extends StatefulWidget {
-  Record record;
   ProjectCard(Record record) {
-    this.record = record;
+    _record = record;
   }
   @override
-  State createState() => new ProjectCardState(record);
+  State createState() => new ProjectCardState(_record);
+}
+
+class Navigations {
+  static const String viewSitePictures = "View Site Pictures";
+  static const String addSitePicture = "Add Site Image";
+
+  static const List<String> choices = <String>[
+    viewSitePictures,
+    addSitePicture
+  ];
 }
 
 class ProjectCardState extends State<ProjectCard> {
@@ -62,7 +74,7 @@ class ProjectCardState extends State<ProjectCard> {
                         Navigator.of(context).push(
                           new MaterialPageRoute(
                               builder: (builder) =>
-                                  CameraPage(record.projectID)),
+                                  CameraPage(record.projectID, "expensesImages")),
                         );
                       },
                     ),
@@ -99,24 +111,23 @@ class ProjectCardState extends State<ProjectCard> {
           currentIndex: _currentIndex,
           fixedColor: Color.fromARGB(255, 140, 188, 63),
           items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                backgroundColor: Colors.black,
-                icon: Icon(Icons.image),
-                title: Text('View Project Images')),
+            // BottomNavigationBarItem(
+            //     backgroundColor: Colors.black,
+            //     icon: Icon(Icons.image),
+            //     title: Text('View Project Images')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.money_off), title: Text('View Expanses')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.toc), title: Text('View TODO-List')),
           ],
           onTap: (index) {
-            if (index == 1) {
+            if (index == 0) {
               Navigator.of(context).push(
                 new MaterialPageRoute(
-                    builder: (context) => ExpensesView(record.projectID,
-                        record.projectExpenses, record.projectBudget)),
+                    builder: (context) => ExpensesView(record.projectID, "expensesImages")),
               );
             }
-            if (index == 2) {
+            if (index == 1) {
               if (record.projectTodo != null && record.projectTodo != ",") {
                 showTodoList(context, "TODO List", record.projectTodo);
               } else {
@@ -273,14 +284,41 @@ class ProjectCardState extends State<ProjectCard> {
   }
 }
 
+void selectedNav(String choice) {
+  if (choice == "Add Site Image") {
+    Navigator.of(_context)
+        .push(new MaterialPageRoute(builder: (context) => CameraPage(_record.projectID, "projectImages")));
+  } else if (choice == "View Site Pictures"){
+    Navigator.of(_context).push(
+      new MaterialPageRoute(builder: (context) => ExpensesView(_record.projectID, "projectImages")),
+    );
+  }
+}
+
 Widget _buildBody(BuildContext context, Record record) {
+  _context = context;
   var textStyle = TextStyle(fontWeight: FontWeight.bold);
   return new Card(
     margin: EdgeInsets.only(top: 10.0, right: 10.0, left: 10.0),
     child: ListView(
-      // crossAxisAlignment: CrossAxisAlignment.center,
       padding: EdgeInsets.only(top: 10.0),
       children: <Widget>[
+        PopupMenuButton<String>(
+          icon: Icon(
+            Icons.camera,
+            color: Colors.blueGrey.shade700,
+            size: 40,
+          ),
+          onSelected: selectedNav,
+          itemBuilder: (BuildContext context) {
+            return Navigations.choices.map((String choice) {
+              return PopupMenuItem<String>(
+                value: choice,
+                child: Text(choice),
+              );
+            }).toList();
+          },
+        ),
         ListTile(
           leading: Icon(Icons.library_books),
           title: Text(record.projectName, style: textStyle),

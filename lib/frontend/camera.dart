@@ -12,11 +12,14 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 String projectID;
+String _currentTable = "";
+String _expenseTable = "expensesImages";
 
 class CameraPage extends StatefulWidget {
   @override
-  CameraPage(String projectIDdata) {
+  CameraPage(String projectIDdata, String table) {
     projectID = projectIDdata;
+    _currentTable = table;
   }
   State createState() => new CameraPageState();
 }
@@ -82,6 +85,8 @@ class CameraPageState extends State<CameraPage> {
         new FirebaseStorage(storageBucket: "gs://gcfdatabasetest.appspot.com");
     String expenseAmount = "";
     String expenseName = "";
+    String siteName = "";
+    String imageReason = "";
 
     await showDialog<String>(
       context: context,
@@ -98,9 +103,15 @@ class CameraPageState extends State<CameraPage> {
                           labelStyle: TextStyle(fontSize: 25),
                           hintStyle: TextStyle(fontSize: 15),
                           labelText: 'Name',
-                          hintText: 'e.g tools'),
+                          hintText: (_currentTable == _expenseTable)
+                              ? 'e.g tools'
+                              : 'site name'),
                       onChanged: (data) {
-                        expenseName = data;
+                        if (_currentTable == _expenseTable) {
+                          expenseName = data;
+                        } else {
+                          siteName = data;
+                        }
                       })),
               new Expanded(
                   child: new TextField(
@@ -109,13 +120,22 @@ class CameraPageState extends State<CameraPage> {
                 decoration: new InputDecoration(
                     labelStyle: TextStyle(fontSize: 25),
                     hintStyle: TextStyle(fontSize: 15),
-                    labelText: 'Amount',
-                    hintText: 'e.g 10'),
+                    labelText: (_currentTable == _expenseTable)
+                        ? 'Amount'
+                        : 'Description',
+                    hintText:
+                        (_currentTable == _expenseTable) ? 'e.g 10' : 'reason'),
                 onChanged: (data) {
-                  expenseAmount = data;
+                  if (_currentTable == _expenseTable) {
+                    expenseAmount = data;
+                  } else {
+                    imageReason = data;
+                  }
                 },
-                keyboardType: TextInputType.numberWithOptions(
-                    signed: false, decimal: false),
+                keyboardType: (_currentTable == _expenseTable)
+                    ? TextInputType.numberWithOptions(
+                        signed: false, decimal: false)
+                    : TextInputType.text,
               ))
             ],
           ),
@@ -127,10 +147,16 @@ class CameraPageState extends State<CameraPage> {
                   Navigator.pop(context);
                 }),
             new FlatButton(
-                child: const Text('ADD EXPENSE'),
+                child: (_currentTable == _expenseTable)
+                    ? const Text('ADD EXPENSE')
+                    : const Text("UPLOAD PICTURE"),
                 onPressed: () async {
-                  if ((expenseAmount != "" && isNumeric(expenseAmount)) &&
-                      (expenseName != "")) {
+                  //Uploading Image if data is correct
+                  if (((expenseAmount != "" && isNumeric(expenseAmount)) &&
+                          (expenseName != "") &&
+                          (_currentTable == _expenseTable)) ||
+                      ((_currentTable != _expenseTable) &&
+                          (siteName != "" && imageReason != ""))) {
                     var path1 = _image.toString().split("'");
                     if (path1[1] != null) {
                       String path = path1[1];
@@ -142,69 +168,104 @@ class CameraPageState extends State<CameraPage> {
                               ImageFormatter.decodeImage(onValue);
 
                           var imageID = new Uuid();
-                          String imageName = expenseAmount +
-                              "_" +
-                              projectID +
-                              "_" +
-                              "expense_" +
-                              imageID.v1();
+                          String imageName = (_currentTable == _expenseTable)
+                              ? expenseAmount +
+                                  "_" +
+                                  projectID +
+                                  "_" +
+                                  "expense_" +
+                                  imageID.v1()
+                              : siteName + "_" + imageID.v1();
 
                           final StorageReference storageReference =
                               firebaseStorage.ref().child(imageName);
 
                           final StorageUploadTask storageUploadTask =
                               storageReference.putFile(_image);
+                          bool displayOnce = false;
+                          try {
+                            storageUploadTask.events.listen((onData) {
+                              if (onData.type ==
+                                  StorageTaskEventType.progress) {
+                                if (!displayOnce) {
+                                  popUpInfo(context, "Information",
+                                      "Uploading Image...");
+                                  displayOnce = true;
+                                }
+                              } else if (onData.type ==
+                                  StorageTaskEventType.success) {
+                                if (displayOnce) {
+                                  Navigator.of(context).pop();
+                                  displayOnce = false;
+                                  popUpInfo(context, "Information",
+                                      "Upload successful");
+                                }
+                              }
+                            });
+                          } catch (_) {}
 
                           (storageUploadTask.onComplete).then((onValue) {
                             (onValue.ref.getDownloadURL()).then((onValue) {
                               Map newImage = Map<String, String>();
 
-                              newImage['expenseName'] = expenseName;
-                              newImage['imageID'] = imageID.v1();
-                              newImage['name'] = imageName;
-                              newImage['amount'] = expenseAmount;
-                              newImage['projectID'] = projectID;
-                              newImage['imageUrl'] = onValue.toString();
-                              newImage['uploadedBy'] = userName;
+                              if (_currentTable == _expenseTable) {
+                                newImage['expenseName'] = expenseName;
+                                newImage['imageID'] = imageID.v1();
+                                newImage['name'] = imageName;
+                                newImage['amount'] = expenseAmount;
+                                newImage['projectID'] = projectID;
+                                newImage['imageUrl'] = onValue.toString();
+                                newImage['uploadedBy'] = userName;
+                              } else {
+                                newImage['siteName'] = siteName;
+                                newImage['imageID'] = imageID.v1();
+                                newImage['name'] = imageName;
+                                newImage['projectID'] = projectID;
+                                newImage['imageUrl'] = onValue.toString();
+                                newImage['uploadedBy'] = userName;
+                                newImage['uploadReason'] = imageReason;
+                              }
                               dataBaseEngine.addData(
-                                  "expensesImages", newImage);
+                                  (_currentTable == _expenseTable)
+                                      ? _expenseTable
+                                      : "projectImages",
+                                  newImage);
 
-                              //
-                              Firestore.instance
-                                  .collection("activeProjects")
-                                  .reference()
-                                  .where("projectID", isEqualTo: projectID)
-                                  .getDocuments()
-                                  .then((onValue) {
-                                // String docID = onValue.documents[0]
-                                //     .documentID; //Getting project document ID
-                                //Getting the latest expenses
-                                String expensesRaw =
-                                    onValue.documents[0]['projectExpenses'];
-
-                                int expenses = int.parse(expensesRaw);
-                                int newExpense = int.parse(expenseAmount);
-                                int newAmount = expenses + newExpense;
-                                Map _updatedExpenses = Map<String, String>();
-                                _updatedExpenses['projectExpenses'] =
-                                    newAmount.toString();
-
-                                //Updating the expenses field in the current project
+                              if (_currentTable == _expenseTable) {
                                 Firestore.instance
-                                    .runTransaction((transactionHandler) async {
-                                  await transactionHandler
-                                      .get(onValue.documents[0].reference);
-                                  await transactionHandler.update(
-                                      onValue.documents[0].reference,
-                                      _updatedExpenses);
+                                    .collection("activeProjects")
+                                    .reference()
+                                    .where("projectID", isEqualTo: projectID)
+                                    .getDocuments()
+                                    .then((onValue) {
+                                  //Getting the latest expenses
+                                  String expensesRaw =
+                                      onValue.documents[0]['projectExpenses'];
+
+                                  int expenses = int.parse(expensesRaw);
+                                  int newExpense = int.parse(expenseAmount);
+                                  int newAmount = expenses + newExpense;
+                                  Map _updatedExpenses = Map<String, String>();
+                                  _updatedExpenses['projectExpenses'] =
+                                      newAmount.toString();
+
+                                  //Updating the expenses field in the current project
+                                  Firestore.instance.runTransaction(
+                                      (transactionHandler) async {
+                                    await transactionHandler
+                                        .get(onValue.documents[0].reference);
+                                    await transactionHandler.update(
+                                        onValue.documents[0].reference,
+                                        _updatedExpenses);
+                                  }).catchError((onError) {
+                                    popUpInfo(context, "Error",
+                                        "Failed to add expense amount to the project. Check your network connection and try again\nError Code: 7SDFKYHVB");
+                                  });
                                 }).catchError((onError) {
                                   popUpInfo(context, "Error",
-                                      "Failed to add expense amount to the project. Check your network connection and try again\nError Code: 7SDFKYHVB");
+                                      "Failed to add expense amount to the project. Check your network connection and try again");
                                 });
-                              }).catchError((onError) {
-                                popUpInfo(context, "Error",
-                                    "Failed to add expense amount to the project. Check your network connection and try again");
-                              });
+                              }
                             });
                           });
                         }).catchError((onError) {
