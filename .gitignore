@@ -1,0 +1,5 @@
+build/
+.package
+.idea
+android/
+ios/
