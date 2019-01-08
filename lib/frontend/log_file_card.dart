@@ -30,9 +30,9 @@ class LogCardState extends State<LogCard> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.blueGrey.shade900,
+        backgroundColor: Colors.black87,
         appBar: AppBar(
-          backgroundColor: Colors.green.shade500,
+          backgroundColor: Color.fromARGB(255, 140, 188, 63),
           title: Text("Project Log"),
           leading: IconButton(
             icon: Icon(Icons.menu),
@@ -61,11 +61,11 @@ Widget _buildBody(BuildContext context, Log log) {
           subtitle: Text(log.projectClient),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Chip(
               avatar: CircleAvatar(
-                backgroundColor: Colors.grey.shade800,
+                backgroundColor: Colors.black87,
                 child: Text('FM'),
               ),
               label: Text(log.projectForeman),
