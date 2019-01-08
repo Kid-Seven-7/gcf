@@ -1,10 +1,15 @@
+import 'loading.dart';
+import 'add_user.dart';
+import 'home_page.dart';
+import 'alert_popups.dart';
+import '../backend/login_engine.dart';
+import 'package:dbcrypt/dbcrypt.dart';
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
-import '../backend/login_engine.dart';
-import '../backend/database_engine.dart';
-import 'package:dbcrypt/dbcrypt.dart';
-import 'add_user.dart';
-import 'alert_popups.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+final storage = new FlutterSecureStorage();
+LoginEngine loginEngine = new LoginEngine();
 
 class LoginPage extends StatefulWidget {
   @override
@@ -27,8 +32,6 @@ class LoginPageState extends State<LoginPage>
   final textPassword = new TextEditingController();
 
   DBCrypt dBCrypt = DBCrypt();
-  LoginEngine loginEngine = new LoginEngine();
-  DataBaseEngine dataBaseEngine = new DataBaseEngine();
 
   @override
   void dispose() {
@@ -89,8 +92,8 @@ class LoginPageState extends State<LoginPage>
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         new TextFormField(
-                          decoration: new InputDecoration(labelText: "Name"),
-                          keyboardType: TextInputType.text,
+                          decoration: new InputDecoration(labelText: "Number"),
+                          keyboardType: TextInputType.number,
                           controller: textName,
                         ),
                         new TextFormField(
@@ -123,12 +126,31 @@ class LoginPageState extends State<LoginPage>
                         new FlatButton(
                           color: Color.fromARGB(255, 140, 188, 63),
                           child: new Text("Login"),
-                          onPressed: () {
+                          onPressed: () async {
+                            String isFirstRun =
+                                await storage.read(key: "firstRun");
+                            if (isFirstRun == null) {
+                              LoginPopUp(context, "Initializing", "We are setting up your app since this is your first run. This may take a while. Please wait...");
+                            }
                             if (loginEngine.checkLogin(
                                 textName.text, textPassword.text)) {
-                              dataBaseEngine.checkUser(
-                                  textName.text, textPassword.text, context);
+                              loginEngine
+                                  .checkUser(
+                                      textName.text, textPassword.text, context)
+                                  .then((value) {
+                                if (value) {
+                                  Navigator.of(context).pushReplacement(
+                                    new MaterialPageRoute(
+                                        builder: (context) => HomeScreen()),
+                                  );
+                                } else {
+                                  Navigator.of(context).pop();
+                                  popUpInfo(context, "Error",
+                                      "Failed to login. Name or password is incorrect. Check your details then try again.");
+                                }
+                              }).catchError((onError) {});
                             } else {
+                              Navigator.of(context).pop();                              
                               popUpInfo(context, "Error",
                                   "Fields can't be empty!. Please put your login name and password.");
                             }
@@ -160,5 +182,25 @@ class LoginPageState extends State<LoginPage>
         ],
       ),
     );
+  }
+
+  void LoginPopUp(BuildContext context, String header, String message) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 5.0),
+            title: new Text(header),
+            content: new Text(message),
+            actions: <Widget>[
+              // new FlatButton(
+              //   child: new Text('Ok'),
+              //   onPressed: () {
+              //     Navigator.of(context).pop();
+              //   },
+              // ),
+            ],
+          );
+        });
   }
 }
