@@ -1,5 +1,5 @@
 build/
 .package
-.idea
+.idea/
 android/
 ios/
