@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'camera.dart';
 import 'home_page.dart';
 import 'alert_popups.dart';
@@ -6,9 +7,12 @@ import 'package:flutter/material.dart';
 import '../backend/system_padding.dart';
 import 'expenses_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../backend/database_engine.dart';
 
 BuildContext _context;
 Record _record;
+DataBaseEngine dataBaseEngine = new DataBaseEngine();
+Timer navTimer;
 
 class ProjectCard extends StatefulWidget {
   ProjectCard(Record record) {
@@ -38,6 +42,11 @@ class ProjectCardState extends State<ProjectCard> {
 
   ProjectCardState(Record record) {
     this.record = record;
+  }
+
+  void dispose() async{
+    super.dispose();
+    navTimer.cancel();
   }
 
   @override
@@ -392,7 +401,30 @@ Widget _buildBody(BuildContext context, Record record) {
                       ),
                     ),
                     onPressed: () {
-                      print("IT WORKS");
+                      Firestore.instance
+                          .collection("activeProjects")
+                          .reference()
+                          .where("projectID", isEqualTo: record.projectID)
+                          .getDocuments()
+                          .then((_onValue) {
+                            //Moving project from the active projects to the log
+                            var doc = _onValue.documents[0];
+                            dataBaseEngine.addData("log", doc.data);
+                            var docID = doc.documentID;
+
+                            //Deleting project from the activeProjects collection
+                            Firestore.instance.collection("activeProjects").document(docID).delete();
+                            popUpInfo(context, "Success", "Project has been closed successfully.");
+                            navTimer = Timer(Duration(seconds: 3), (){
+                              Navigator.of(context).pop();
+                              Navigator.of(context).pushReplacement(
+                                new MaterialPageRoute(builder: (context) => HomeScreen())
+                              );
+                            });
+                          })
+                          .catchError((onError) {
+                            popUpInfo(context, "Error", "Failed to close project. Please check your internet connection and try again.");
+                          });
                     },
                   )
                 ],
