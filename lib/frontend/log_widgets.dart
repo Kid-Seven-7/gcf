@@ -208,7 +208,7 @@ Widget logListTile(BuildContext context, String title, String subtitle,
 
   return ListTile(
     leading: Icon(icon),
-    isThreeLine: true,
+    isThreeLine: false,
     title: Text(
       title,
       style: TextStyle(fontWeight: FontWeight.bold),
