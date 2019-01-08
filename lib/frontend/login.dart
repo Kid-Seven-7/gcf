@@ -151,9 +151,6 @@ class LoginPageState extends State<LoginPage>
                                 }
                               }).catchError((onError) {});
                             } else {
-                              if (isFirstRun != null) {
-                                Navigator.of(context).pop();
-                              }
                               popUpInfo(context, "Error",
                                   "Fields can't be empty!. Please put your login name and password.");
                             }

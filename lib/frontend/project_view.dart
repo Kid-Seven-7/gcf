@@ -73,8 +73,8 @@ class ProjectCardState extends State<ProjectCard> {
                       onPressed: () {
                         Navigator.of(context).push(
                           new MaterialPageRoute(
-                              builder: (builder) =>
-                                  CameraPage(record.projectID, "expensesImages")),
+                              builder: (builder) => CameraPage(
+                                  record.projectID, "expensesImages")),
                         );
                       },
                     ),
@@ -124,7 +124,8 @@ class ProjectCardState extends State<ProjectCard> {
             if (index == 0) {
               Navigator.of(context).push(
                 new MaterialPageRoute(
-                    builder: (context) => ExpensesView(record.projectID, "expensesImages")),
+                    builder: (context) =>
+                        ExpensesView(record.projectID, "expensesImages")),
               );
             }
             if (index == 1) {
@@ -286,11 +287,13 @@ class ProjectCardState extends State<ProjectCard> {
 
 void selectedNav(String choice) {
   if (choice == "Add Site Image") {
-    Navigator.of(_context)
-        .push(new MaterialPageRoute(builder: (context) => CameraPage(_record.projectID, "projectImages")));
-  } else if (choice == "View Site Pictures"){
+    Navigator.of(_context).push(new MaterialPageRoute(
+        builder: (context) => CameraPage(_record.projectID, "projectImages")));
+  } else if (choice == "View Site Pictures") {
     Navigator.of(_context).push(
-      new MaterialPageRoute(builder: (context) => ExpensesView(_record.projectID, "projectImages")),
+      new MaterialPageRoute(
+          builder: (context) =>
+              ExpensesView(_record.projectID, "projectImages")),
     );
   }
 }
@@ -373,6 +376,29 @@ Widget _buildBody(BuildContext context, Record record) {
             style: textStyle,
           ),
           subtitle: Text(record.projectEndDate),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            ButtonTheme.bar(
+              child: ButtonBar(
+                children: <Widget>[
+                  RaisedButton(
+                    color: Colors.blueGrey.shade700,
+                    child: const Text(
+                      'Close Project',
+                      style: TextStyle(
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                    onPressed: () {
+                      print("IT WORKS");
+                    },
+                  )
+                ],
+              ),
+            )
+          ],
         ),
       ],
     ),
