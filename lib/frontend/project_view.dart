@@ -13,6 +13,7 @@ BuildContext _context;
 Record _record;
 DataBaseEngine dataBaseEngine = new DataBaseEngine();
 Timer navTimer;
+var projectDataRef;
 
 class ProjectCard extends StatefulWidget {
   ProjectCard(Record record) {
@@ -408,23 +409,14 @@ Widget _buildBody(BuildContext context, Record record) {
                           .getDocuments()
                           .then((_onValue) {
                         //Moving project from the active projects to the log
-                        var doc = _onValue.documents[0];
-                        dataBaseEngine.addData("log", doc.data);
-                        var docID = doc.documentID;
-
-                        //Deleting project from the activeProjects collection
-                        Firestore.instance
-                            .collection("activeProjects")
-                            .document(docID)
-                            .delete();
-                        popUpInfo(context, "Success",
-                            "Project has been closed successfully.");
-                        navTimer = Timer(Duration(seconds: 3), () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pushReplacement(
-                              new MaterialPageRoute(
-                                  builder: (context) => HomeScreen()));
-                        });
+                        projectDataRef = _onValue.documents[0];
+                        var docID = projectDataRef.documentID;
+                        confirmDialog(
+                            context,
+                            "Alert",
+                            "You're about to close the project (${record.projectName}). Continue?",
+                            docID,
+                            "move");
                       }).catchError((onError) {
                         popUpInfo(context, "Error",
                             "Failed to close project. Please check your internet connection and try again.");
@@ -447,15 +439,16 @@ Widget _buildBody(BuildContext context, Record record) {
                           .getDocuments()
                           .then((_onValue) {
                         //Referencing project to delete
-                        var doc = _onValue.documents[0];
-                        var docID = doc.documentID;
+                        projectDataRef = _onValue.documents[0];
+                        var docID = projectDataRef.documentID;
 
                         //Deleting project from the activeProjects collection
-                        deleteDialog(
+                        confirmDialog(
                             context,
                             "Alert",
                             "You're about to delete the project (${record.projectName}). Continue?",
-                            docID);
+                            docID,
+                            "delete");
                       }).catchError((onError) {
                         popUpInfo(context, "Error",
                             "Failed to delete project. Please check your internet connection and try again.");
@@ -472,8 +465,8 @@ Widget _buildBody(BuildContext context, Record record) {
   );
 }
 
-void deleteDialog(
-    BuildContext context, String header, String message, var docID) {
+void confirmDialog(BuildContext context, String header, String message,
+    var docID, String action) {
   showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -491,14 +484,25 @@ void deleteDialog(
             new FlatButton(
               child: new Text('Confirm'),
               onPressed: () {
-                Firestore.instance
-                    .collection("activeProjects")
-                    .document(docID)
-                    .delete()
-                    .catchError((onError) {});
+                if (action == "delete") {
+                  Firestore.instance
+                      .collection("activeProjects")
+                      .document(docID)
+                      .delete()
+                      .catchError((onError) {});
 
-                Navigator.of(context).pushReplacement(
-                    new MaterialPageRoute(builder: (context) => HomeScreen()));
+                  Navigator.of(context).pushReplacement(new MaterialPageRoute(
+                      builder: (context) => HomeScreen()));
+                } else if (action == "move") {
+                  dataBaseEngine.addData("log", projectDataRef.data);
+                  Firestore.instance
+                      .collection("activeProjects")
+                      .document(docID)
+                      .delete()
+                      .catchError((onError) {});
+                  Navigator.of(context).pushReplacement(new MaterialPageRoute(
+                      builder: (context) => HomeScreen()));
+                }
               },
             ),
           ],
