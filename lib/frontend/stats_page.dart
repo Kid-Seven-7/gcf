@@ -5,6 +5,9 @@ import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
 import 'package:gcf_projects_app/frontend/stats_widgets.dart';
 
 var stat = 1;
+int resTotal = 0;
+int comTotal = 0;
+int allTotal = 0;
 
 class StatsPage extends StatefulWidget {
   @override
@@ -27,8 +30,8 @@ class _StatsPageState extends State<StatsPage> {
           title: stat == 0
               ? Text("Commercial Statistics")
               : stat == 1
-              ? Text("Residential Statistics")
-              : Text("All Statistics"),
+                  ? Text("Residential Statistics")
+                  : Text("All Statistics"),
           leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _handleDrawer,
@@ -43,11 +46,11 @@ class _StatsPageState extends State<StatsPage> {
           fixedColor: Color.fromARGB(255, 140, 188, 63),
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Icon(Icons.assignment), title: Text('Commercial')),
+                icon: Icon(Icons.business), title: Text('Commercial')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.attach_money), title: Text('Residential')),
+                icon: Icon(Icons.home), title: Text('Residential')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.access_time), title: Text('All')),
+                icon: Icon(Icons.all_inclusive), title: Text('All')),
           ],
           onTap: (index) {
             logNav(context, index);
@@ -70,7 +73,6 @@ Widget _buildBody(BuildContext context) {
 
 Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
   return ListView(
-    padding: EdgeInsets.only(top: 20.0),
     children: snapshot.map((data) => buildNewCard(context, data)).toList(),
   );
 }
@@ -78,14 +80,20 @@ Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
 Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   Log log = Log.fromSnapshot(data);
 
+  debugPrint("total is $allTotal");
+
   return Padding(
       key: ValueKey(log.projectName),
-      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
+      padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
       child: stat == 0
-          ? commercialStatistics(context, log)
-          : stat == 1
-          ? residentialStatistics(context, log)
-          : allStatistics(context, log)
+      ? log.projectType == "Business"
+        ? commercialStatistics(context, log)
+        : null
+      : stat == 1
+      ? log.projectType == "Residential"
+        ? residentialStatistics(context, log)
+        : null
+      : allStatistics(context, log)
   );
 }
 
@@ -100,7 +108,6 @@ class Log {
   String projectStartDate;
   String projectBudget;
 
-  //TODO calculate time take cn
   DocumentReference reference;
 
   Log.fromMap(Map<String, dynamic> map, {this.reference})
