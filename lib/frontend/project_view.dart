@@ -44,7 +44,7 @@ class ProjectCardState extends State<ProjectCard> {
     this.record = record;
   }
 
-  void dispose() async{
+  void dispose() async {
     super.dispose();
     navTimer.cancel();
   }
@@ -407,24 +407,59 @@ Widget _buildBody(BuildContext context, Record record) {
                           .where("projectID", isEqualTo: record.projectID)
                           .getDocuments()
                           .then((_onValue) {
-                            //Moving project from the active projects to the log
-                            var doc = _onValue.documents[0];
-                            dataBaseEngine.addData("log", doc.data);
-                            var docID = doc.documentID;
+                        //Moving project from the active projects to the log
+                        var doc = _onValue.documents[0];
+                        dataBaseEngine.addData("log", doc.data);
+                        var docID = doc.documentID;
 
-                            //Deleting project from the activeProjects collection
-                            Firestore.instance.collection("activeProjects").document(docID).delete();
-                            popUpInfo(context, "Success", "Project has been closed successfully.");
-                            navTimer = Timer(Duration(seconds: 3), (){
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pushReplacement(
-                                new MaterialPageRoute(builder: (context) => HomeScreen())
-                              );
-                            });
-                          })
-                          .catchError((onError) {
-                            popUpInfo(context, "Error", "Failed to close project. Please check your internet connection and try again.");
-                          });
+                        //Deleting project from the activeProjects collection
+                        Firestore.instance
+                            .collection("activeProjects")
+                            .document(docID)
+                            .delete();
+                        popUpInfo(context, "Success",
+                            "Project has been closed successfully.");
+                        navTimer = Timer(Duration(seconds: 3), () {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pushReplacement(
+                              new MaterialPageRoute(
+                                  builder: (context) => HomeScreen()));
+                        });
+                      }).catchError((onError) {
+                        popUpInfo(context, "Error",
+                            "Failed to close project. Please check your internet connection and try again.");
+                      });
+                    },
+                  ),
+                  RaisedButton(
+                    color: Colors.blueGrey.shade700,
+                    child: const Text(
+                      'Delete Project',
+                      style: TextStyle(
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                    onPressed: () {
+                      Firestore.instance
+                          .collection("activeProjects")
+                          .reference()
+                          .where("projectID", isEqualTo: record.projectID)
+                          .getDocuments()
+                          .then((_onValue) {
+                        //Referencing project to delete
+                        var doc = _onValue.documents[0];
+                        var docID = doc.documentID;
+
+                        //Deleting project from the activeProjects collection
+                        deleteDialog(
+                            context,
+                            "Alert",
+                            "You're about to delete the project (${record.projectName}). Continue?",
+                            docID);
+                      }).catchError((onError) {
+                        popUpInfo(context, "Error",
+                            "Failed to delete project. Please check your internet connection and try again.");
+                      });
                     },
                   )
                 ],
@@ -435,6 +470,40 @@ Widget _buildBody(BuildContext context, Record record) {
       ],
     ),
   );
+}
+
+void deleteDialog(
+    BuildContext context, String header, String message, var docID) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 5.0),
+          title: new Text(header),
+          content: new Text(message),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text('Confirm'),
+              onPressed: () {
+                Firestore.instance
+                    .collection("activeProjects")
+                    .document(docID)
+                    .delete()
+                    .catchError((onError) {});
+
+                Navigator.of(context).pushReplacement(
+                    new MaterialPageRoute(builder: (context) => HomeScreen()));
+              },
+            ),
+          ],
+        );
+      });
 }
 
 void showTodoList(BuildContext context, String header, String list) {
