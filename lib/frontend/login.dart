@@ -130,8 +130,10 @@ class LoginPageState extends State<LoginPage>
                             String isFirstRun =
                                 await storage.read(key: "firstRun");
                             if (isFirstRun == null) {
-                              LoginPopUp(context, "Initializing", "We are setting up your app since this is your first run. This may take a while. Please wait...");
+                              LoginPopUp(context, "Initializing",
+                                  "We are setting up your app since this is your first run. This may take a while. Please wait...");
                             }
+                            
                             if (loginEngine.checkLogin(
                                 textName.text, textPassword.text)) {
                               loginEngine
@@ -144,13 +146,14 @@ class LoginPageState extends State<LoginPage>
                                         builder: (context) => HomeScreen()),
                                   );
                                 } else {
-                                  Navigator.of(context).pop();
                                   popUpInfo(context, "Error",
                                       "Failed to login. Name or password is incorrect. Check your details then try again.");
                                 }
                               }).catchError((onError) {});
                             } else {
-                              Navigator.of(context).pop();                              
+                              if (isFirstRun != null) {
+                                Navigator.of(context).pop();
+                              }
                               popUpInfo(context, "Error",
                                   "Fields can't be empty!. Please put your login name and password.");
                             }
@@ -183,24 +186,24 @@ class LoginPageState extends State<LoginPage>
       ),
     );
   }
+}
 
-  void LoginPopUp(BuildContext context, String header, String message) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            contentPadding: EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 5.0),
-            title: new Text(header),
-            content: new Text(message),
-            actions: <Widget>[
-              // new FlatButton(
-              //   child: new Text('Ok'),
-              //   onPressed: () {
-              //     Navigator.of(context).pop();
-              //   },
-              // ),
-            ],
-          );
-        });
-  }
+void LoginPopUp(BuildContext context, String header, String message) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 5.0),
+          title: new Text(header),
+          content: new Text(message),
+          actions: <Widget>[
+            // new FlatButton(
+            //   child: new Text('Ok'),
+            //   onPressed: () {
+            //     Navigator.of(context).pop();
+            //   },
+            // ),
+          ],
+        );
+      });
 }

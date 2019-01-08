@@ -1,9 +1,9 @@
-// import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dbcrypt/dbcrypt.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import '../frontend/login.dart';
 
 final storage = new FlutterSecureStorage();
 DBCrypt dBCrypt = DBCrypt();
@@ -11,14 +11,21 @@ Firestore firestore = Firestore();
 int amount = 0;
 bool checkComplete = false;
 
-Future<bool> checkDetails(String password, String dataPassword) async {
+Future<bool> checkDetails(BuildContext context, String password,
+    String dataPassword, String _number) async {
   String _password =
       await storage.read(key: "password").catchError((onError) {});
+  String _numberKeyStore =
+      await storage.read(key: "_number").catchError((onError) {});
 
   if (_password != null) {
     if (_password == password) {
       return true;
     }
+  }
+  if (_numberKeyStore != null && _numberKeyStore != _number) {
+    LoginPopUp(context, "Initializing",
+        "We are setting up your account. This may take a while. Please wait...");
   }
 
   if (dBCrypt.checkpw(password, dataPassword)) {
@@ -26,6 +33,7 @@ Future<bool> checkDetails(String password, String dataPassword) async {
         .write(key: "password", value: password)
         .catchError((onError) {});
     storage.write(key: "firstRun", value: "complete").catchError((onError) {});
+    storage.write(key: "_number", value: _number).catchError((onError) {});
 
     return true;
   } else {
@@ -62,7 +70,8 @@ class LoginEngine {
       String dataPassword = _dbData['password'];
       if (dataPassword != null) {
         //check password if is correct
-        await checkDetails(password, dataPassword).then((onValue) async {
+        await checkDetails(context, password, dataPassword, _number)
+            .then((onValue) async {
           if (onValue == true) {
             isCorrect = true;
             //Initialize Values
