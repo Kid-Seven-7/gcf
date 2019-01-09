@@ -9,11 +9,27 @@ int resTotal = 0;
 int comTotal = 0;
 int allTotal = 0;
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 class StatsPage extends StatefulWidget {
   @override
   _StatsPageState createState() => new _StatsPageState();
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 class _StatsPageState extends State<StatsPage> {
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
   _handleDrawer() {
@@ -60,6 +76,14 @@ class _StatsPageState extends State<StatsPage> {
   }
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget _buildBody(BuildContext context) {
   return StreamBuilder<QuerySnapshot>(
     stream: Firestore.instance.collection('log').snapshots(),
@@ -71,12 +95,28 @@ Widget _buildBody(BuildContext context) {
   );
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
   return ListView(
     children: snapshot.map((data) => buildNewCard(context, data)).toList(),
   );
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   Log log = Log.fromSnapshot(data);
 
@@ -97,6 +137,14 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   );
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 class Log {
   String projectName;
   String projectForeman;
@@ -134,6 +182,14 @@ class Log {
       : this.fromMap(snapshot.data, reference: snapshot.reference);
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 void logNav(BuildContext context, int index) {
   if (index == 0) {
     if (stat != 0) {
