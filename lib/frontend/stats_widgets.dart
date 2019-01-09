@@ -3,8 +3,16 @@ import 'package:intl/intl.dart';
 
 import 'package:gcf_projects_app/frontend/stats_page.dart';
 
-final oCcy = new NumberFormat("#,##0.00", "en_US");
+final numberFormat = new NumberFormat("#,##0.00", "en_US");
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget newCard(BuildContext context) {
   // ran = 1;
   return Container(
@@ -16,7 +24,7 @@ Widget newCard(BuildContext context) {
         logListTile(
             context,
             "Total", //Tile title
-            "Budget : R"+oCcy.format(comTotal), //Tile subtitle
+            "Budget : R"+numberFormat.format(comTotal), //Tile subtitle
             Icons.library_books //Tile icon
             ),
       ],
@@ -44,7 +52,7 @@ Widget commercialStatistics(BuildContext context, Log log) {
         logListTile(
             context,
             log.projectName, //Tile title
-            "Budget : R" + oCcy.format(int.parse(log.projectBudget)), //Tile subtitle
+            "Budget : R" + numberFormat.format(int.parse(log.projectBudget)), //Tile subtitle
             Icons.library_books //Tile icon
             ),
       ],
@@ -72,7 +80,7 @@ Widget residentialStatistics(BuildContext context, Log log) {
         logListTile(
             context,
             log.projectName, //Tile title
-            "Budget : R" + oCcy.format(int.parse(log.projectBudget)), //Tile subtitle
+            "Budget : R" + numberFormat.format(int.parse(log.projectBudget)), //Tile subtitle
             Icons.library_books //Tile icon
             ),
       ],
@@ -99,8 +107,8 @@ Widget allStatistics(BuildContext context, Log log) {
         logListTile(
             context,
             log.projectName, //Tile title
-            "Budget : R" + oCcy.format(int.parse(log.projectBudget)), //Tile subtitle
-            log.projectType == "Business" 
+            "Budget : R" + numberFormat.format(int.parse(log.projectBudget)), //Tile subtitle
+            log.projectType == "Business"
             ? Icons.business //Tile icon
             : Icons.home //Tile icon
             ),
