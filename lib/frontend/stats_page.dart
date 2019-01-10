@@ -2,12 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
-import 'package:gcf_projects_app/frontend/stats_widgets.dart';
+import 'stats_widgets.dart';
 
 var stat = 1;
-int resTotal = 0;
-int comTotal = 0;
-int allTotal = 0;
 
 /*
   Parameter:
@@ -20,6 +17,10 @@ int allTotal = 0;
 class StatsPage extends StatefulWidget {
   @override
   _StatsPageState createState() => new _StatsPageState();
+}
+
+void showTotal(BuildContext context){
+  totalCard(context, 4);
 }
 
 /*
@@ -57,6 +58,10 @@ class _StatsPageState extends State<StatsPage> {
           ],
         ),
         body: _buildBody(context),
+        floatingActionButton: new FloatingActionButton(
+        onPressed: showTotal(context),
+        child: new Icon(Icons.monetization_on),
+      ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: stat,
           fixedColor: Color.fromARGB(255, 140, 188, 63),
@@ -119,9 +124,6 @@ Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
 */
 Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   Log log = Log.fromSnapshot(data);
-
-  debugPrint("total is $allTotal");
-
   return Padding(
       key: ValueKey(log.projectName),
       padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
@@ -194,18 +196,24 @@ void logNav(BuildContext context, int index) {
   if (index == 0) {
     if (stat != 0) {
       stat = 0;
+      comTotal = 0;
+        debugPrint("com tot is $comTotal");
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => StatsPage()));
     }
   } else if (index == 1) {
     if (stat != 1) {
       stat = 1;
+      resTotal = 0;
+        debugPrint("resTotal is $resTotal");
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => StatsPage()));
     }
   } else if (index == 2) {
     if (stat != 2) {
       stat = 2;
+      allTotal = 0;
+        debugPrint("allTotal is $allTotal");
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => StatsPage()));
     }

@@ -4,17 +4,11 @@ import 'package:intl/intl.dart';
 import 'package:gcf_projects_app/frontend/stats_page.dart';
 
 final numberFormat = new NumberFormat("#,##0.00", "en_US");
+int comTotal = -1;
+int resTotal = -1;
+int allTotal = -1;
 
-/*
-  Parameter:
-
-  Function:
-
-  Return:
-
-*/
-Widget newCard(BuildContext context) {
-  // ran = 1;
+Widget totalCard(BuildContext context, int val) {
   return Container(
       child: Card(
     child: Column(
@@ -23,8 +17,8 @@ Widget newCard(BuildContext context) {
       children: <Widget>[
         logListTile(
             context,
-            "Total", //Tile title
-            "Budget : R"+numberFormat.format(comTotal), //Tile subtitle
+            "abc", //Tile title
+            "Budget : R", //Tile subtitle
             Icons.library_books //Tile icon
             ),
       ],
@@ -42,7 +36,8 @@ Widget newCard(BuildContext context) {
 */
 Widget commercialStatistics(BuildContext context, Log log) {
   comTotal += int.parse(log.projectBudget);
-  allTotal += int.parse(log.projectBudget);
+  debugPrint("comTotal is $comTotal");
+  // allTotal += int.parse(log.projectBudget);
   return Container(
       child: Card(
     child: Column(
@@ -70,7 +65,8 @@ Widget commercialStatistics(BuildContext context, Log log) {
 */
 Widget residentialStatistics(BuildContext context, Log log) {
   resTotal += int.parse(log.projectBudget);
-  allTotal += int.parse(log.projectBudget);
+  debugPrint("resTotal is $resTotal");
+  // allTotal += int.parse(log.projectBudget);
   return Container(
       child: Card(
     child: Column(
@@ -98,6 +94,7 @@ Widget residentialStatistics(BuildContext context, Log log) {
 */
 Widget allStatistics(BuildContext context, Log log) {
   allTotal += int.parse(log.projectBudget);
+  debugPrint("allTotal is $allTotal");
   return Container(
       child: Card(
     child: Column(
