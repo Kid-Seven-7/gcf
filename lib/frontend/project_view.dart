@@ -1,13 +1,13 @@
-import 'dart:async';
-import 'camera.dart';
-import 'home_page.dart';
-import 'alert_popups.dart';
-import 'burger_menu_drawer.dart';
-import 'package:flutter/material.dart';
-import '../backend/system_padding.dart';
-import 'expenses_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'dart:async';
 import '../backend/database_engine.dart';
+import 'package:gcf_projects_app/frontend/camera.dart';
+import 'package:gcf_projects_app/frontend/home_page.dart';
+import 'package:gcf_projects_app/frontend/alert_popups.dart';
+import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
+import 'package:gcf_projects_app/backend/system_padding.dart';
+import 'package:gcf_projects_app/frontend/expenses_view.dart';
 
 BuildContext _context;
 Record _record;

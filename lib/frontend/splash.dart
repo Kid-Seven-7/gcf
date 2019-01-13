@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gcf_projects_app/backend/globals.dart';
 import 'dart:async';
-import 'login.dart';
 import 'dart:io';
-import 'alert_popups.dart';
-import 'home_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import 'package:gcf_projects_app/frontend/login.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
+import 'package:gcf_projects_app/frontend/alert_popups.dart';
+import 'package:gcf_projects_app/frontend/home_page.dart';
 
 String status = "";
 bool connected = false;

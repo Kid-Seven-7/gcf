@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'log_page.dart';
+import 'package:gcf_projects_app/frontend/log_page.dart';
 
 /*
   Parameter:
@@ -101,7 +101,7 @@ Widget budgetInfo(BuildContext context, Log log) {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      Text("Profit \n" + getProfit(log).toString()+"% \nof budget\n"),
+                      Text("Profit \n" + getProfit(log).toStringAsFixed(2)+"% \nof budget\n"),
                       CircularProgressIndicator(
                         value: getProfit(log)/100,
                       ),
@@ -118,7 +118,7 @@ Widget budgetInfo(BuildContext context, Log log) {
                   ),
                   Column(
                     children: <Widget>[
-                      Text("Expenses \n" + getExpenses(log).toString()+"% \nof budget\n"),
+                      Text("Expenses \n" + getExpenses(log).toStringAsFixed(2)+"% \nof budget\n"),
                       CircularProgressIndicator(
                         value: getExpenses(log)/100,
                       ),
@@ -208,7 +208,7 @@ Widget logListTile(BuildContext context, String title, String subtitle,
 
   return ListTile(
     leading: Icon(icon),
-    isThreeLine: true,
+    isThreeLine: false,
     title: Text(
       title,
       style: TextStyle(fontWeight: FontWeight.bold),

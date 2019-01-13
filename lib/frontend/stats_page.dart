@@ -2,16 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
-import 'package:gcf_projects_app/frontend/log_widgets.dart';
+import 'package:gcf_projects_app/frontend/stats_widgets.dart';
 
 var stat = 1;
+int resTotal = 0;
+int comTotal = 0;
+int allTotal = 0;
 
-class LogPage extends StatefulWidget {
+class StatsPage extends StatefulWidget {
   @override
-  _LogPageState createState() => new _LogPageState();
+  _StatsPageState createState() => new _StatsPageState();
 }
 
-class _LogPageState extends State<LogPage> {
+class _StatsPageState extends State<StatsPage> {
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
   _handleDrawer() {
     _key.currentState.openDrawer();
@@ -25,10 +28,10 @@ class _LogPageState extends State<LogPage> {
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 140, 188, 63),
           title: stat == 0
-              ? Text("General Information")
+              ? Text("Commercial Statistics")
               : stat == 1
-                  ? Text("Budget Information")
-                  : Text("Time Information"),
+                  ? Text("Residential Statistics")
+                  : Text("All Statistics"),
           leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _handleDrawer,
@@ -43,11 +46,11 @@ class _LogPageState extends State<LogPage> {
           fixedColor: Color.fromARGB(255, 140, 188, 63),
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Icon(Icons.assignment), title: Text('General')),
+                icon: Icon(Icons.business), title: Text('Commercial')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.attach_money), title: Text('Budget')),
+                icon: Icon(Icons.home), title: Text('Residential')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.access_time), title: Text('Time')),
+                icon: Icon(Icons.all_inclusive), title: Text('All')),
           ],
           onTap: (index) {
             logNav(context, index);
@@ -70,7 +73,6 @@ Widget _buildBody(BuildContext context) {
 
 Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
   return ListView(
-    padding: EdgeInsets.only(top: 20.0),
     children: snapshot.map((data) => buildNewCard(context, data)).toList(),
   );
 }
@@ -78,14 +80,20 @@ Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
 Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   Log log = Log.fromSnapshot(data);
 
+  debugPrint("total is $allTotal");
+
   return Padding(
       key: ValueKey(log.projectName),
-      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
+      padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
       child: stat == 0
-          ? generalInfo(context, log)
-          : stat == 1
-          ? budgetInfo(context, log)
-          : timeInfo(context, log)
+      ? log.projectType == "Business"
+        ? commercialStatistics(context, log)
+        : null
+      : stat == 1
+      ? log.projectType == "Residential"
+        ? residentialStatistics(context, log)
+        : null
+      : allStatistics(context, log)
   );
 }
 
@@ -100,7 +108,6 @@ class Log {
   String projectStartDate;
   String projectBudget;
 
-  //TODO calculate time take cn
   DocumentReference reference;
 
   Log.fromMap(Map<String, dynamic> map, {this.reference})
@@ -132,19 +139,19 @@ void logNav(BuildContext context, int index) {
     if (stat != 0) {
       stat = 0;
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => LogPage()));
+          new MaterialPageRoute(builder: (context) => StatsPage()));
     }
   } else if (index == 1) {
     if (stat != 1) {
       stat = 1;
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => LogPage()));
+          new MaterialPageRoute(builder: (context) => StatsPage()));
     }
   } else if (index == 2) {
     if (stat != 2) {
       stat = 2;
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => LogPage()));
+          new MaterialPageRoute(builder: (context) => StatsPage()));
     }
   }
 }

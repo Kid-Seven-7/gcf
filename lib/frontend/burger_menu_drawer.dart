@@ -1,12 +1,15 @@
-import 'splash.dart';
-import 'log_page.dart';
-import 'home_page.dart';
-import 'manage_users.dart';
-import 'notifications.dart';
-import 'package:flutter/material.dart';
-import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
+import 'package:gcf_projects_app/frontend/splash.dart';
+import 'package:gcf_projects_app/frontend/log_page.dart';
+import 'package:gcf_projects_app/frontend/stats_page.dart';
+import 'package:gcf_projects_app/frontend/home_page.dart';
+import 'package:gcf_projects_app/frontend/manage_users.dart';
+import 'package:gcf_projects_app/frontend/notifications.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
+
 
 final storage = new FlutterSecureStorage();
 Firestore firestore = new Firestore();
@@ -114,7 +117,9 @@ class OpenDrawer extends StatelessWidget {
             'Statistics',
             style: _navMenuText,
           ),
-          onTap: () {},
+          onTap: () {
+            openpage(context, "Stats");
+          },
         ),
         ListTile(
           leading: Icon(Icons.rate_review),
@@ -195,6 +200,15 @@ void openpage(BuildContext context, String page) {
       currentPage = "Log";
       Navigator.push(
           context, new MaterialPageRoute(builder: (context) => LogPage()));
+    } else {
+      Navigator.pop(context);
+    }
+  }
+  if (page == "Stats") {
+    if (currentPage != "Stats") {
+      currentPage = "Stats";
+      Navigator.push(
+          context, new MaterialPageRoute(builder: (context) => StatsPage()));
     } else {
       Navigator.pop(context);
     }
