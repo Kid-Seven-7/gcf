@@ -4,12 +4,20 @@ import 'package:dbcrypt/dbcrypt.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../frontend/login.dart';
+import 'package:flutter/foundation.dart';
 
 final storage = new FlutterSecureStorage();
 DBCrypt dBCrypt = DBCrypt();
 Firestore firestore = Firestore();
 int amount = 0;
 bool checkComplete = false;
+
+bool checkPassword(Map<String, String> passData) {
+  String _password = passData['password'];
+  String _dataPassword = passData['dataPassword'];
+
+  return dBCrypt.checkpw(_password, _dataPassword);
+}
 
 Future<bool> checkDetails(BuildContext context, String password,
     String dataPassword, String _number) async {
@@ -23,12 +31,14 @@ Future<bool> checkDetails(BuildContext context, String password,
       return true;
     }
   }
-  if (_numberKeyStore != null && _numberKeyStore != _number) {
-    LoginPopUp(context, "Initializing",
-        "We are setting up your account. This may take a while. Please wait...");
-  }
 
-  if (dBCrypt.checkpw(password, dataPassword)) {
+  Map<String, String> passData = new Map<String, String>();
+  passData['password'] = password;
+  passData['dataPassword'] = dataPassword;
+
+  bool isPasswordCorrect = await compute(checkPassword, passData);
+
+  if (isPasswordCorrect) {
     await storage
         .write(key: "password", value: password)
         .catchError((onError) {});

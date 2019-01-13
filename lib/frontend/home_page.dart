@@ -24,43 +24,46 @@ class _HomeScreenState extends State<HomeScreen> {
     Firestore.instance.collection("notifications").getDocuments().then((value) {
       notifications = value.documents.length;
     }).catchError((onError) {});
-    return Scaffold(
-        key: _key,
-        backgroundColor: Colors.blueGrey.shade900,
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 140, 188, 63),
-          title: Text("Dashboard"),
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: _handleDrawer,
-          ),
-          actions: <Widget>[
-            Image.asset('assets/images/gcf_white.png'),
-          ],
-        ),
-        body: _buildBody(context),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: currentIndex_,
-          fixedColor: Color.fromARGB(255, 140, 188, 63),
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                backgroundColor: Colors.black,
-                icon: Icon(Icons.rate_review),
-                title: Text('View Report')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.timeline), title: Text('View Statistics')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.add), title: Text('Add project')),
-          ],
-          onTap: (index) {
-            print("Index: $currentIndex_");
-            onItemTapped(context, index);
-            setState(() {
-              currentIndex_ = index;
-            });
-          },
-        ),
-        drawer: OpenDrawer());
+
+    return WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+            key: _key,
+            backgroundColor: Colors.blueGrey.shade900,
+            appBar: AppBar(
+              backgroundColor: Color.fromARGB(255, 140, 188, 63),
+              title: Text("Dashboard"),
+              leading: IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: _handleDrawer,
+              ),
+              actions: <Widget>[
+                Image.asset('assets/images/gcf_white.png'),
+              ],
+            ),
+            body: _buildBody(context),
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: currentIndex_,
+              fixedColor: Color.fromARGB(255, 140, 188, 63),
+              items: <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                    backgroundColor: Colors.black,
+                    icon: Icon(Icons.rate_review),
+                    title: Text('View Report')),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.timeline), title: Text('View Statistics')),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.add), title: Text('Add project')),
+              ],
+              onTap: (index) {
+                print("Index: $currentIndex_");
+                onItemTapped(context, index);
+                setState(() {
+                  currentIndex_ = index;
+                });
+              },
+            ),
+            drawer: OpenDrawer()));
   }
 }
 
@@ -97,7 +100,7 @@ void onItemTapped(BuildContext context, int index) {
 
 Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   Record record = Record.fromSnapshot(data);
-  
+
   if ((record.projectForeman == userName) || (isAdmin == true)) {
     return Padding(
       key: ValueKey(record.projectName),
@@ -170,7 +173,6 @@ class Record {
       projectTodo,
       projectID,
       projectExpenses;
-
 
   DocumentReference reference;
 
