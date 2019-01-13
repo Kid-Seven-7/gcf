@@ -154,7 +154,10 @@ class LoginPageState extends State<LoginPage>
                                 textName.text, textPassword.text)) {
                               Navigator.of(context).push(
                                 new MaterialPageRoute(builder: (context) {
-                                  return modal;
+                                  eturn WillPopScope(
+                                    onWillPop: () async => false,
+                                    child: modal,
+                                  );
                                 }),
                               );
 
