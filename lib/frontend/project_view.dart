@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:async';
+import '../backend/database_engine.dart';
 import 'package:gcf_projects_app/frontend/camera.dart';
 import 'package:gcf_projects_app/frontend/home_page.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
@@ -10,6 +11,9 @@ import 'package:gcf_projects_app/frontend/expenses_view.dart';
 
 BuildContext _context;
 Record _record;
+DataBaseEngine dataBaseEngine = new DataBaseEngine();
+Timer navTimer;
+var projectDataRef;
 
 class ProjectCard extends StatefulWidget {
   ProjectCard(Record record) {
@@ -39,6 +43,11 @@ class ProjectCardState extends State<ProjectCard> {
 
   ProjectCardState(Record record) {
     this.record = record;
+  }
+
+  void dispose() async {
+    super.dispose();
+    navTimer.cancel();
   }
 
   @override
@@ -74,8 +83,8 @@ class ProjectCardState extends State<ProjectCard> {
                       onPressed: () {
                         Navigator.of(context).push(
                           new MaterialPageRoute(
-                              builder: (builder) =>
-                                  CameraPage(record.projectID, "expensesImages")),
+                              builder: (builder) => CameraPage(
+                                  record.projectID, "expensesImages")),
                         );
                       },
                     ),
@@ -125,7 +134,8 @@ class ProjectCardState extends State<ProjectCard> {
             if (index == 0) {
               Navigator.of(context).push(
                 new MaterialPageRoute(
-                    builder: (context) => ExpensesView(record.projectID, "expensesImages")),
+                    builder: (context) =>
+                        ExpensesView(record.projectID, "expensesImages")),
               );
             }
             if (index == 1) {
@@ -287,11 +297,13 @@ class ProjectCardState extends State<ProjectCard> {
 
 void selectedNav(String choice) {
   if (choice == "Add Site Image") {
-    Navigator.of(_context)
-        .push(new MaterialPageRoute(builder: (context) => CameraPage(_record.projectID, "projectImages")));
-  } else if (choice == "View Site Pictures"){
+    Navigator.of(_context).push(new MaterialPageRoute(
+        builder: (context) => CameraPage(_record.projectID, "projectImages")));
+  } else if (choice == "View Site Pictures") {
     Navigator.of(_context).push(
-      new MaterialPageRoute(builder: (context) => ExpensesView(_record.projectID, "projectImages")),
+      new MaterialPageRoute(
+          builder: (context) =>
+              ExpensesView(_record.projectID, "projectImages")),
     );
   }
 }
@@ -375,9 +387,127 @@ Widget _buildBody(BuildContext context, Record record) {
           ),
           subtitle: Text(record.projectEndDate),
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            ButtonTheme.bar(
+              child: ButtonBar(
+                children: <Widget>[
+                  RaisedButton(
+                    color: Colors.blueGrey.shade700,
+                    child: const Text(
+                      'Close Project',
+                      style: TextStyle(
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                    onPressed: () {
+                      Firestore.instance
+                          .collection("activeProjects")
+                          .reference()
+                          .where("projectID", isEqualTo: record.projectID)
+                          .getDocuments()
+                          .then((_onValue) {
+                        //Moving project from the active projects to the log
+                        projectDataRef = _onValue.documents[0];
+                        var docID = projectDataRef.documentID;
+                        confirmDialog(
+                            context,
+                            "Alert",
+                            "You're about to close the project (${record.projectName}). Continue?",
+                            docID,
+                            "move");
+                      }).catchError((onError) {
+                        popUpInfo(context, "Error",
+                            "Failed to close project. Please check your internet connection and try again.");
+                      });
+                    },
+                  ),
+                  RaisedButton(
+                    color: Colors.blueGrey.shade700,
+                    child: const Text(
+                      'Delete Project',
+                      style: TextStyle(
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                    onPressed: () {
+                      Firestore.instance
+                          .collection("activeProjects")
+                          .reference()
+                          .where("projectID", isEqualTo: record.projectID)
+                          .getDocuments()
+                          .then((_onValue) {
+                        //Referencing project to delete
+                        projectDataRef = _onValue.documents[0];
+                        var docID = projectDataRef.documentID;
+
+                        //Deleting project from the activeProjects collection
+                        confirmDialog(
+                            context,
+                            "Alert",
+                            "You're about to delete the project (${record.projectName}). Continue?",
+                            docID,
+                            "delete");
+                      }).catchError((onError) {
+                        popUpInfo(context, "Error",
+                            "Failed to delete project. Please check your internet connection and try again.");
+                      });
+                    },
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ],
     ),
   );
+}
+
+void confirmDialog(BuildContext context, String header, String message,
+    var docID, String action) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 5.0),
+          title: new Text(header),
+          content: new Text(message),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text('Confirm'),
+              onPressed: () {
+                if (action == "delete") {
+                  Firestore.instance
+                      .collection("activeProjects")
+                      .document(docID)
+                      .delete()
+                      .catchError((onError) {});
+
+                  Navigator.of(context).pushReplacement(new MaterialPageRoute(
+                      builder: (context) => HomeScreen()));
+                } else if (action == "move") {
+                  dataBaseEngine.addData("log", projectDataRef.data);
+                  Firestore.instance
+                      .collection("activeProjects")
+                      .document(docID)
+                      .delete()
+                      .catchError((onError) {});
+                  Navigator.of(context).pushReplacement(new MaterialPageRoute(
+                      builder: (context) => HomeScreen()));
+                }
+              },
+            ),
+          ],
+        );
+      });
 }
 
 void showTodoList(BuildContext context, String header, String list) {

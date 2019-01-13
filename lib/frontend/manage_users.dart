@@ -137,13 +137,6 @@ class _ManageUsersState extends State<ManageUsers> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        // Chip(
-                        //   avatar: CircleAvatar(
-                        //     backgroundColor: Colors.grey.shade800,
-                        //     child: Text(''),
-                        //   ),
-                        //   // label: Text(record.projectForeman),
-                        // ),
                         ButtonTheme.bar(
                           child: ButtonBar(
                             children: <Widget>[

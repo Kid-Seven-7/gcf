@@ -163,6 +163,9 @@ class OpenDrawer extends StatelessWidget {
             style: _navMenuText,
           ),
           onTap: () async {
+            await storage.delete(key: "_number").catchError((onError){});
+            await storage.delete(key: "password").catchError((onError){});
+            await storage.delete(key: "firstRun");
             await storage.delete(key: "name").catchError((onError){});
             await storage.delete(key: "role").catchError((onError){});
             await storage.delete(key: "rememberMe").catchError((onError){});
