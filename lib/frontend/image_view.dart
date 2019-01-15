@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 
 String _image = "";
 
@@ -21,9 +22,9 @@ class _ImageViewState extends State<ImageView> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.blueGrey.shade900,
+        backgroundColor: gcfBG,
         appBar: AppBar(
-          backgroundColor: Colors.green.shade500,
+          backgroundColor: gcfGreen,
           title: Text("Image View"),
           leading: IconButton(
             icon: Icon(Icons.menu),
@@ -44,9 +45,9 @@ class _ImageViewState extends State<ImageView> {
           children: <Widget>[
             new Card(
               shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.green.shade500, width: 10),
+                  side: BorderSide(color: gcfGreen, width: 10),
                   borderRadius: BorderRadius.circular(20)),
-              color: Colors.blueGrey.shade900,
+              color: gcfBG,
               elevation: 4,
               child: Padding(
                 padding: EdgeInsets.all(10),
