@@ -8,11 +8,11 @@ var stat = 1;
 
 /*
   Parameter:
-    void
+
   Function:
-    LogPage class implementation
+
   Return:
-    void
+
 */
 class LogPage extends StatefulWidget {
   @override
@@ -21,11 +21,11 @@ class LogPage extends StatefulWidget {
 
 /*
   Parameter:
-    void
+
   Function:
-    _LogPageState class implementation
+
   Return:
-    void
+
 */
 class _LogPageState extends State<LogPage> {
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
@@ -43,8 +43,8 @@ class _LogPageState extends State<LogPage> {
           title: stat == 0
               ? Text("General Information")
               : stat == 1
-                  ? Text("Budget Information")
-                  : Text("Time Information"),
+              ? Text("Budget Information")
+              : Text("Time Information"),
           leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _handleDrawer,
@@ -75,11 +75,11 @@ class _LogPageState extends State<LogPage> {
 
 /*
   Parameter:
-    BuildContext context
+
   Function:
-    Creates a StreamBuilder
+
   Return:
-    StreamBuilder<QuerySnapshot> (widget)
+
 */
 Widget _buildBody(BuildContext context) {
   return StreamBuilder<QuerySnapshot>(
@@ -94,12 +94,11 @@ Widget _buildBody(BuildContext context) {
 
 /*
   Parameter:
-    BuildContext context,
-    List<DocumentSnapshot> snapshot
+
   Function:
-    Creates a ListView with Padding children
+
   Return:
-    ListView (widget)
+
 */
 Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
   return ListView(
@@ -110,14 +109,11 @@ Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
 
 /*
   Parameter:
-    BuildContext context,
-    DocumentSnapshot data
+
   Function:
-    Creates a padding widget with a Container child.
-    The content of the Container child is determined by the
-    value of stat
+
   Return:
-    Padding (widget)
+
 */
 Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   Log log = Log.fromSnapshot(data);
@@ -135,11 +131,11 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
 
 /*
   Parameter:
-    void
+
   Function:
-    The Log class implementation
+
   Return:
-    void
+
 */
 class Log {
   String projectName;
@@ -152,6 +148,7 @@ class Log {
   String projectStartDate;
   String projectBudget;
 
+  //TODO calculate time take cn
   DocumentReference reference;
 
   Log.fromMap(Map<String, dynamic> map, {this.reference})
@@ -180,14 +177,11 @@ class Log {
 
 /*
   Parameter:
-    BuildContext context,
-    int index
+
   Function:
-    Changes the value of 'stat' ,based on the value of index,
-    which determines which widget to display as well as the currentIndex of
-    the bottomNavigationBar
+
   Return:
-    void
+
 */
 void logNav(BuildContext context, int index) {
   if (index == 0) {

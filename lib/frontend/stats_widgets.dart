@@ -1,30 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'package:gcf_projects_app/frontend/stats_page.dart';
-
-final numberFormat = new NumberFormat("#,##0.00", "en_US");
-int comTotal = -1;
-int resTotal = -1;
-int allTotal = -1;
-
-Widget totalCard(BuildContext context, int val) {
-  return Container(
-      child: Card(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        logListTile(
-            context,
-            "abc", //Tile title
-            "Budget : R", //Tile subtitle
-            Icons.library_books //Tile icon
-            ),
-      ],
-    ),
-  ));
-}
+import 'package:gcf_projects_app/backend/globals.dart';
 
 /*
   Parameter:
@@ -36,23 +13,23 @@ Widget totalCard(BuildContext context, int val) {
 */
 Widget commercialStatistics(BuildContext context, Log log) {
   comTotal += int.parse(log.projectBudget);
-  debugPrint("comTotal is $comTotal");
-  // allTotal += int.parse(log.projectBudget);
+//  allTotal += int.parse(log.projectBudget);
   return Container(
       child: Card(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        logListTile(
-            context,
-            log.projectName, //Tile title
-            "Budget : R" + numberFormat.format(int.parse(log.projectBudget)), //Tile subtitle
-            Icons.library_books //Tile icon
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            logListTile(
+                context,
+                log.projectName, //Tile title
+                "Budget : R" + formatNumber.format(int.parse(log.projectBudget)), //Tile subtitle
+                Icons.business //Tile icon
             ),
-      ],
-    ),
-  ));
+          ],
+        ),
+      )
+  );
 }
 
 /*
@@ -65,23 +42,23 @@ Widget commercialStatistics(BuildContext context, Log log) {
 */
 Widget residentialStatistics(BuildContext context, Log log) {
   resTotal += int.parse(log.projectBudget);
-  debugPrint("resTotal is $resTotal");
-  // allTotal += int.parse(log.projectBudget);
+//  allTotal += int.parse(log.projectBudget);
   return Container(
       child: Card(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        logListTile(
-            context,
-            log.projectName, //Tile title
-            "Budget : R" + numberFormat.format(int.parse(log.projectBudget)), //Tile subtitle
-            Icons.library_books //Tile icon
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            logListTile(
+                context,
+                log.projectName, //Tile title
+                "Budget : R" + formatNumber.format(int.parse(log.projectBudget)), //Tile subtitle
+                Icons.home //Tile icon
             ),
-      ],
-    ),
-  ));
+          ],
+        ),
+      )
+  );
 }
 
 /*
@@ -94,24 +71,24 @@ Widget residentialStatistics(BuildContext context, Log log) {
 */
 Widget allStatistics(BuildContext context, Log log) {
   allTotal += int.parse(log.projectBudget);
-  debugPrint("allTotal is $allTotal");
   return Container(
       child: Card(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        logListTile(
-            context,
-            log.projectName, //Tile title
-            "Budget : R" + numberFormat.format(int.parse(log.projectBudget)), //Tile subtitle
-            log.projectType == "Business"
-            ? Icons.business //Tile icon
-            : Icons.home //Tile icon
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            logListTile(
+                context,
+                log.projectName, //Tile title
+                "Budget : R" + formatNumber.format(int.parse(log.projectBudget)), //Tile subtitle
+                log.projectType == "Business"
+                    ? Icons.business //Tile icon
+                    : Icons.home //Tile icon
             ),
-      ],
-    ),
-  ));
+          ],
+        ),
+      )
+  );
 }
 
 /*

@@ -4,12 +4,11 @@ import 'package:gcf_projects_app/frontend/log_page.dart';
 
 /*
   Parameter:
-    BuildContext context,
-    Log log
+
   Function:
-    Creates container with general log information
+
   Return:
-    A Container (widget)
+
 */
 Widget generalInfo(BuildContext context, Log log) {
   return Container(
@@ -52,12 +51,11 @@ Widget generalInfo(BuildContext context, Log log) {
 
 /*
   Parameter:
-    BuildContext context,
-    Log log
+
   Function:
-    Creates container with budget log information
+
   Return:
-    A Container (widget)
+
 */
 Widget budgetInfo(BuildContext context, Log log) {
   return Container(
@@ -137,12 +135,11 @@ Widget budgetInfo(BuildContext context, Log log) {
 
 /*
   Parameter:
-    BuildContext context,
-    Log log
+
   Function:
-    Creates container with time log information
+
   Return:
-    A Container (widget)
+
 */
 Widget timeInfo(BuildContext context, Log log) {
   return Container(
@@ -185,11 +182,11 @@ Widget timeInfo(BuildContext context, Log log) {
 
 /*
   Parameter:
-    BuildContext context
+
   Function:
-    Adds a divider to page when called
+
   Return:
-    A Divider (widget)
+
 */
 Widget logDivider(BuildContext context) {
   return Divider(
@@ -199,13 +196,11 @@ Widget logDivider(BuildContext context) {
 
 /*
   Parameter:
-    BuildContext context,
-    String title,
-    String subtitle
+
   Function:
-    Creates a ListTile with the title 'title' and subtitle 'subtitle'
+
   Return:
-    A ListTile (widget)
+
 */
 Widget logListTile(BuildContext context, String title, String subtitle,
     IconData icon) {
@@ -213,7 +208,7 @@ Widget logListTile(BuildContext context, String title, String subtitle,
 
   return ListTile(
     leading: Icon(icon),
-    isThreeLine: true,
+    isThreeLine: false,
     title: Text(
       title,
       style: TextStyle(fontWeight: FontWeight.bold),
@@ -232,13 +227,15 @@ Widget logListTile(BuildContext context, String title, String subtitle,
   Function:
     Calculates the percentage of the profit
   Return:
-    Percent of profit (double)
+    Percent of profit
 */
 double getProfit(Log log){
   double budget = double.parse(log.projectBudget);
   double expenses = 900000.00;
   double profit  = budget - expenses;
   double percent = profit / (budget/100);
+
+  percent *= (percent < 0) ? -1 : 1 ;
 
   return percent;
 }
@@ -249,7 +246,7 @@ double getProfit(Log log){
   Function:
     Calculates the percentage of the expenses
   Return:
-    Percent of expenses (double)
+    Percent of expenses
 */
 double getExpenses(Log log){
   double budget = double.parse(log.projectBudget);
@@ -265,7 +262,7 @@ double getExpenses(Log log){
   Function:
     Divides the profit by the number of days taken
   Return:
-    The profit per day (double)
+    The profit per day
 */
 double getProfitPerDay(Log log){
   return (getProfit(log)/dateDiffAsInt(log));
@@ -277,7 +274,7 @@ double getProfitPerDay(Log log){
   Function:
     Calculates the time between the start and end of project
   Return:
-    How long the project will take (String)
+    A string stating how long a project will take
 */
 String dateDiff(Log log){
   String startYear = "";
@@ -324,7 +321,7 @@ String dateDiff(Log log){
   Function:
     Calculates the time between the start and end of project
   Return:
-    How long the project will take (int)
+    A string stating how long a project will take
 */
 int dateDiffAsInt(Log log){
   String startYear = "";
