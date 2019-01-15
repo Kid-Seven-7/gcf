@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
 import 'package:gcf_projects_app/frontend/log_widgets.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 
 var stat = 1;
 
@@ -37,9 +38,9 @@ class _LogPageState extends State<LogPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.black87,
+        backgroundColor: gcfBG,
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 140, 188, 63),
+          backgroundColor: gcfGreen,
           title: stat == 0
               ? Text("General Information")
               : stat == 1
@@ -56,7 +57,7 @@ class _LogPageState extends State<LogPage> {
         body: _buildBody(context),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: stat,
-          fixedColor: Color.fromARGB(255, 140, 188, 63),
+          fixedColor: gcfGreen,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.assignment), title: Text('General')),
