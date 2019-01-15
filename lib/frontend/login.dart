@@ -7,6 +7,33 @@ import 'package:gcf_projects_app/backend/database_engine.dart';
 import 'package:gcf_projects_app/frontend/add_user.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
 
+import 'home_page.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+final storage = new FlutterSecureStorage();
+LoginEngine loginEngine = new LoginEngine();
+
+var modal = new Stack(
+  children: [
+    Scaffold(
+      backgroundColor: Colors.black,
+    ),
+    new Opacity(
+      opacity: 1.0,
+      child: const ModalBarrier(
+        dismissible: false,
+        barrierSemanticsDismissible:
+        false, //ADDED THIS BEFORE BUILDING//////////
+      ),
+    ),
+    new Center(
+      child: new CircularProgressIndicator(
+        backgroundColor: Colors.red,
+      ),
+    ),
+  ],
+);
+
 class LoginPage extends StatefulWidget {
   @override
   State createState() => new LoginPageState();
@@ -28,8 +55,6 @@ class LoginPageState extends State<LoginPage>
   final textPassword = new TextEditingController();
 
   DBCrypt dBCrypt = DBCrypt();
-  LoginEngine loginEngine = new LoginEngine();
-  DataBaseEngine dataBaseEngine = new DataBaseEngine();
 
   @override
   void dispose() {
@@ -80,9 +105,9 @@ class LoginPageState extends State<LoginPage>
                     primarySwatch: Colors.green,
                     inputDecorationTheme: new InputDecorationTheme(
                         labelStyle: new TextStyle(
-                      color: Color.fromARGB(255, 140, 188, 63),
-                      fontSize: 18.0,
-                    )),
+                          color: Color.fromARGB(255, 140, 188, 63),
+                          fontSize: 18.0,
+                        )),
                   ),
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(30.0, 20.0, 20.0, 0),
@@ -90,13 +115,13 @@ class LoginPageState extends State<LoginPage>
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         new TextFormField(
-                          decoration: new InputDecoration(labelText: "Name"),
-                          keyboardType: TextInputType.text,
+                          decoration: new InputDecoration(labelText: "Number"),
+                          keyboardType: TextInputType.number,
                           controller: textName,
                         ),
                         new TextFormField(
                           decoration:
-                              new InputDecoration(labelText: "Password"),
+                          new InputDecoration(labelText: "Password"),
                           keyboardType: TextInputType.text,
                           obscureText: true,
                           controller: textPassword,
@@ -124,11 +149,33 @@ class LoginPageState extends State<LoginPage>
                         new FlatButton(
                           color: Color.fromARGB(255, 140, 188, 63),
                           child: new Text("Login"),
-                          onPressed: () {
+                          onPressed: () async {
                             if (loginEngine.checkLogin(
                                 textName.text, textPassword.text)) {
-                              dataBaseEngine.checkUser(
-                                  textName.text, textPassword.text, context);
+                              Navigator.of(context).push(
+                                new MaterialPageRoute(builder: (context) {
+                                  return WillPopScope(
+                                    onWillPop: () async => false,
+                                    child: modal,
+                                  );
+                                }),
+                              );
+
+                              loginEngine
+                                  .checkUser(
+                                  textName.text, textPassword.text, context)
+                                  .then((value) {
+                                if (value) {
+                                  Navigator.of(context).pushReplacement(
+                                    new MaterialPageRoute(
+                                        builder: (context) => HomeScreen()),
+                                  );
+                                } else {
+                                  Navigator.pop(context);
+                                  popUpInfo(context, "Error",
+                                      "Failed to login. Name or password is incorrect. Check your details then try again.");
+                                }
+                              }).catchError((onError) {});
                             } else {
                               popUpInfo(context, "Error",
                                   "Fields can't be empty!. Please put your login name and password.");
