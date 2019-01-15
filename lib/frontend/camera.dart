@@ -45,9 +45,9 @@ class CameraPageState extends State<CameraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade900,
+      backgroundColor: gcfBG,
       appBar: AppBar(
-        backgroundColor: Colors.green.shade500,
+        backgroundColor: gcfGreen,
         title: Text("Capture"),
         leading: IconButton(icon: Icon(Icons.image), onPressed: () {}),
         actions: <Widget>[
@@ -65,7 +65,7 @@ class CameraPageState extends State<CameraPage> {
                   new Card(
                       shape: RoundedRectangleBorder(
                           side: BorderSide(
-                              color: Colors.green.shade500, width: 10.0),
+                              color: gcfGreen, width: 10.0),
                           borderRadius: BorderRadius.circular(20)),
                       color: Colors.grey[800],
                       elevation: 4,
