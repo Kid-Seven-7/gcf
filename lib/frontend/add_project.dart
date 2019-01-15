@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 import 'package:gcf_projects_app/backend/add_project_back.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:gcf_projects_app/frontend/home_page.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
 
@@ -99,7 +100,7 @@ class _CreateProjectPage extends State<CreateProjectPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 140, 188, 63),
+        backgroundColor: gcfGreen,
         title: Text("Add Project"),
         actions: <Widget>[
           Image.asset('assets/images/gcf_white.png'),
@@ -187,7 +188,7 @@ class _CreateProjectPage extends State<CreateProjectPage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        fixedColor: Color.fromARGB(255, 140, 188, 63),
+        fixedColor: gcfGreen,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               backgroundColor: Colors.black,
