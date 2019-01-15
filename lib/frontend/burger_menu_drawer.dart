@@ -85,7 +85,7 @@ class OpenDrawer extends StatelessWidget {
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken),
                 ),
-                color: Colors.blueGrey.shade900,
+                color: gcfBG,
                 backgroundBlendMode: BlendMode.darken,
               ),
             ),
