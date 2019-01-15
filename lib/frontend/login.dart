@@ -4,6 +4,7 @@ import 'package:dbcrypt/dbcrypt.dart';
 
 import 'package:gcf_projects_app/backend/login_engine.dart';
 import 'package:gcf_projects_app/backend/database_engine.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:gcf_projects_app/frontend/add_user.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
 
@@ -16,7 +17,7 @@ LoginEngine loginEngine = new LoginEngine();
 var modal = new Stack(
   children: [
     Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: gcfBG,
     ),
     new Opacity(
       opacity: 1.0,
@@ -80,14 +81,14 @@ class LoginPageState extends State<LoginPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
+      backgroundColor: gcfBG,
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
           new Image(
             image: new AssetImage("assets/images/login_back.png"),
             fit: BoxFit.cover,
-            color: Colors.black87,
+            color: gcfBG,
             colorBlendMode: BlendMode.darken,
           ),
           new Column(
@@ -142,12 +143,12 @@ class LoginPageState extends State<LoginPage>
                                   rememberMe = "no";
                                 }
                               },
-                              activeColor: Color.fromARGB(255, 140, 188, 63),
+                              activeColor: gcfGreen,
                             )
                           ],
                         ),
                         new FlatButton(
-                          color: Color.fromARGB(255, 140, 188, 63),
+                          color: gcfGreen,
                           child: new Text("Login"),
                           onPressed: () async {
                             if (loginEngine.checkLogin(

@@ -42,9 +42,9 @@ class _StatsPageState extends State<StatsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.black87,
+        backgroundColor: gcfBG,
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 140, 188, 63),
+          backgroundColor: gcfGreen,
           title: stat == 0
               ? Text("Commercial Statistics")
               : stat == 1
@@ -60,7 +60,7 @@ class _StatsPageState extends State<StatsPage> {
         ),
         body: _buildBody(context),
         floatingActionButton: new FloatingActionButton(
-          backgroundColor: Color.fromARGB(255, 140, 188, 63),
+          backgroundColor: Color.fromARGB(200, 140, 188, 63),
           foregroundColor: Color.fromARGB(255, 0, 0, 0),
           onPressed: (){
             stat == 0
@@ -75,7 +75,7 @@ class _StatsPageState extends State<StatsPage> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: stat,
-          fixedColor: Color.fromARGB(255, 140, 188, 63),
+          fixedColor: gcfGreen,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.business), title: Text('Commercial')),

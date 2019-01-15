@@ -25,9 +25,9 @@ class _ManageUsersState extends State<ManageUsers> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.blueGrey.shade900,
+        backgroundColor: gcfBG,
         appBar: AppBar(
-          backgroundColor: Colors.green.shade500,
+          backgroundColor: gcfGreen,
           title: Text("Manage Users"),
           leading: IconButton(
             icon: Icon(Icons.menu),
@@ -40,7 +40,7 @@ class _ManageUsersState extends State<ManageUsers> {
         body: _buildBody(context),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
-          fixedColor: Color.fromARGB(255, 140, 188, 63),
+          fixedColor: gcfGreen,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 backgroundColor: Colors.black,
@@ -139,7 +139,7 @@ class _ManageUsersState extends State<ManageUsers> {
                       children: <Widget>[
                         // Chip(
                         //   avatar: CircleAvatar(
-                        //     backgroundColor: Colors.grey.shade800,
+                        //     backgroundColor: gcfBG,
                         //     child: Text(''),
                         //   ),
                         //   // label: Text(record.projectForeman),
@@ -148,7 +148,7 @@ class _ManageUsersState extends State<ManageUsers> {
                           child: ButtonBar(
                             children: <Widget>[
                               RaisedButton(
-                                color: Colors.blueGrey.shade700,
+                                color: Color.fromARGB(200, 0, 0, 0),
                                 child: (currentTable == "pendingUsers")
                                     ? const Text(
                                         'Delete Request',

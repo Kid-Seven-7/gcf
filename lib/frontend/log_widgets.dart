@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:gcf_projects_app/frontend/log_page.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 
 /*
   Parameter:
@@ -190,7 +191,7 @@ Widget timeInfo(BuildContext context, Log log) {
 */
 Widget logDivider(BuildContext context) {
   return Divider(
-    color: Color.fromARGB(255, 140, 188, 63),
+    color: gcfGreen,
   );
 }
 

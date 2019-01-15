@@ -7,6 +7,7 @@ import 'package:gcf_projects_app/frontend/alert_popups.dart';
 import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
 import 'package:gcf_projects_app/backend/system_padding.dart';
 import 'package:gcf_projects_app/frontend/expenses_view.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 
 BuildContext _context;
 Record _record;
@@ -45,9 +46,9 @@ class ProjectCardState extends State<ProjectCard> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.blueGrey.shade900,
+        backgroundColor: gcfBG,
         appBar: AppBar(
-          backgroundColor: Colors.green.shade500,
+          backgroundColor: gcfGreen,
           title: Text("Project View"),
           leading: IconButton(
             icon: Icon(Icons.menu),

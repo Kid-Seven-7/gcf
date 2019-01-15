@@ -101,7 +101,7 @@ Widget allStatistics(BuildContext context, Log log) {
 */
 Widget logDivider(BuildContext context) {
   return Divider(
-    color: Color.fromARGB(255, 140, 188, 63),
+    color: gcfBG,
   );
 }
 
