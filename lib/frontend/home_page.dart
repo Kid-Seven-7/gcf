@@ -26,9 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
     }).catchError((onError) {});
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.blueGrey.shade900,
+        backgroundColor: gcfBG,
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 140, 188, 63),
+          backgroundColor: gcfGreen,
           title: Text("Dashboard"),
           leading: IconButton(
             icon: Icon(Icons.menu),
@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: _buildBody(context),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex_,
-          fixedColor: Color.fromARGB(255, 140, 188, 63),
+          fixedColor: gcfGreen,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 backgroundColor: Colors.black,
