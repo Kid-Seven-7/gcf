@@ -1,16 +1,40 @@
 import 'loading.dart';
-import 'add_user.dart';
-import 'home_page.dart';
-import 'alert_popups.dart';
-import '../backend/login_engine.dart';
-import 'forgot_password.dart';
-import 'package:dbcrypt/dbcrypt.dart';
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
+import 'package:dbcrypt/dbcrypt.dart';
+
+import 'forgot_password.dart';
+import 'package:gcf_projects_app/backend/login_engine.dart';
+import 'package:gcf_projects_app/backend/database_engine.dart';
+import 'package:gcf_projects_app/frontend/add_user.dart';
+import 'package:gcf_projects_app/frontend/alert_popups.dart';
+
+import 'home_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final storage = new FlutterSecureStorage();
 LoginEngine loginEngine = new LoginEngine();
+
+var modal = new Stack(
+  children: [
+    Scaffold(
+      backgroundColor: Colors.black,
+    ),
+    new Opacity(
+      opacity: 1.0,
+      child: const ModalBarrier(
+        dismissible: false,
+        barrierSemanticsDismissible:
+            false, //ADDED THIS BEFORE BUILDING//////////
+      ),
+    ),
+    new Center(
+      child: new CircularProgressIndicator(
+        backgroundColor: Colors.red,
+      ),
+    ),
+  ],
+);
 
 class LoginPage extends StatefulWidget {
   @override
@@ -138,15 +162,17 @@ class LoginPageState extends State<LoginPage>
                           color: Color.fromARGB(255, 140, 188, 63),
                           child: new Text("Login"),
                           onPressed: () async {
-                            String isFirstRun =
-                                await storage.read(key: "firstRun");
-                            if (isFirstRun == null) {
-                              LoginPopUp(context, "Initializing",
-                                  "We are setting up your app since this is your first run. This may take a while. Please wait...");
-                            }
-                            
                             if (loginEngine.checkLogin(
                                 textName.text, textPassword.text)) {
+                              Navigator.of(context).push(
+                                new MaterialPageRoute(builder: (context) {
+                                  return WillPopScope(
+                                    onWillPop: () async => false,
+                                    child: modal,
+                                  );
+                                }),
+                              );
+
                               loginEngine
                                   .checkUser(
                                       textName.text, textPassword.text, context)
@@ -157,6 +183,7 @@ class LoginPageState extends State<LoginPage>
                                         builder: (context) => HomeScreen()),
                                   );
                                 } else {
+                                  Navigator.pop(context);
                                   popUpInfo(context, "Error",
                                       "Failed to login. Name or password is incorrect. Check your details then try again.");
                                 }
@@ -204,24 +231,4 @@ class LoginPageState extends State<LoginPage>
       ),
     );
   }
-}
-
-void LoginPopUp(BuildContext context, String header, String message) {
-  showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          contentPadding: EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 5.0),
-          title: new Text(header),
-          content: new Text(message),
-          actions: <Widget>[
-            // new FlatButton(
-            //   child: new Text('Ok'),
-            //   onPressed: () {
-            //     Navigator.of(context).pop();
-            //   },
-            // ),
-          ],
-        );
-      });
 }

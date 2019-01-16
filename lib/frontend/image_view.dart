@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'burger_menu_drawer.dart';
+
+import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
 
 String _image = "";
 
