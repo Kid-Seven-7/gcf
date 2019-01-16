@@ -68,7 +68,7 @@ class ProjectCardState extends State<ProjectCard> {
         ),
         persistentFooterButtons: <Widget>[
           Padding(
-              padding: EdgeInsets.only(right: 35.0),
+              padding: EdgeInsets.only(right: 0.0),
               child: ButtonTheme.bar(
                 child: ButtonBar(
                   children: <Widget>[
