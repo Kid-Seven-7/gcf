@@ -3,6 +3,7 @@ import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:dbcrypt/dbcrypt.dart';
 
 import 'package:gcf_projects_app/backend/login_engine.dart';
+import 'package:gcf_projects_app/frontend/forgot_password.dart';
 import 'package:gcf_projects_app/backend/database_engine.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:gcf_projects_app/frontend/add_user.dart';
