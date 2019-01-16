@@ -199,6 +199,16 @@ class LoginPageState extends State<LoginPage>
                                     builder: (context) => AddUser()));
                           },
                         ),
+                        new FlatButton(
+                          color: Color.fromARGB(256, 0, 0, 0),
+                          child: new Text("Forgot Password?"),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Forgot()));
+                          },
+                        ),
                       ],
                     ),
                   ),
