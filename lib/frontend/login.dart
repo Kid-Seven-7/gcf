@@ -146,16 +146,6 @@ class LoginPageState extends State<LoginPage>
                               },
                               activeColor: Color.fromARGB(255, 140, 188, 63),
                             ),
-                        //     new FlatButton(
-                        //   color: Color.fromARGB(256, 0, 0, 0),
-                        //   child: new Text("forgot password?"),
-                        //   onPressed: () {
-                        //     Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //             builder: (context) => Forgot()));
-                        //   },
-                        // ),
                           ],
                         ),
                         new FlatButton(

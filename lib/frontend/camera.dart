@@ -45,7 +45,7 @@ class CameraPageState extends State<CameraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade900,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.green.shade500,
         title: Text("Capture"),

@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onWillPop: () async => false,
         child: Scaffold(
             key: _key,
-            backgroundColor: Colors.blueGrey.shade900,
+            backgroundColor: Colors.black,
             appBar: AppBar(
               backgroundColor: Color.fromARGB(255, 140, 188, 63),
               title: Text("Dashboard"),

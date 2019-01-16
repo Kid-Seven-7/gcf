@@ -35,8 +35,11 @@ class DataBaseEngine {
     } catch (_) {}
   }
 
-  bool validateData(Map<String, String> data) {
+  Future<bool> validateData(Map<String, String> data) async {
     if (data['name'].isEmpty) {
+      return (false);
+    }
+    if (data['email'].isEmpty) {
       return (false);
     }
     if (data['password'].isEmpty || data['password'].length < 8) {
@@ -47,14 +50,16 @@ class DataBaseEngine {
         !isNumeric(data['number'])) {
       return (false);
     }
-    if (userExists(data['number'])) {
+    bool userFound = await userExists(data['number']);
+    if (userFound) {
       return (false);
     }
     return (true);
   }
 
-  bool processData(Map<String, String> data) {
-    if (!validateData(data)) {
+  Future<bool> processData(Map<String, String> data) async {
+    bool dataValid = await validateData(data);
+    if (!dataValid) {
       return (false);
     }
 
@@ -63,16 +68,31 @@ class DataBaseEngine {
     return (true);
   }
 
-  Map createMap(String name, String password, String number) {
+  Map createMap(String name, String password, String number, String email) {
     Map<String, String> newUser = new Map();
     newUser['name'] = name;
     newUser['password'] = password;
     newUser['number'] = number;
+    newUser['email'] = email;
     return newUser;
   }
 
-  bool userExists(String number) {
+  Future<bool> userExists(String number) async {
     bool userFound = false;
+
+    await firestore
+        .collection("users")
+        .reference()
+        .where("number", isEqualTo: number)
+        .getDocuments()
+        .then((onValue) {
+      var _data = onValue.documents;
+      if (_data.length > 0) {
+        userFound = true;
+      }
+    }).catchError((onError) {
+      print("Error Found::Error Code::39J8HF32::$onError");
+    });
     return userFound;
   }
 }
