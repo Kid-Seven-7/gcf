@@ -154,7 +154,7 @@ class LoginPageState extends State<LoginPage>
                                 textName.text, textPassword.text)) {
                               Navigator.of(context).push(
                                 new MaterialPageRoute(builder: (context) {
-                                  eturn WillPopScope(
+                                  return WillPopScope(
                                     onWillPop: () async => false,
                                     child: modal,
                                   );
@@ -184,6 +184,12 @@ class LoginPageState extends State<LoginPage>
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(60.0)),
                           splashColor: Colors.white,
+                        ),
+                        FlatButton(
+                          child: Text("Forgot password?"),
+                          onPressed: (){
+                            print("It works");
+                          },
                         ),
                         new Padding(
                           padding: EdgeInsets.only(top: 15),
