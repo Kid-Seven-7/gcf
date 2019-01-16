@@ -17,7 +17,7 @@
 </H1>
 
 <p style="text-align: center;">
-Social Tech project at <a href="https://www.wethinkcode.co.za/">we think code_</a>
+SocialTech_ project at <a href="https://www.wethinkcode.co.za/">we think code_</a>
 </p>
 
 ## Getting Started
@@ -55,7 +55,7 @@ pending...
 
 ### Release History
 
-* Version 0.0.1
+* Version 0.0.157
 	* we think code_ edition
 
 ## Contributors

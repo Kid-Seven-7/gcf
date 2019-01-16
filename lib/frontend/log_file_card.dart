@@ -62,11 +62,11 @@ Widget _buildBody(BuildContext context, Log log) {
           subtitle: Text(log.projectClient),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Chip(
               avatar: CircleAvatar(
-                backgroundColor: Colors.grey.shade800,
+                backgroundColor: Colors.black87,
                 child: Text('FM'),
               ),
               label: Text(log.projectForeman),

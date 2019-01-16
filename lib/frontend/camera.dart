@@ -31,7 +31,7 @@ class CameraPageState extends State<CameraPage> {
 
   picker() async {
     File img = await ImagePicker.pickImage(
-        source: ImageSource.camera, maxWidth: 600, maxHeight: 400);
+        source: ImageSource.camera, maxWidth: 1400, maxHeight: 600);
     // File img = await ImagePicker.pickImage(source: ImageSource.gallery);
     if (img != null) {
       _image = img;

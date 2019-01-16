@@ -22,9 +22,9 @@ bool checkPassword(Map<String, String> passData) {
 Future<bool> checkDetails(BuildContext context, String password,
     String dataPassword, String _number) async {
   String _password =
-  await storage.read(key: "password").catchError((onError) {});
+      await storage.read(key: "password").catchError((onError) {});
   String _numberKeyStore =
-  await storage.read(key: "_number").catchError((onError) {});
+      await storage.read(key: "_number").catchError((onError) {});
 
   if (_password != null) {
     if (_password == password) {

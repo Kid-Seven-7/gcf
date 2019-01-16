@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
+import 'package:gcf_projects_app/frontend/login.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
 import 'package:gcf_projects_app/frontend/notifications.dart';
-import 'package:gcf_projects_app/frontend/login.dart';
 import 'package:gcf_projects_app/backend/database_engine.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 
@@ -16,6 +15,7 @@ class AddUserState extends State<AddUser> {
   var nameController = new TextEditingController();
   var passwordController = new TextEditingController();
   var numberController = new TextEditingController();
+  var emailController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +59,11 @@ class AddUserState extends State<AddUser> {
                           controller: nameController,
                         ),
                         new TextFormField(
+                          decoration: new InputDecoration(labelText: "Email"),
+                          keyboardType: TextInputType.emailAddress,
+                          controller: emailController,
+                        ),
+                        new TextFormField(
                           decoration:
                               new InputDecoration(labelText: "Password"),
                           keyboardType: TextInputType.text,
@@ -76,7 +81,7 @@ class AddUserState extends State<AddUser> {
                         FlatButton(
                           color: gcfGreen,
                           child: Text('Create Account'),
-                          onPressed: () {
+                          onPressed: () async {
                             //Create a map
                             //Pass it to database_engine
                             DataBaseEngine databaseEngine =
@@ -86,11 +91,14 @@ class AddUserState extends State<AddUser> {
                             var newUserData = databaseEngine.createMap(
                                 nameController.text,
                                 passwordController.text,
-                                numberController.text);
-                            if (databaseEngine.processData(newUserData)) {
+                                numberController.text,
+                                emailController.text);
+                            bool dataGood =
+                                await databaseEngine.processData(newUserData);
+                            if (dataGood) {
                               String nameN = nameController.text;
                               String numberN = numberController.text;
-                              
+
                               print('Pop up good');
                               sendMessage(context, "New User Request",
                                   "$nameN has requested permission to use the app. Phone number is $numberN");
@@ -108,7 +116,8 @@ class AddUserState extends State<AddUser> {
                                   "Error",
                                   "1. All fields must not be left.\n" +
                                       "2. Password must be 8 or more characters.\n" +
-                                      "3. Number must be 10 digits (Only numbers).");
+                                      "3. Number must be 10 digits (Only numbers).\n" +
+                                      "4. Make sure this number hasn't been used here before.");
                             }
                           },
                           shape: new RoundedRectangleBorder(
