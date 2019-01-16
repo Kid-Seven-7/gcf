@@ -197,12 +197,6 @@ class LoginPageState extends State<LoginPage>
                               borderRadius: new BorderRadius.circular(60.0)),
                           splashColor: Colors.white,
                         ),
-                        FlatButton(
-                          child: Text("Forgot password?"),
-                          onPressed: (){
-                            print("It works");
-                          },
-                        ),
                         new Padding(
                           padding: EdgeInsets.only(top: 15),
                         ),

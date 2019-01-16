@@ -57,7 +57,7 @@ class ForgotState extends State<Forgot> {
                         new Padding(
                           padding: const EdgeInsets.only(top: 20.0),
                         ),
-                        new Text("Please enter the number associated with your account to reset.", style: TextStyle(
+                        new Text("Please enter the email associated with your account to reset.", style: TextStyle(
                           color: Colors.white, fontSize: 16.0,
                           ),
                         ),
@@ -66,7 +66,7 @@ class ForgotState extends State<Forgot> {
                         ),
                         TextField(
                         decoration: InputDecoration(
-                          hintText: 'Number'
+                          hintText: 'Email'
                           ),
                         ),
                         new Padding(
