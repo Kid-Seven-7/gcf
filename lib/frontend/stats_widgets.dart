@@ -1,28 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'package:gcf_projects_app/frontend/stats_page.dart';
-
-final oCcy = new NumberFormat("#,##0.00", "en_US");
-
-Widget newCard(BuildContext context) {
-  // ran = 1;
-  return Container(
-      child: Card(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        logListTile(
-            context,
-            "Total", //Tile title
-            "Budget : R"+oCcy.format(comTotal), //Tile subtitle
-            Icons.library_books //Tile icon
-            ),
-      ],
-    ),
-  ));
-}
+import 'package:gcf_projects_app/backend/globals.dart';
 
 /*
   Parameter:
@@ -34,22 +13,23 @@ Widget newCard(BuildContext context) {
 */
 Widget commercialStatistics(BuildContext context, Log log) {
   comTotal += int.parse(log.projectBudget);
-  allTotal += int.parse(log.projectBudget);
+//  allTotal += int.parse(log.projectBudget);
   return Container(
       child: Card(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        logListTile(
-            context,
-            log.projectName, //Tile title
-            "Budget : R" + oCcy.format(int.parse(log.projectBudget)), //Tile subtitle
-            Icons.library_books //Tile icon
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            logListTile(
+                context,
+                log.projectName, //Tile title
+                "Budget : R" + formatNumber.format(int.parse(log.projectBudget)), //Tile subtitle
+                Icons.business //Tile icon
             ),
-      ],
-    ),
-  ));
+          ],
+        ),
+      )
+  );
 }
 
 /*
@@ -62,22 +42,23 @@ Widget commercialStatistics(BuildContext context, Log log) {
 */
 Widget residentialStatistics(BuildContext context, Log log) {
   resTotal += int.parse(log.projectBudget);
-  allTotal += int.parse(log.projectBudget);
+//  allTotal += int.parse(log.projectBudget);
   return Container(
       child: Card(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        logListTile(
-            context,
-            log.projectName, //Tile title
-            "Budget : R" + oCcy.format(int.parse(log.projectBudget)), //Tile subtitle
-            Icons.library_books //Tile icon
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            logListTile(
+                context,
+                log.projectName, //Tile title
+                "Budget : R" + formatNumber.format(int.parse(log.projectBudget)), //Tile subtitle
+                Icons.home //Tile icon
             ),
-      ],
-    ),
-  ));
+          ],
+        ),
+      )
+  );
 }
 
 /*
@@ -92,21 +73,22 @@ Widget allStatistics(BuildContext context, Log log) {
   allTotal += int.parse(log.projectBudget);
   return Container(
       child: Card(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        logListTile(
-            context,
-            log.projectName, //Tile title
-            "Budget : R" + oCcy.format(int.parse(log.projectBudget)), //Tile subtitle
-            log.projectType == "Business" 
-            ? Icons.business //Tile icon
-            : Icons.home //Tile icon
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            logListTile(
+                context,
+                log.projectName, //Tile title
+                "Budget : R" + formatNumber.format(int.parse(log.projectBudget)), //Tile subtitle
+                log.projectType == "Business"
+                    ? Icons.business //Tile icon
+                    : Icons.home //Tile icon
             ),
-      ],
-    ),
-  ));
+          ],
+        ),
+      )
+  );
 }
 
 /*
@@ -119,7 +101,7 @@ Widget allStatistics(BuildContext context, Log log) {
 */
 Widget logDivider(BuildContext context) {
   return Divider(
-    color: Color.fromARGB(255, 140, 188, 63),
+    color: gcfBG,
   );
 }
 

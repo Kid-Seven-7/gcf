@@ -3,14 +3,31 @@ import 'package:flutter/material.dart';
 
 import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
 import 'package:gcf_projects_app/frontend/log_widgets.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 
 var stat = 1;
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 class LogPage extends StatefulWidget {
   @override
   _LogPageState createState() => new _LogPageState();
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 class _LogPageState extends State<LogPage> {
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
   _handleDrawer() {
@@ -21,14 +38,14 @@ class _LogPageState extends State<LogPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.black87,
+        backgroundColor: gcfBG,
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 140, 188, 63),
+          backgroundColor: gcfGreen,
           title: stat == 0
               ? Text("General Information")
               : stat == 1
-                  ? Text("Budget Information")
-                  : Text("Time Information"),
+              ? Text("Budget Information")
+              : Text("Time Information"),
           leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _handleDrawer,
@@ -40,7 +57,7 @@ class _LogPageState extends State<LogPage> {
         body: _buildBody(context),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: stat,
-          fixedColor: Color.fromARGB(255, 140, 188, 63),
+          fixedColor: gcfGreen,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.assignment), title: Text('General')),
@@ -57,6 +74,14 @@ class _LogPageState extends State<LogPage> {
   }
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget _buildBody(BuildContext context) {
   return StreamBuilder<QuerySnapshot>(
     stream: Firestore.instance.collection('log').snapshots(),
@@ -68,6 +93,14 @@ Widget _buildBody(BuildContext context) {
   );
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
   return ListView(
     padding: EdgeInsets.only(top: 20.0),
@@ -75,6 +108,14 @@ Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
   );
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   Log log = Log.fromSnapshot(data);
 
@@ -89,6 +130,14 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   );
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 class Log {
   String projectName;
   String projectForeman;
@@ -127,6 +176,14 @@ class Log {
       : this.fromMap(snapshot.data, reference: snapshot.reference);
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 void logNav(BuildContext context, int index) {
   if (index == 0) {
     if (stat != 0) {

@@ -6,6 +6,7 @@ import 'package:dbcrypt/dbcrypt.dart';
 import 'forgot_password.dart';
 import 'package:gcf_projects_app/backend/login_engine.dart';
 import 'package:gcf_projects_app/backend/database_engine.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:gcf_projects_app/frontend/add_user.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
 
@@ -18,14 +19,14 @@ LoginEngine loginEngine = new LoginEngine();
 var modal = new Stack(
   children: [
     Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: gcfBG,
     ),
     new Opacity(
       opacity: 1.0,
       child: const ModalBarrier(
         dismissible: false,
         barrierSemanticsDismissible:
-            false, //ADDED THIS BEFORE BUILDING//////////
+        false, //ADDED THIS BEFORE BUILDING//////////
       ),
     ),
     new Center(
@@ -82,14 +83,14 @@ class LoginPageState extends State<LoginPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
+      backgroundColor: gcfBG,
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
           new Image(
             image: new AssetImage("assets/images/login_back.png"),
             fit: BoxFit.cover,
-            color: Colors.black87,
+            color: gcfBG,
             colorBlendMode: BlendMode.darken,
           ),
           new Column(
@@ -107,9 +108,9 @@ class LoginPageState extends State<LoginPage>
                     primarySwatch: Colors.green,
                     inputDecorationTheme: new InputDecorationTheme(
                         labelStyle: new TextStyle(
-                      color: Color.fromARGB(255, 140, 188, 63),
-                      fontSize: 18.0,
-                    )),
+                          color: Color.fromARGB(255, 140, 188, 63),
+                          fontSize: 18.0,
+                        )),
                   ),
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(30.0, 20.0, 20.0, 0),
@@ -123,7 +124,7 @@ class LoginPageState extends State<LoginPage>
                         ),
                         new TextFormField(
                           decoration:
-                              new InputDecoration(labelText: "Password"),
+                          new InputDecoration(labelText: "Password"),
                           keyboardType: TextInputType.text,
                           obscureText: true,
                           controller: textPassword,
@@ -144,12 +145,13 @@ class LoginPageState extends State<LoginPage>
                                   rememberMe = "no";
                                 }
                               },
-                              activeColor: Color.fromARGB(255, 140, 188, 63),
+                              activeColor: gcfGreen,
+                            )
                             ),
                           ],
                         ),
                         new FlatButton(
-                          color: Color.fromARGB(255, 140, 188, 63),
+                          color: gcfGreen,
                           child: new Text("Login"),
                           onPressed: () async {
                             if (loginEngine.checkLogin(
@@ -165,7 +167,7 @@ class LoginPageState extends State<LoginPage>
 
                               loginEngine
                                   .checkUser(
-                                      textName.text, textPassword.text, context)
+                                  textName.text, textPassword.text, context)
                                   .then((value) {
                                 if (value) {
                                   Navigator.of(context).pushReplacement(

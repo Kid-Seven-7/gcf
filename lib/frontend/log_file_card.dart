@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
 import 'package:gcf_projects_app/frontend/log_page.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 
 class LogCard extends StatefulWidget {
   Log log;
@@ -30,9 +31,9 @@ class LogCardState extends State<LogCard> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.black87,
+        backgroundColor: gcfBG,
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 140, 188, 63),
+          backgroundColor: gcfGreen,
           title: Text("Project Log"),
           leading: IconButton(
             icon: Icon(Icons.menu),

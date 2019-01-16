@@ -3,17 +3,35 @@ import 'package:flutter/material.dart';
 
 import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
 import 'package:gcf_projects_app/frontend/stats_widgets.dart';
+import 'package:gcf_projects_app/frontend/alert_popups.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 
 var stat = 1;
 int resTotal = 0;
 int comTotal = 0;
 int allTotal = 0;
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 class StatsPage extends StatefulWidget {
   @override
   _StatsPageState createState() => new _StatsPageState();
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 class _StatsPageState extends State<StatsPage> {
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
   _handleDrawer() {
@@ -24,14 +42,14 @@ class _StatsPageState extends State<StatsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.black87,
+        backgroundColor: gcfBG,
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 140, 188, 63),
+          backgroundColor: gcfGreen,
           title: stat == 0
               ? Text("Commercial Statistics")
               : stat == 1
-                  ? Text("Residential Statistics")
-                  : Text("All Statistics"),
+              ? Text("Residential Statistics")
+              : Text("All Statistics"),
           leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _handleDrawer,
@@ -41,9 +59,23 @@ class _StatsPageState extends State<StatsPage> {
           ],
         ),
         body: _buildBody(context),
+        floatingActionButton: new FloatingActionButton(
+          backgroundColor: Color.fromARGB(200, 140, 188, 63),
+          foregroundColor: Color.fromARGB(255, 0, 0, 0),
+          onPressed: (){
+            stat == 0
+                ? popUpInfo(context, "Commercial Total", "R"+formatNumber.format(comTotal))
+                : stat == 1
+                ? popUpInfo(context, "Residensial Total", "R"+formatNumber.format(resTotal))
+                : popUpInfo(context, "Grand Total", "R"+formatNumber.format(allTotal))
+            ;
+
+          },
+          child: new Icon(Icons.monetization_on),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: stat,
-          fixedColor: Color.fromARGB(255, 140, 188, 63),
+          fixedColor: gcfGreen,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.business), title: Text('Commercial')),
@@ -53,6 +85,7 @@ class _StatsPageState extends State<StatsPage> {
                 icon: Icon(Icons.all_inclusive), title: Text('All')),
           ],
           onTap: (index) {
+            resetValues();
             logNav(context, index);
           },
         ),
@@ -60,6 +93,14 @@ class _StatsPageState extends State<StatsPage> {
   }
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget _buildBody(BuildContext context) {
   return StreamBuilder<QuerySnapshot>(
     stream: Firestore.instance.collection('log').snapshots(),
@@ -71,32 +112,54 @@ Widget _buildBody(BuildContext context) {
   );
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
   return ListView(
     children: snapshot.map((data) => buildNewCard(context, data)).toList(),
   );
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   Log log = Log.fromSnapshot(data);
-
-  debugPrint("total is $allTotal");
 
   return Padding(
       key: ValueKey(log.projectName),
       padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
       child: stat == 0
-      ? log.projectType == "Business"
-        ? commercialStatistics(context, log)
-        : null
-      : stat == 1
-      ? log.projectType == "Residential"
-        ? residentialStatistics(context, log)
-        : null
-      : allStatistics(context, log)
+          ? log.projectType == "Business"
+          ? commercialStatistics(context, log)
+          : null
+          : stat == 1
+          ? log.projectType == "Residential"
+          ? residentialStatistics(context, log)
+          : null
+          : allStatistics(context, log)
   );
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 class Log {
   String projectName;
   String projectForeman;
@@ -134,6 +197,14 @@ class Log {
       : this.fromMap(snapshot.data, reference: snapshot.reference);
 }
 
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
 void logNav(BuildContext context, int index) {
   if (index == 0) {
     if (stat != 0) {
@@ -154,4 +225,18 @@ void logNav(BuildContext context, int index) {
           new MaterialPageRoute(builder: (context) => StatsPage()));
     }
   }
+}
+
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
+void resetValues(){
+  comTotal = 0;
+  resTotal = 0;
+  allTotal = 0;
 }

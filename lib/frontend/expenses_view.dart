@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gcf_projects_app/frontend/image_view.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
 import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
-// import 'package:gcf_projects_app/backend/globals.dart';
+ import 'package:gcf_projects_app/backend/globals.dart';
 
 String _projectID = "";
 String _currentTable = "";
@@ -29,9 +29,9 @@ class _ExpensesViewState extends State<ExpensesView> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.black,
+        backgroundColor: gcfBG,
         appBar: AppBar(
-          backgroundColor: Colors.green.shade500,
+          backgroundColor: gcfGreen,
           title: (_currentTable == _expensesTable)
               ? Text("Project Expenses")
               : Text("Site Images"),
@@ -46,7 +46,7 @@ class _ExpensesViewState extends State<ExpensesView> {
         body: _buildBody(context),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
-          fixedColor: Color.fromARGB(255, 140, 188, 63),
+          fixedColor: gcfGreen,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 backgroundColor: Colors.black,

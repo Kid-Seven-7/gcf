@@ -26,9 +26,9 @@ class _NotificationsState extends State<Notifications> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.black,
+        backgroundColor: gcfBG,
         appBar: AppBar(
-          backgroundColor: Colors.green.shade500,
+          backgroundColor: gcfGreen,
           title: Text("Notifications"),
           leading: IconButton(
             icon: Icon(Icons.menu),
@@ -41,7 +41,7 @@ class _NotificationsState extends State<Notifications> {
         body: _buildBody(context),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: navBarIndex,
-          fixedColor: Color.fromARGB(255, 140, 188, 63),
+          fixedColor: gcfGreen,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 backgroundColor: Colors.black,
