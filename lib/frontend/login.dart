@@ -1,9 +1,7 @@
-import 'loading.dart';
 import 'package:flutter/material.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:dbcrypt/dbcrypt.dart';
 
-import 'forgot_password.dart';
 import 'package:gcf_projects_app/backend/login_engine.dart';
 import 'package:gcf_projects_app/backend/database_engine.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
@@ -147,7 +145,6 @@ class LoginPageState extends State<LoginPage>
                               },
                               activeColor: gcfGreen,
                             )
-                            ),
                           ],
                         ),
                         new FlatButton(
@@ -200,16 +197,6 @@ class LoginPageState extends State<LoginPage>
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => AddUser()));
-                          },
-                        ),
-                                                    new FlatButton(
-                          color: Color.fromARGB(256, 0, 0, 0),
-                          child: new Text("Forgot Password?"),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Forgot()));
                           },
                         ),
                       ],
