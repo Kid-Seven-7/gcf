@@ -4,7 +4,6 @@ import 'package:gcf_projects_app/frontend/login.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
 import 'package:gcf_projects_app/frontend/notifications.dart';
 import 'package:gcf_projects_app/backend/database_engine.dart';
-import 'package:gcf_projects_app/backend/globals.dart';
 
 class AddUser extends StatefulWidget {
   @override
@@ -20,14 +19,14 @@ class AddUserState extends State<AddUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: gcfBG,
+      backgroundColor: Colors.black87,
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
           new Image(
             image: new AssetImage("assets/images/login_back.png"),
             fit: BoxFit.cover,
-            color: gcfBG,
+            color: Colors.black87,
             colorBlendMode: BlendMode.darken,
           ),
           new Column(
@@ -41,10 +40,10 @@ class AddUserState extends State<AddUser> {
                 child: Theme(
                   data: ThemeData(
                     brightness: Brightness.dark,
-                    primarySwatch: gcfGreen,
+                    primarySwatch: Colors.green,
                     inputDecorationTheme: new InputDecorationTheme(
                         labelStyle: new TextStyle(
-                      color: gcfGreen,
+                      color: Color.fromARGB(255, 140, 188, 63),
                       fontSize: 20.0,
                     )),
                   ),
@@ -79,7 +78,7 @@ class AddUserState extends State<AddUser> {
                           padding: const EdgeInsets.only(top: 20.0),
                         ),
                         FlatButton(
-                          color: gcfGreen,
+                          color: Color.fromARGB(255, 140, 188, 63),
                           child: Text('Create Account'),
                           onPressed: () async {
                             //Create a map
