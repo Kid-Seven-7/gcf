@@ -1,13 +1,26 @@
+import 'code_reset.dart';
 import 'package:flutter/material.dart';
-
-import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:gcf_projects_app/frontend/home_page.dart';
+import 'package:gcf_projects_app/frontend/login.dart';
 
-List< DropdownMenuItem<String>> items =[
-  new DropdownMenuItem(value: "Edit User Role...", child: Text("Edit User Role...", style: TextStyle(fontWeight: FontWeight.bold)),),
-  new DropdownMenuItem(value: "Administrator", child: Text("Administrator"),),
-  new DropdownMenuItem(value: "Foreman", child: Text("Foreman"),),
-  new DropdownMenuItem(value: "User", child: Text("User"),)
+List<DropdownMenuItem<String>> items = [
+  new DropdownMenuItem(
+    value: "Edit User Role...",
+    child: Text("Edit User Role...",
+        style: TextStyle(fontWeight: FontWeight.bold)),
+  ),
+  new DropdownMenuItem(
+    value: "Administrator",
+    child: Text("Administrator"),
+  ),
+  new DropdownMenuItem(
+    value: "Foreman",
+    child: Text("Foreman"),
+  ),
+  new DropdownMenuItem(
+    value: "User",
+    child: Text("User"),
+  )
 ];
 
 void popUpInfo(BuildContext context, String header, String message) {
@@ -23,10 +36,37 @@ void popUpInfo(BuildContext context, String header, String message) {
               child: new Text('Ok'),
               onPressed: () {
                 message == "Project added successfully."
-                ? Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => HomeScreen()))
-                : Navigator.of(context).pop()
-                ;
+                    ? Navigator.of(context).pushReplacement(
+                        new MaterialPageRoute(
+                            builder: (context) => HomeScreen()))
+                    : Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      });
+}
+
+void codeSentPopup(BuildContext context, String header, String message, String action) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 5.0),
+          title: new Text(header),
+          content: new Text(message),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text('Ok'),
+              onPressed: () {
+                if (action == "to-reset"){
+                Navigator.of(context).pushReplacement(
+                    new MaterialPageRoute(builder: (context) => CodeReset()));
+                } else if (action == "reset-done"){
+                  Navigator.of(context).pushReplacement(
+                    new MaterialPageRoute(builder: (context) => LoginPage())
+                  );
+                }
               },
             ),
           ],

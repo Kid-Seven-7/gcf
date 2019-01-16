@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
-import 'package:gcf_projects_app/backend/add_project_back.dart';
 import 'package:gcf_projects_app/frontend/home_page.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
+import 'package:gcf_projects_app/backend/add_project_back.dart';
 
 Map<String, String> projectData = new Map(); //All data for the new project
 

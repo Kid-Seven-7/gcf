@@ -21,7 +21,7 @@ class _ImageViewState extends State<ImageView> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        backgroundColor: Colors.blueGrey.shade900,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Colors.green.shade500,
           title: Text("Image View"),
@@ -46,7 +46,7 @@ class _ImageViewState extends State<ImageView> {
               shape: RoundedRectangleBorder(
                   side: BorderSide(color: Colors.green.shade500, width: 10),
                   borderRadius: BorderRadius.circular(20)),
-              color: Colors.blueGrey.shade900,
+              color: Colors.black,
               elevation: 4,
               child: Padding(
                 padding: EdgeInsets.all(10),
