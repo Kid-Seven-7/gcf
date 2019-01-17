@@ -5,6 +5,7 @@ import 'package:gcf_projects_app/frontend/add_project.dart';
 import 'package:gcf_projects_app/frontend/project_view.dart';
 import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
+import 'stats_page.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -92,6 +93,12 @@ Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
 void onItemTapped(BuildContext context, int index) {
   if (index == 0) {
   } else if (index == 1) {
+    if (currentPage != "stats") {
+      currentPage = "stats";
+      Navigator.of(context).push(new MaterialPageRoute(
+        builder: (context) => StatsPage()
+      ));
+    }
   } else if (index == 2) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => CreateProjectPage()));
