@@ -59,6 +59,7 @@ Widget generalInfo(BuildContext context, Log log) {
 
 */
 Widget budgetInfo(BuildContext context, Log log) {
+            debugPrint("exp is : ");
   return Container(
       child: Card(
         child: Column(
@@ -76,6 +77,16 @@ Widget budgetInfo(BuildContext context, Log log) {
                 context,
                 "Budget", //Tile title
                 "R"+log.projectBudget, //Tile subtitle
+                Icons.monetization_on //Tile icon
+            ),
+            logDivider(context),
+            logListTile(
+                context,
+                "Expenses", //Tile title
+                log.projectExpenses == null
+                ? "R0.00" //Tile subtitle
+                : "R"+log.projectExpenses //Tile subtitle
+                ,
                 Icons.monetization_on //Tile icon
             ),
             logDivider(context),
@@ -232,7 +243,7 @@ Widget logListTile(BuildContext context, String title, String subtitle,
 */
 double getProfit(Log log){
   double budget = double.parse(log.projectBudget);
-  double expenses = 900000.00;
+  double expenses = (log.projectExpenses == null) ? 0.00 : double.parse(log.projectExpenses);
   double profit  = budget - expenses;
   double percent = profit / (budget/100);
 
@@ -251,7 +262,7 @@ double getProfit(Log log){
 */
 double getExpenses(Log log){
   double budget = double.parse(log.projectBudget);
-  double expenses = 250000.00;
+  double expenses = (log.projectExpenses == null) ? 0.00 : double.parse(log.projectExpenses);
   double percent = expenses / (budget/100);
 
   return percent;
