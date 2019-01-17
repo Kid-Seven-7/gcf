@@ -147,9 +147,9 @@ class Log {
   String projectLocation;
   String projectEndDate;
   String projectStartDate;
+  String projectExpenses;
   String projectBudget;
 
-  //TODO calculate time take cn
   DocumentReference reference;
 
   Log.fromMap(Map<String, dynamic> map, {this.reference})
@@ -161,6 +161,7 @@ class Log {
         assert(map['projectLocation'] != null),
         assert(map['projectEndDate'] != null),
         assert(map['projectStartDate'] != null),
+        assert(map['projectExpenses'] != null || map['projectExpenses'] == null),
         assert(map['projectBudget'] != null),
         projectName = map['projectName'],
         projectForeman = map['projectForeman'],
@@ -170,6 +171,7 @@ class Log {
         projectLocation = map['projectLocation'],
         projectEndDate = map['projectEndDate'],
         projectStartDate = map['projectStartDate'],
+        projectExpenses = map['projectExpenses'],
         projectBudget = map['projectBudget'];
 
   Log.fromSnapshot(DocumentSnapshot snapshot)

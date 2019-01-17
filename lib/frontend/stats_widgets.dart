@@ -142,7 +142,7 @@ Widget logListTile(
 */
 double getProfit(Log log) {
   double budget = double.parse(log.projectBudget);
-  double expenses = 900000.00;
+  double expenses = double.parse(log.projectExpenses);
   double profit = budget - expenses;
   double percent = profit / (budget / 100);
 
@@ -159,7 +159,7 @@ double getProfit(Log log) {
 */
 double getExpenses(Log log) {
   double budget = double.parse(log.projectBudget);
-  double expenses = 250000.00;
+  double expenses = double.parse(log.projectExpenses);
   double percent = expenses / (budget / 100);
 
   return percent;
