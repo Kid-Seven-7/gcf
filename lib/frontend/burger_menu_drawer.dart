@@ -21,11 +21,8 @@ Firestore firestore = new Firestore();
 
 /*
   Parameter:
-
   Function:
-
   Return:
-
 */
 class OpenDrawer extends StatelessWidget {
   final TextStyle _navMenuText = TextStyle(fontSize: 18.0, color: Colors.black);
@@ -152,114 +149,44 @@ class OpenDrawer extends StatelessWidget {
                 openpage(context, "Notifications");
               },
             ),
-            color: Colors.blueGrey.shade900,
-            backgroundBlendMode: BlendMode.darken,
-          ),
-        ),
-        ListTile(
-          leading: Icon(Icons.account_circle),
-          title: Text(
-            'Manage Users',
-            style: _navMenuText,
-          ),
-          onTap: () {
-            openpage(context, "Manage Users");
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.library_books),
-          title: Text(
-            'Projects',
-            style: _navMenuText,
-          ),
-          onTap: () {
-            openpage(context, "Projects");
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.assignment),
-          title: Text(
-            'Log',
-            style: _navMenuText,
-          ),
-          onTap: () {
-            openpage(context, "Log");
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.timeline),
-          title: Text(
-            'Statistics',
-            style: _navMenuText,
-          ),
-          onTap: () {
-            openpage(context, "Stats");
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.rate_review),
-          title: Text(
-            'Reports',
-            style: _navMenuText,
-          ),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: Icon(Icons.notifications),
-          title: (notifications > 0)
-              ? Text(
-                  'Notifications($notifications)',
-                  style: TextStyle(fontSize: 18.0, color: Colors.redAccent),
-                )
-              : Text(
-                  'Notifications',
-                  style: _navMenuText,
-                ),
-          onTap: () {
-            openpage(context, "Notifications");
-          },
-        ),
-        Divider(
-          height: 20.0,
-          color: Colors.black,
-        ),
-        ListTile(
-          leading: Icon(Icons.settings),
-          title: Text(
-            'Settings',
-            style: _navMenuText,
-          ),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: Icon(Icons.power),
-          title: Text(
-            'Log Out',
-            style: _navMenuText,
-          ),
-          onTap: () async {
-            await storage.delete(key: "_number").catchError((onError){});
-            await storage.delete(key: "password").catchError((onError){});
-            await storage.delete(key: "firstRun");
-            await storage.delete(key: "name").catchError((onError){});
-            await storage.delete(key: "role").catchError((onError){});
-            await storage.delete(key: "rememberMe").catchError((onError){});
+            Divider(
+              height: 20.0,
+              color: Colors.black,
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text(
+                'Settings',
+                style: _navMenuText,
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text(
+                'Log Out',
+                style: _navMenuText,
+              ),
+              onTap: () async {
+                await storage.delete(key: "_number").catchError((onError){});
+                await storage.delete(key: "password").catchError((onError){});
+                await storage.delete(key: "firstRun");
+                await storage.delete(key: "name").catchError((onError){});
+                await storage.delete(key: "role").catchError((onError){});
+                await storage.delete(key: "rememberMe").catchError((onError){});
 
-            openpage(context, "LogOut");
-          },
-        ),
-      ],
-    ));
+                openpage(context, "LogOut");
+              },
+            ),
+          ],
+        ));
   }
 }
 
 /*
   Parameter:
-
   Function:
-
   Return:
-
 */
 void openpage(BuildContext context, String page) {
   if (page == "Manage Users") {
