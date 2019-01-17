@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../frontend/home_page.dart';
 import 'package:dbcrypt/dbcrypt.dart';
-import 'package:gcf_projects_app/backend/globals.dart';
-import '../frontend/alert_popups.dart';
 import 'package:validators/validators.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter/foundation.dart';
 
 final storage = new FlutterSecureStorage();
 
@@ -14,17 +11,16 @@ class DataBaseEngine {
   DBCrypt dBCrypt = DBCrypt();
   Firestore firestore = Firestore();
 
-  String createHash(String value) {
-    if (value.isNotEmpty) {
-      String salt = dBCrypt.gensalt();
-      return dBCrypt.hashpw(value, salt);
-    }
-    return null;
+  static String createHash(Map<String, String> _data) {
+    DBCrypt _dBCrypt = DBCrypt();
+
+    String salt = _dBCrypt.gensalt();
+    return _dBCrypt.hashpw(_data['password'], salt).toString();
   }
 
   void addData(String collection, Map<String, dynamic> data) {
     try {
-      //CHECK IF DATA EXISTS IN DATABASEE
+      //CHECK IF DATA EXISTS IN DATABASE
       firestore
           .collection(collection)
           .document()
@@ -63,8 +59,14 @@ class DataBaseEngine {
       return (false);
     }
 
-    data['password'] = createHash(data['password']);
-    addData('pendingUsers', data);
+    try {
+      data['password'] = await compute(createHash, data).catchError((onError) {
+        print("OnError: $onError");
+      });
+      addData('pendingUsers', data);
+    } catch (e) {
+      print("Compute Error::$e");
+    }
     return (true);
   }
 

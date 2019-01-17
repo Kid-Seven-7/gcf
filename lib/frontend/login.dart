@@ -4,8 +4,6 @@ import 'package:dbcrypt/dbcrypt.dart';
 
 import 'package:gcf_projects_app/backend/login_engine.dart';
 import 'package:gcf_projects_app/frontend/forgot_password.dart';
-import 'package:gcf_projects_app/backend/database_engine.dart';
-import 'package:gcf_projects_app/backend/globals.dart';
 import 'package:gcf_projects_app/frontend/add_user.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
 
@@ -25,7 +23,7 @@ var modal = new Stack(
       child: const ModalBarrier(
         dismissible: false,
         barrierSemanticsDismissible:
-        false, //ADDED THIS BEFORE BUILDING//////////
+            false, //ADDED THIS BEFORE BUILDING//////////
       ),
     ),
     new Center(
@@ -81,143 +79,147 @@ class LoginPageState extends State<LoginPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: gcfBG,
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          new Image(
-            image: new AssetImage("assets/images/login_back.png"),
-            fit: BoxFit.cover,
-            color: gcfBG,
-            colorBlendMode: BlendMode.darken,
-          ),
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Image(
-                image: new AssetImage("assets/images/GCF-logo.png"),
-                height: _iconAnimation.value * 86,
-                width: _iconAnimation.value * 90,
-              ),
-              new Form(
-                child: Theme(
-                  data: ThemeData(
-                    brightness: Brightness.dark,
-                    primarySwatch: Colors.green,
-                    inputDecorationTheme: new InputDecorationTheme(
-                        labelStyle: new TextStyle(
-                          color: Color.fromARGB(255, 140, 188, 63),
-                          fontSize: 18.0,
-                        )),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(30.0, 20.0, 20.0, 0),
-                    child: new Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        new TextFormField(
-                          decoration: new InputDecoration(labelText: "Number"),
-                          keyboardType: TextInputType.number,
-                          controller: textName,
-                        ),
-                        new TextFormField(
-                          decoration:
-                          new InputDecoration(labelText: "Password"),
-                          keyboardType: TextInputType.text,
-                          obscureText: true,
-                          controller: textPassword,
-                        ),
-                        new Row(
-                          children: <Widget>[
-                            new Text(
-                              "Remember me",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            new Checkbox(
-                              value: _checked,
-                              onChanged: (bool value) {
-                                onChanged(value);
-                                if (value) {
-                                  rememberMe = "yes";
-                                } else {
-                                  rememberMe = "no";
-                                }
-                              },
-                              activeColor: gcfGreen,
-                            )
-                          ],
-                        ),
-                        new FlatButton(
-                          color: gcfGreen,
-                          child: new Text("Login"),
-                          onPressed: () async {
-                            if (loginEngine.checkLogin(
-                                textName.text, textPassword.text)) {
-                              Navigator.of(context).push(
-                                new MaterialPageRoute(builder: (context) {
-                                  return WillPopScope(
-                                    onWillPop: () async => false,
-                                    child: modal,
-                                  );
-                                }),
-                              );
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        backgroundColor: gcfBG,
+        body: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            new Image(
+              image: new AssetImage("assets/images/login_back.png"),
+              fit: BoxFit.cover,
+              color: gcfBG,
+              colorBlendMode: BlendMode.darken,
+            ),
+            new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Image(
+                  image: new AssetImage("assets/images/GCF-logo.png"),
+                  height: _iconAnimation.value * 86,
+                  width: _iconAnimation.value * 90,
+                ),
+                new Form(
+                  child: Theme(
+                    data: ThemeData(
+                      brightness: Brightness.dark,
+                      primarySwatch: Colors.green,
+                      inputDecorationTheme: new InputDecorationTheme(
+                          labelStyle: new TextStyle(
+                        color: Color.fromARGB(255, 140, 188, 63),
+                        fontSize: 18.0,
+                      )),
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.fromLTRB(30.0, 20.0, 20.0, 0),
+                      child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          new TextFormField(
+                            decoration:
+                                new InputDecoration(labelText: "Number"),
+                            keyboardType: TextInputType.number,
+                            controller: textName,
+                          ),
+                          new TextFormField(
+                            decoration:
+                                new InputDecoration(labelText: "Password"),
+                            keyboardType: TextInputType.text,
+                            obscureText: true,
+                            controller: textPassword,
+                          ),
+                          new Row(
+                            children: <Widget>[
+                              new Text(
+                                "Remember me",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              new Checkbox(
+                                value: _checked,
+                                onChanged: (bool value) {
+                                  onChanged(value);
+                                  if (value) {
+                                    rememberMe = "yes";
+                                  } else {
+                                    rememberMe = "no";
+                                  }
+                                },
+                                activeColor: gcfGreen,
+                              )
+                            ],
+                          ),
+                          new FlatButton(
+                            color: gcfGreen,
+                            child: new Text("Login"),
+                            onPressed: () async {
+                              if (loginEngine.checkLogin(
+                                  textName.text, textPassword.text)) {
+                                Navigator.of(context).push(
+                                  new MaterialPageRoute(builder: (context) {
+                                    return WillPopScope(
+                                      onWillPop: () async => false,
+                                      child: modal,
+                                    );
+                                  }),
+                                );
 
-                              loginEngine
-                                  .checkUser(
-                                  textName.text, textPassword.text, context)
-                                  .then((value) {
-                                if (value) {
-                                  Navigator.of(context).pushReplacement(
-                                    new MaterialPageRoute(
-                                        builder: (context) => HomeScreen()),
-                                  );
-                                } else {
-                                  Navigator.pop(context);
-                                  popUpInfo(context, "Error",
-                                      "Failed to login. Name or password is incorrect. Check your details then try again.");
-                                }
-                              }).catchError((onError) {});
-                            } else {
-                              popUpInfo(context, "Error",
-                                  "Fields can't be empty!. Please put your login name and password.");
-                            }
-                          },
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(60.0)),
-                          splashColor: Colors.white,
-                        ),
-                        new Padding(
-                          padding: EdgeInsets.only(top: 15),
-                        ),
-                        new MaterialButton(
-                          color: Color.fromARGB(0, 0, 0, 0),
-                          child: new Text("Create New Account"),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AddUser()));
-                          },
-                        ),
-                        new FlatButton(
-                          color: Color.fromARGB(256, 0, 0, 0),
-                          child: new Text("Forgot Password?"),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Forgot()));
-                          },
-                        ),
-                      ],
+                                loginEngine
+                                    .checkUser(textName.text, textPassword.text,
+                                        context)
+                                    .then((value) {
+                                  if (value) {
+                                    Navigator.of(context).pushReplacement(
+                                      new MaterialPageRoute(
+                                          builder: (context) => HomeScreen()),
+                                    );
+                                  } else {
+                                    Navigator.pop(context);
+                                    popUpInfo(context, "Error",
+                                        "Failed to login. Name or password is incorrect. Check your details then try again.");
+                                  }
+                                }).catchError((onError) {});
+                              } else {
+                                popUpInfo(context, "Error",
+                                    "Fields can't be empty!. Please put your login name and password.");
+                              }
+                            },
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(60.0)),
+                            splashColor: Colors.white,
+                          ),
+                          new Padding(
+                            padding: EdgeInsets.only(top: 15),
+                          ),
+                          new MaterialButton(
+                            color: Color.fromARGB(0, 0, 0, 0),
+                            child: new Text("Create New Account"),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => AddUser()));
+                            },
+                          ),
+                          new FlatButton(
+                            color: Color.fromARGB(256, 0, 0, 0),
+                            child: new Text("Forgot Password?"),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Forgot()));
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              )
-            ],
-          )
-        ],
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

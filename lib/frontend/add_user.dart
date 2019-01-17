@@ -4,6 +4,7 @@ import 'package:gcf_projects_app/frontend/login.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
 import 'package:gcf_projects_app/frontend/notifications.dart';
 import 'package:gcf_projects_app/backend/database_engine.dart';
+import 'package:gcf_projects_app/backend/globals.dart';
 
 class AddUser extends StatefulWidget {
   @override
@@ -15,6 +16,49 @@ class AddUserState extends State<AddUser> {
   var passwordController = new TextEditingController();
   var numberController = new TextEditingController();
   var emailController = new TextEditingController();
+
+  var modal = new Stack(
+    children: [
+      Scaffold(
+        backgroundColor: gcfBG,
+      ),
+      new Opacity(
+        opacity: 1.0,
+        child: const ModalBarrier(
+          dismissible: false,
+          barrierSemanticsDismissible:
+              false, //ADDED THIS BEFORE BUILDING//////////
+        ),
+      ),
+      new Center(
+        child: new CircularProgressIndicator(
+          backgroundColor: Colors.red,
+        ),
+      ),
+    ],
+  );
+
+  void popNavLogin(BuildContext context, String header, String message) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 5.0),
+            title: new Text(header),
+            content: new Text(message),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    new MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                },
+              ),
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,24 +136,28 @@ class AddUserState extends State<AddUser> {
                                 passwordController.text,
                                 numberController.text,
                                 emailController.text);
+                            //Init modal
+                            Navigator.of(context).push(
+                              new MaterialPageRoute(builder: (context){
+                                return WillPopScope(
+                                  onWillPop: () async => false,
+                                  child: modal,
+                                );
+                              })
+                            );
                             bool dataGood =
                                 await databaseEngine.processData(newUserData);
                             if (dataGood) {
                               String nameN = nameController.text;
                               String numberN = numberController.text;
 
-                              print('Pop up good');
                               sendMessage(context, "New User Request",
                                   "$nameN has requested permission to use the app. Phone number is $numberN");
-                              popUpInfo(context, "Success",
+                              Navigator.pop(context);
+                              popNavLogin(context, "Success",
                                   "Your account has been created.");
-                              Timer(Duration(seconds: 3), () {
-                                Navigator.of(context).pushReplacement(
-                                    new MaterialPageRoute(
-                                        builder: (context) => LoginPage()));
-                              });
                             } else {
-                              print('Pop up bad');
+                              Navigator.pop(context);
                               popUpInfo(
                                   context,
                                   "Error",

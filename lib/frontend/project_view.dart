@@ -127,7 +127,7 @@ class ProjectCardState extends State<ProjectCard> {
             //     icon: Icon(Icons.image),
             //     title: Text('View Project Images')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.money_off), title: Text('View Expanses')),
+                icon: Icon(Icons.money_off), title: Text('View Expenses')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.toc), title: Text('View TODO-List')),
           ],
