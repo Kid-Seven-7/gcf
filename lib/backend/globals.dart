@@ -31,3 +31,5 @@ var messageIcon = Icons.markunread;
 
 //Style
 final formatNumber = new NumberFormat("#,##0.00", "en_US");
+Color gcfGreen = Color.fromARGB(255, 140, 188, 63);
+Color gcfBG = Colors.black87;
