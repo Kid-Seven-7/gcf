@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gcf_projects_app/frontend/burger_menu_drawer.dart';
-import 'package:gcf_projects_app/frontend/stats_widgets.dart';
+// import 'package:gcf_projects_app/frontend/stats_widgets.dart';
 import 'package:gcf_projects_app/frontend/alert_popups.dart';
+import 'package:gcf_projects_app/frontend/log_page.dart';
 import 'package:gcf_projects_app/backend/globals.dart';
 
 var stat = 1;
@@ -19,9 +20,9 @@ int allTotal = 0;
   Return:
 
 */
-class StatsPage extends StatefulWidget {
+class LogPrePage extends StatefulWidget {
   @override
-  _StatsPageState createState() => new _StatsPageState();
+  _LogPrePageState createState() => new _LogPrePageState();
 }
 
 /*
@@ -32,7 +33,7 @@ class StatsPage extends StatefulWidget {
   Return:
 
 */
-class _StatsPageState extends State<StatsPage> {
+class _LogPrePageState extends State<LogPrePage> {
   GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
   _handleDrawer() {
     _key.currentState.openDrawer();
@@ -45,11 +46,7 @@ class _StatsPageState extends State<StatsPage> {
         backgroundColor: gcfBG,
         appBar: AppBar(
           backgroundColor: gcfGreen,
-          title: stat == 0
-              ? Text("Commercial Statistics")
-              : stat == 1
-              ? Text("Residential Statistics")
-              : Text("All Statistics"),
+          title: Text("Project Log"),
           leading: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _handleDrawer,
@@ -59,36 +56,6 @@ class _StatsPageState extends State<StatsPage> {
           ],
         ),
         body: _buildBody(context),
-        floatingActionButton: new FloatingActionButton(
-          backgroundColor: Color.fromARGB(200, 140, 188, 63),
-          foregroundColor: Color.fromARGB(255, 0, 0, 0),
-          onPressed: (){
-            stat == 0
-                ? popUpInfo(context, "Commercial Total", "R"+formatNumber.format(comTotal))
-                : stat == 1
-                ? popUpInfo(context, "Residensial Total", "R"+formatNumber.format(resTotal))
-                : popUpInfo(context, "Grand Total", "R"+formatNumber.format(allTotal))
-            ;
-
-          },
-          child: new Icon(Icons.monetization_on),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: stat,
-          fixedColor: gcfGreen,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(Icons.business), title: Text('Commercial')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), title: Text('Residential')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.all_inclusive), title: Text('All')),
-          ],
-          onTap: (index) {
-            resetValues();
-            logNav(context, index);
-          },
-        ),
         drawer: OpenDrawer());
   }
 }
@@ -140,15 +107,7 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   return Padding(
       key: ValueKey(log.projectName),
       padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
-      child: stat == 0
-          ? log.projectType == "Business"
-          ? commercialStatistics(context, log)
-          : null
-          : stat == 1
-          ? log.projectType == "Residential"
-          ? residentialStatistics(context, log)
-          : null
-          : allStatistics(context, log)
+      child: allStatistics(context, log)
   );
 }
 
@@ -160,7 +119,7 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
   Return:
 
 */
-class Log {
+class _Log {
   String projectName;
   String projectForeman;
   String projectDescription;
@@ -174,7 +133,7 @@ class Log {
 
   DocumentReference reference;
 
-  Log.fromMap(Map<String, dynamic> map, {this.reference})
+  _Log.fromMap(Map<String, dynamic> map, {this.reference})
       : assert(map['projectName'] != null),
         assert(map['projectForeman'] != null),
         assert(map['projectDescription'] != null),
@@ -196,7 +155,7 @@ class Log {
         projectExpenses = map['projectExpenses'],
         projectBudget = map['projectBudget'];
 
-  Log.fromSnapshot(DocumentSnapshot snapshot)
+  _Log.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);
 }
 
@@ -208,26 +167,28 @@ class Log {
   Return:
 
 */
-void logNav(BuildContext context, int index) {
-  if (index == 0) {
-    if (stat != 0) {
-      stat = 0;
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => StatsPage()));
-    }
-  } else if (index == 1) {
-    if (stat != 1) {
-      stat = 1;
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => StatsPage()));
-    }
-  } else if (index == 2) {
-    if (stat != 2) {
-      stat = 2;
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => StatsPage()));
-    }
-  }
+Widget allStatistics(BuildContext context, Log currentLog) {
+  allTotal += int.parse(currentLog.projectBudget);
+  return Container(
+      child: Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            logListTile(
+                context,
+                currentLog.projectName, //Tile title
+                currentLog.projectDescription, //Tile subtitle
+                currentLog.projectType == "Business"
+                    ? Icons.business //Tile icon
+                    : Icons.home //Tile icon
+                ,
+                currentLog
+            ),
+          ],
+        ),
+      )
+  );
 }
 
 /*
@@ -238,8 +199,23 @@ void logNav(BuildContext context, int index) {
   Return:
 
 */
-void resetValues(){
-  comTotal = 0;
-  resTotal = 0;
-  allTotal = 0;
+Widget logListTile(
+    BuildContext context, String title, String subtitle, IconData icon, Log currentLog) {
+  // var checked = true;
+
+  return ListTile(
+    leading: Icon(icon),
+    isThreeLine: true,
+    title: Text(
+      title,
+      style: TextStyle(fontWeight: FontWeight.bold),
+    ),
+    subtitle: Text(subtitle),
+    onTap: () {
+      // debugPrint("clicked");
+      // LogPage(currentLog);
+      Navigator.push(
+          context, new MaterialPageRoute(builder: (context) => LogPage(currentLog)));
+    },
+  );
 }
