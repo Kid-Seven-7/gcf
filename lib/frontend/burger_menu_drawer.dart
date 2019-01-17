@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gcf_projects_app/frontend/splash.dart';
-import 'package:gcf_projects_app/frontend/log_page.dart';
+import 'package:gcf_projects_app/frontend/log_prepage.dart';
 import 'package:gcf_projects_app/frontend/stats_page.dart';
 import 'package:gcf_projects_app/frontend/home_page.dart';
 import 'package:gcf_projects_app/frontend/manage_users.dart';
@@ -209,7 +209,7 @@ void openpage(BuildContext context, String page) {
     if (currentPage != "Log") {
       currentPage = "Log";
       Navigator.push(
-          context, new MaterialPageRoute(builder: (context) => LogPage()));
+          context, new MaterialPageRoute(builder: (context) => LogPrePage()));
     } else {
       Navigator.pop(context);
     }

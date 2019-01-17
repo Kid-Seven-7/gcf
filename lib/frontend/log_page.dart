@@ -15,7 +15,11 @@ var stat = 1;
   Return:
 
 */
+Log _currentLog;
 class LogPage extends StatefulWidget {
+  LogPage(Log currentLog){
+    _currentLog = currentLog;
+  }
   @override
   _LogPageState createState() => new _LogPageState();
 }
@@ -83,14 +87,15 @@ class _LogPageState extends State<LogPage> {
 
 */
 Widget _buildBody(BuildContext context) {
-  return StreamBuilder<QuerySnapshot>(
-    stream: Firestore.instance.collection('log').snapshots(),
-    builder: (context, snapshot) {
-      if (!snapshot.hasData) return LinearProgressIndicator();
+  // return StreamBuilder<QuerySnapshot>(
+  //   stream: Firestore.instance.collection('log').snapshots(),
+  //   builder: (context, snapshot) {
+  //     if (!snapshot.hasData) return LinearProgressIndicator();
 
-      return _buildList(context, snapshot.data.documents);
-    },
-  );
+  //     return _buildList(context, snapshot.data.documents);
+  //   },
+  // );
+  return buildNewCard(context);
 }
 
 /*
@@ -101,25 +106,27 @@ Widget _buildBody(BuildContext context) {
   Return:
 
 */
-Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
+// Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
+//   return ListView(
+//     padding: EdgeInsets.only(top: 20.0),
+//     children: snapshot.map((data) => buildNewCard(context, data)).toList(),
+//   );
+// }
+
+/*
+  Parameter:
+
+  Function:
+
+  Return:
+
+*/
+Widget buildNewCard(BuildContext context) {
+  // Log log = Log.fromSnapshot(data);
+  Log log = _currentLog;
   return ListView(
-    padding: EdgeInsets.only(top: 20.0),
-    children: snapshot.map((data) => buildNewCard(context, data)).toList(),
-  );
-}
-
-/*
-  Parameter:
-
-  Function:
-
-  Return:
-
-*/
-Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
-  Log log = Log.fromSnapshot(data);
-
-  return Padding(
+    children: <Widget>[
+       Padding(
       key: ValueKey(log.projectName),
       padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
       child: stat == 0
@@ -127,7 +134,10 @@ Widget buildNewCard(BuildContext context, DocumentSnapshot data) {
           : stat == 1
           ? budgetInfo(context, log)
           : timeInfo(context, log)
+      ),
+    ],
   );
+ 
 }
 
 /*
@@ -191,19 +201,19 @@ void logNav(BuildContext context, int index) {
     if (stat != 0) {
       stat = 0;
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => LogPage()));
+          new MaterialPageRoute(builder: (context) => LogPage(_currentLog)));
     }
   } else if (index == 1) {
     if (stat != 1) {
       stat = 1;
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => LogPage()));
+          new MaterialPageRoute(builder: (context) => LogPage(_currentLog)));
     }
   } else if (index == 2) {
     if (stat != 2) {
       stat = 2;
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => LogPage()));
+          new MaterialPageRoute(builder: (context) => LogPage(_currentLog)));
     }
   }
 }
